@@ -29,7 +29,7 @@ async function addCfql2Answer(cfql2Answer) {
     let pool = await sql.connect(config);
     let addCfql2Survey = await pool
       .request()
-      .input("ParticipantName", sql.NVarChar(64), "Johnny Squiggles")
+      .input("ParticipantName", sql.NVarChar(64), "John Squiggles")
       .input("ParticipantAge", sql.Int, 99)
       .input("DateOfBirth", sql.Date, 1999 / 01 / 01)
       .input("Sex", sql.NVarChar(64), "Male")
