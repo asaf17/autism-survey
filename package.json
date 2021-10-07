@@ -1,0 +1,30 @@
+{
+  "name": "autism-survey",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon api.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "cors": "2.8.1",
+    "express": "~4.0.0",
+    "mssql": "^6.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asaf17/autism-survey.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asaf17/autism-survey/issues"
+  },
+  "homepage": "https://github.com/asaf17/autism-survey#readme"
+}
