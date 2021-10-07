@@ -37,3 +37,5 @@
 26. Create the CFQL2 and ASDQ2 tables from [Github](https://github.com/asaf17/autism-survey/blob/master/SQL/tableCreation.sql)
 27. Download the current code
 28. Go to the dbconfig.js file and update the instance name and port to what your current SQL Server is on
+29. In the terminal rune nodemon api.js, this starts the server
+30. Run the website as intended
