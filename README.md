@@ -1,11 +1,13 @@
 # autism-survey
+
 ## Programs needed
 - SQL Express Server Instance [SQL Express Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - Sql Server Management Studio (SSMS) [SSMS Download](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
 - Dbeaver [Dbeaver Download](https://dbeaver.io/download/)
 - Node JS [Node.JS Download](https://nodejs.org/en/download/)
 - Postman [Postman Downlaod](https://www.postman.com/downloads/)
-##Setting up Server Locally
+
+## Setting up Server Locally
 1. Download [SQL Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 2. Basic installation
 3. Install
