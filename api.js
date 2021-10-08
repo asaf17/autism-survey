@@ -1,5 +1,5 @@
 var Db = require("./dboperations");
-var Cfql2Answer = require("./cfql2Answer");
+var Cfql2Answer = require("./Cfql2Answer");
 var express = require("express");
 var bodyParser = require("body-parser");
 var cors = require("cors");
@@ -17,13 +17,7 @@ router.use((request, response, next) => {
 });
 
 router.route("/cfql2").get((request, response) => {
-  Db.getCfql2Answers().then((data) => {
-    response.json(data[0]);
-  });
-});
-
-router.route("/cfql2/:participantName").get((request, response) => {
-  Db.getCfql2Answer(request.params.participantName).then((data) => {
+  Db.getCqflq2Answers().then((data) => {
     response.json(data[0]);
   });
 });
@@ -35,25 +29,6 @@ router.route("/cfql2").post((request, response) => {
   });
 });
 
-router.route("/asdq2").get((request, response) => {
-  Db.getAsdq2Answers().then((data) => {
-    response.json(data[0]);
-  });
-});
-
-router.route("/asdq2/:participantName").get((request, response) => {
-  Db.getAsdq2Answer(request.params.participantName).then((data) => {
-    response.json(data[0]);
-  });
-});
-
-router.route("/asdq2").post((request, response) => {
-  let asdq2Answer = { ...request.body };
-  Db.addAsdq2Answer(asdq2Answer).then((data) => {
-    response.status(201).json(data);
-  });
-});
-
 var port = process.env.PORT || 8090;
 app.listen(port);
-console.log("API is runnning at " + port);
+console.log("Cfql2 API is runnning at " + port);

@@ -1,99 +1,58 @@
 class Cfql2Answer {
   constructor(
-    ParticipantName,
-    ParticipantAge,
-    DateOfBirth,
-    Sex,
-    InformantName,
-    InformantAge,
-    DateOfSurvey,
-    InformantRelationshipToPatient,
-    ParticipantDiagnosis,
-    ParticipantAgeDiagnosis,
-    ParticipantDiagosisSeverity,
-    ChildQol1,
-    ChildQol2,
-    ChildQol3,
-    ChildQol4,
-    ChildQolAverage, 
-    FamilyQol5,
-    FamilyQol6,
-    FamilyQol7,
-    FamilyQol8,
-    FamilyQolAverage, 
-    CaregiverQol9,
-    CaregiverQol10,
-    CaregiverQol11,
-    CaregiverQol12,
-    CargegiverQolAverage, 
-    FinancialQol13,
-    FinancialQol14,
-    FinancialQol15,
-    FinancialQolAverage, 
-    SocialNetworkQol16,
-    SocialNetworkQol17,
-    SocialNetworkQol18,
-    SocialNetworkQol19,
-    SocialQolAverage, 
-    PartnerRelationshipQolSpouse,
-    PartnerRelationshipQolSpouseRelation,
-    PartnerRelationshipQol20,
-    PartnerRelationshipQol21,
-    PartnerRelationshipQol22,
-    PartnerRelationshipQol23,
-    PartnerRelationshipQolAverage, 
-    CopingQol24,
-    CopingQol25,
-    CopingQol26,
-    CopingQolAverage, 
-    CumulativeScore
-    ) {
-    this.ParticipantName = ParticipantName,
-    this.ParticipantAge = ParticipantAge,
-    this.DateOfBirth = DateOfBirth,
-    this.Sex = Sex,
-    this.InformantName = InformantName,
-    this.InformantAge = InformantAge,
-    this.DateOfSurvey = DateOfSurvey,
-    this.InformantRelationshipToPatient = InformantRelationshipToPatient,
-    this.ParticipantDiagnosis = ParticipantDiagnosis,
-    this.ParticipantAgeDiagnosis = ParticipantAgeDiagnosis,
-    this.ParticipantDiagosisSeverity = ParticipantDiagosisSeverity,
-    this.ChildQol1 = ChildQol1,
-    this.ChildQol2 = ChildQol2, 
-    this.ChildQol3 = ChildQol3,
-    this.ChildQol4 = ChildQol4,
-    this.ChildQolAverage = ChildQolAverage, 
-    this.FamilyQol5 = FamilyQol5,
-    this.FamilyQol6 = FamilyQol6,
-    this.FamilyQol7 = FamilyQol7,
-    this.FamilyQol8 = FamilyQol8,
-    this.FamilyQolAverage = FamilyQolAverage, 
-    this.CaregiverQol9 = CaregiverQol9,
-    this.CaregiverQol10 = CaregiverQol10,
-    this.CaregiverQol11 = CaregiverQol11,
-    this.CaregiverQol12 = CaregiverQol12,
-    this.CargegiverQolAverage = CargegiverQolAverage, 
-    this.FinancialQol13 = FinancialQol13,
-    this.FinancialQol14 = FinancialQol14,
-    this.FinancialQol15 = FinancialQol15,
-    this.FinancialQolAverage = FinancialQolAverage, 
-    this.SocialNetworkQol16 = SocialNetworkQol16,
-    this.SocialNetworkQol17 = SocialNetworkQol17,
-    this.SocialNetworkQol18 = SocialNetworkQol18,
-    this.SocialNetworkQol19 = SocialNetworkQol19,
-    this.SocialQolAverage = SocialQolAverage, 
-    this.PartnerRelationshipQolSpouse = PartnerRelationshipQolSpouse,
-    this.PartnerRelationshipQolSpouseRelation = PartnerRelationshipQolSpouseRelation,
-    this.PartnerRelationshipQol21 = PartnerRelationshipQol21,
-    this.PartnerRelationshipQol22 = PartnerRelationshipQol22,
-    this.PartnerRelationshipQol23 = PartnerRelationshipQol23,
-    this.PartnerRelationshipQolAverage = PartnerRelationshipQolAverage, 
-    this.CopingQol24 = CopingQol24,
-    this.CopingQol25 = CopingQol25,
-    this.CopingQol26 = CopingQol26,
-    this.CopingQolAverage = CopingQolAverage, 
-    this.CumulativeScore = CumulativeScore
+    Q1,
+    Q2,
+    Q3,
+    Q4,
+    Q5,
+    Q6,
+    Q7,
+    Q8,
+    Q9,
+    Q10,
+    Q11,
+    Q12,
+    Q13,
+    Q14,
+    Q15,
+    Q16,
+    Q17,
+    Q18,
+    Q19,
+    Q20,
+    Q21,
+    Q22,
+    Q23,
+    Q24,
+    Q25,
+    Q26
+  ) {
+    this.Q1 = Q1;
+    this.Q2 = Q2;
+    this.Q3 = Q3;
+    this.Q4 = Q4;
+    this.Q5 = Q5;
+    this.Q6 = Q6;
+    this.Q7 = Q7;
+    this.Q8 = Q8;
+    this.Q9 = Q9;
+    this.Q10 = Q10;
+    this.Q11 = Q11;
+    this.Q12 = Q12;
+    this.Q13 = Q13;
+    this.Q14 = Q14;
+    this.Q15 = Q15;
+    this.Q16 = Q16;
+    this.Q17 = Q17;
+    this.Q18 = Q18;
+    this.Q19 = Q19;
+    this.Q20 = Q20;
+    this.Q21 = Q21;
+    this.Q22 = Q22;
+    this.Q23 = Q23;
+    this.Q24 = Q24;
+    this.Q25 = Q25;
+    this.Q26 = Q26;
   }
 }
 

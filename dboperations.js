@@ -1,54 +1,35 @@
 var config = require("./dbconfig");
 const sql = require("mssql");
 
-/**
- * GET Method
- * Gets all the current data in the database
- * @returns JSON output of every survey response and data.
- */
-async function getCfql2Answers() {
+async function getCqflq2Answers() {
   try {
     let pool = await sql.connect(config);
-    let result = await pool.request()
-    .query("SELECT * FROM CFQL2");
+    let result = await pool.request().query("SELECT * from CFQL2");
     return result.recordsets;
   } catch (error) {
     console.log(error);
   }
 }
 
-//TODO: Update to a primary key such as email or add addtional params
-/**
- * GET Method
- * Gets survey where survey respondant is {ParticipantName}
- * @param {Name of survey repspondant} ParticipantName 
- * @returns JSON output of survey responses by {ParticipantName}
- */
-async function getCfql2Answer(participantName) {
-  try {
-    let pool = await sql.connect(config);
-    let result = await pool.request()
-    .input('participantName', sql.NVarChar(64), participantName)
-    .query("SELECT * FROM CFQL2 WHERE ParticipantName = @participantName");
-    return result.recordsets;
-  } catch (error) {
-    console.log(error);
-  }
-}
+// async  function  getOrder(productId) {
+//     try {
+//       let  pool = await  sql.connect(config);
+//       let  product = await  pool.request()
+//       .input('input_parameter', sql.Int, productId)
+//       .query("SELECT * from Orders where Id = @input_parameter");
+//       return  product.recordsets;
+//     }
+//     catch (error) {
+//       console.log(error);
+//     }
+//   }
 
-//TODO Remove test data and extract survey answers.
-/**
- * POST Method
- * Posts survey responses to the SQL server.
- * @param {Survey responses for CFQL-2 survey} cfql2Answer 
- * @returns
- */
 async function addCfql2Answer(cfql2Answer) {
   try {
     let pool = await sql.connect(config);
-    let addCfql2Survey = await pool 
+    let addCfql2Survey = await pool
       .request()
-      .input("ParticipantName", sql.NVarChar(64), "Water Bottle")
+      .input("ParticipantName", sql.NVarChar(64), "John Squiggles")
       .input("ParticipantAge", sql.Int, 99)
       .input("DateOfBirth", sql.Date, 1999 / 01 / 01)
       .input("Sex", sql.NVarChar(64), "Male")
@@ -102,121 +83,7 @@ async function addCfql2Answer(cfql2Answer) {
   }
 }
 
-/**
- * GET Method
- * Gets all the current data in the database
- * @returns JSON output of every survey response and data.
- */
-async function getAsdq2Answers() {
-  try {
-    let pool = await sql.connect(config);
-    let result = await pool.request()
-    .query("SELECT * FROM ASDQ2");
-    return result.recordsets;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-/**
- * GET Method
- * Gets survey where survey respondant is {ParticipantName}
- * @param {Name of survey repspondant} ParticipantName 
- * @returns JSON output of survey responses by {ParticipantName}
- */
- async function getAsdq2Answer(participantName) {
-  try {
-    let pool = await sql.connect(config);
-    let result = await pool.request()
-    .input('participantName', sql.NVarChar(64), participantName)
-    .query("SELECT * FROM ASDQ2 WHERE ParticipantName = @participantName");
-    return result.recordsets;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-//TODO Remove test data and extract survey answers.
-/**
- * POST Method
- * Posts survey responses to the SQL server.
- * @param {Survey responses for ASDQ-2 survey} asdq2Answer 
- * @returns
- */
- async function addAsdq2Answer(asdq2Answer) {
-  try {
-    let pool = await sql.connect(config);
-    let addAsdq2Survey = await pool 
-      .request()
-      .input("ParticipantName", sql.NVarChar(64), "Full Send500")
-      .input("SurveyDate", sql.Date, 1999 / 01 / 01)
-      .input("Q1", sql.Int, 99)
-      .input("Q2", sql.Int, 99)
-      .input("Q3", sql.Int, 99)
-      .input("Q4", sql.Int, 99)
-      .input("Q5", sql.Int, 99)
-      .input("Q6", sql.Int, 99)
-      .input("Q7", sql.Int, 99)
-      .input("Q8", sql.Int, 99)
-      .input("Q9", sql.Int, 99)
-      .input("Q10", sql.Int, 99)
-      .input("Q11", sql.Int, 99)
-      .input("Q12", sql.Int, 99)
-      .input("Q13", sql.Int, 99)
-      .input("Q14", sql.Int, 99)
-      .input("Q15", sql.Int, 99)
-      .input("Q16", sql.Int, 99)
-      .input("Q17", sql.Int, 99)
-      .input("Q18", sql.Int, 99)
-      .input("Q19", sql.Int, 99)
-      .input("Q20", sql.Int, 99)
-      .input("Q21", sql.Int, 99)
-      .input("Q22", sql.Int, 99)
-      .input("Q23", sql.Int, 99)
-      .input("Q24", sql.Int, 99)
-      .input("Q25", sql.Int, 99)
-      .input("Q26", sql.Int, 99)
-      .input("Q27", sql.Int, 99)
-      .input("Q28", sql.Int, 99)
-      .input("Q29", sql.Int, 99)
-      .input("Q30", sql.Int, 99)
-      .input("Q31", sql.Int, 99)
-      .input("Q32", sql.Int, 99)
-      .input("Q33", sql.Int, 99)
-      .input("Q34", sql.Int, 99)
-      .input("Q35", sql.Int, 99)
-      .input("Q36", sql.Int, 99)
-      .input("Q37", sql.Int, 99)
-      .input("Q38", sql.Int, 99)
-      .input("Q39", sql.Int, 99)
-      .execute("addAsdq2Answer");
-    return addAsdq2Survey.recordsets;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-/**
- * GET Method
- * Gets all the current data in the database
- * @returns JSON output of every survey response and data.
- */
-async function getAsdq2Answers() {
-  try {
-    let pool = await sql.connect(config);
-    let result = await pool.request()
-    .query("SELECT * FROM ASDQ2");
-    return result.recordsets;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 module.exports = {
-  getCfql2Answers: getCfql2Answers,
-  getCfql2Answer: getCfql2Answer,
+  getCqflq2Answers: getCqflq2Answers,
   addCfql2Answer: addCfql2Answer,
-  getAsdq2Answers: getAsdq2Answers,
-  getAsdq2Answer: getAsdq2Answer,
-  addAsdq2Answer: addAsdq2Answer
 };
