@@ -16,7 +16,7 @@
 6. Server Type: Database Engine, Server Name: {COMPUTER NAME}{INSTANCE NAME} Example: LAPTOP-TEE3744/SQLEXPRESS, Authentication: Windows Authentication
 7. Open SQL Server Configuration Manager
 8. Ensure SQL Server Browser is running, if not: right click -> properties -> service -> start mode -> manual
-8a. If it was not running, after you changed its start mode right click and start
+    - If it was not running, after you changed its start mode right click and start
 9. Go to SQL Server Network Configuation -> Protocols for {SERVER NAME}
 10. Enable TCP/IP
 11. Right click TCP/IP -> Properties -> IP Addresses
@@ -39,3 +39,6 @@
 28. Go to the dbconfig.js file and update the instance name and port to what your current SQL Server is on
 29. In the terminal rune nodemon api.js, this starts the server
 30. Run the website as intended
+31. If you want to test the API's open up postman
+- GET: http://localhost:8090/api/cfql2
+- POST: http://localhost:8090/api/cfql2
