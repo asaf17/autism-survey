@@ -48,7 +48,7 @@ async function addCfql2Answer(cfql2Answer) {
     let pool = await sql.connect(config);
     let addCfql2Survey = await pool 
       .request()
-      .input("ParticipantName", sql.NVarChar(64), "Water Bottle")
+      .input("ParticipantName", sql.NVarChar(64), "Hello There")
       .input("ParticipantAge", sql.Int, 99)
       .input("DateOfBirth", sql.Date, 1999 / 01 / 01)
       .input("Sex", sql.NVarChar(64), "Male")
@@ -148,7 +148,7 @@ async function getAsdq2Answers() {
     let pool = await sql.connect(config);
     let addAsdq2Survey = await pool 
       .request()
-      .input("ParticipantName", sql.NVarChar(64), "Full Send500")
+      .input("ParticipantName", sql.NVarChar(64), "Its Me")
       .input("SurveyDate", sql.Date, 1999 / 01 / 01)
       .input("Q1", sql.Int, 99)
       .input("Q2", sql.Int, 99)
