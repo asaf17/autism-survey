@@ -40,5 +40,9 @@
 29. In the terminal rune nodemon api.js, this starts the server
 30. Run the website as intended
 31. If you want to test the API's open up postman
-- GET: http://localhost:8090/api/cfql2
+- GET: http://localhost:8090/api/cfql2/
+- GET {Name}: http://localhost:8090/api/cfql2/{name}
 - POST: http://localhost:8090/api/cfql2
+- GET: http://localhost:8090/api/asdq2/
+- GET {Name}: http://localhost:8090/api/asdq2/{name}
+- POST: http://localhost:8090/api/asdq2
