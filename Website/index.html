@@ -37,6 +37,7 @@
             </div>	<!-- .navbar-collapse -->
         </div>		<!-- .container -->
     </nav>
+
     <!-- Welcome   -->
     <section id="welcome" class="welcome-section">
         <div class="container">
@@ -49,14 +50,26 @@
                     <div class="emailSurv">
                         <label>Survey of Choice: </label>
                         <form>
-                            <input type="checkbox" id="cfql" name="cfql" value="cfql">
+                            <input type="checkbox" id="cfql" name="cfql" value="cfql" onclick="cfqlDesc();">
                             <label for="cfql">CFQL-2</label><br>
 
-                            <input type="checkbox" id="asdq" name="asdq" value="asdq">
+                            <!--paragraph will display if CFQL survey checkbox is checked-->
+                            <p id="cfql_Description"></p>
+
+                            <input type="checkbox" id="asdq" name="asdq" value="asdq" onclick="asdqDesc();">
                             <label for="cfql">ASDQ-2</label><br>
 
+                            <!--paragraph will display if ASDQ survey checkbox is checked-->
+                            <p id="asdq_Description"></p>
+
                             <input type="checkbox" id="both" name="both" value="both">
-                            <label for="cfql">CFQL-2 & ASDQ-2</label><br>
+                            <label for="both">CFQL-2 & ASDQ-2</label><br>
+
+                            <label for="fName">Physician First Name: </label><br>
+                            <input type="text" id="fName" name="emailRequestor"><br>
+
+                            <label for="lName">Physician Last Name: </label><br>
+                            <input type="text" id="lName" name="emailRequestor"><br>
 
                             <label for="emailRequestor">Requestor Email:</label><br>
                             <input type="email" id="emailRequestor" name="emailRequestor"><br>
@@ -64,17 +77,11 @@
                             <label for="emailRecipient">Recipient Email:</label><br>
                             <input type="email" id="emailRecipient" name="emailRecipient"><br>
                             <p>&nbsp;</p>
-                            <button type="button">Submit</button>
+                            <button type="button" onclick="validateEmail('#emailRequestor', '#emailRecipient');">Submit</button>
                         </form>
                     </div>
                     <p>&nbsp;</p>
                     <a class="btn btn-primary page-scroll" href="#about">Click For More Information</a>
-                    <p>&nbsp;</p>
-                    <!--TODO: REMOVE TEMPORARY LINK-->
-                    <a class="btn btn-primary page-scroll" href="CFQL2/1_cfql2_ChildSurvey.html">TEMP LINK TO CFQL-2</a>
-                    <p>&nbsp;</p>
-                    <!--TODO: REMOVE TEMPORARY LINK-->
-                    <a class="btn btn-primary page-scroll" href="ASDQ2/1_asdq2.html">TEMP LINK TO ASDQ-2</a>
                 </div>
             </div>
         </div>
@@ -102,30 +109,6 @@
 	
 	<a id="back2Top" title="Back to top" href="#">&#10148;</a>
 
-    <script>
-
-        //When survey option checked, a small description should appear.
-        function showDescription(){
-
-        }
-
-        //saves the requestor's email input
-        function getReqEmail(){
-            var requestorEmail = document.querySelector('#emailRequestor').value;
-        }
-
-        //saves the recipient's email input
-        function getReciEmail(){
-            var recipientEmail = document.querySelector('#emailRecipient').value;
-        }
-
-        //Cannot submit information if there are empty fields
-        function inputValid(){
-
-        }
-
-        
-    </script>
 	
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -138,5 +121,93 @@
     <script src="js/sticky-menu.js"></script>
 
 </body>
+
+<script type="text/javascript" >
+    //TO DO 
+    //When survey option checked, a small CFQL description should appear.
+    function cfqlDesc(){
+        
+        // Grabbing the CFQL and ASDQ checkbox and assigning into var
+        var cfql_checkbox = document.getElementById("cfql");// Get the ASQD chekcbox
+        //var asdq_checkbox = document.getElementById("asdq");
+
+        //Grabbing the paragraph text and assigning into var
+        var cfql_description_paragraph = document.getElementById("cfql_Description");
+       // var asdq_description_paragraph = document.getElementById("asdq_Description");
+
+        // If the checkbox is checked, display the survey description
+        if (cfql_checkbox.checked == true){
+            document.getElementById("cfql_Description").innerHTML = 'CFQL Quick Description';
+        }
+        if (cfql_checkbox.checked == false){
+            document.getElementById("cfql_Description").innerHTML = '';
+            
+        }
+    }
+
+    //TO DO
+    //When survey option checked, a small ASDQ description should appear.
+    function asdqDesc(){
+        
+        // Grabbing the ASDQ checkbox and assigning into var
+        var asdq_checkbox = document.getElementById("asdq");
+
+        //Grabbing the paragraph text and assigning into var
+       var asdq_description_paragraph = document.getElementById("asdq_Description");
+
+        // If the checkbox is checked, display the survey description
+        if (asdq_checkbox.checked == true){
+            document.getElementById("asdq_Description").innerHTML = 'ASDQ Quick Description';
+        }
+        if (asdq_checkbox.checked == false){
+            document.getElementById("asdq_Description").innerHTML = '';
+            
+        }
+    }
+
+    // TO DO
+    //saves the requestor's email input
+    function getReqEmail(){
+        //var requestorEmail = document.querySelector('#emailRequestor').value;
+    }
+
+    //saves the recipient's email input
+    function getReciEmail(){
+        //var recipientEmail = document.querySelector('#emailRecipient').value;
+    }
+
+    //TO DO 
+    //Cannot submit information if there are empty fields.
+    //If input is valid, it will send link to the respective
+    //surveys to their emails.
+    function inputValid(email_id){
+        var email = document.querySelector(email_id).value;
+
+        //correct email format 
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            
+            //compares user email input with correct format
+            if(email.match(mailformat))
+            {
+            return true;
+            }
+            else
+            {
+            //alert("Please Enter A Valid Email Address");
+            document.querySelector(email_id).focus();
+            return false;
+            }
+
+            //TO DO: send email with correct links
+    }
+
+    //Checks if all email inputs are valid
+    function validateEmail(email_id1, email_id2){
+        inputValid(email_id1);
+        inputValid(email_id2);
+    }
+
+    
+</script>
 
 </html>
