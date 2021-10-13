@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="background">
+<div>
+    <div>
+        <h1>Child Info</h1>
+    </div>
+
+
+
+
+    <div class="quiz_div">
+        <table class="Quiz_table">
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Child Name:</td>
+                <td><input type="text" id='name_child' name=""></td>
+            </tr>
+            <tr>
+                <td>Child Age:</td>
+                <td><input type="number" id='age_child' name="" min="1" max="30"></td>
+            </tr>
+            <tr>
+                <td>Child Date of Birth:</td>
+                <td><input type="date" id='dob' name="" value="2021-01-01"
+                           min="1900-01-01" max="<?= date('Y-m-d'); ?>">></td>
+            </tr>
+            <tr>
+                <td>Informant Name:</td>
+                <td><input type="text" id='name_inform' name=""></td>
+            </tr>
+            <tr>
+                <td>Informant Age:</td>
+                <td><input type="number" id='age_inform' name="" min="1" ></td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td><input type="date" id='doa' name="" value="2021-01-01"
+                           min="1900-01-01" max="<?= date('Y-m-d'); ?>">></td>
+            </tr>
+            <tr>
+                <td>Child Sex:</td>
+                <td>
+                    <select name="sex" id="sx">
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Relationship to Patient:</td>
+                <td>
+                    <select name="relationship" id="related">
+                        <option value="Mother">Mother</option>
+                        <option value="Father">Father</option>
+                        <option value="Maternal_Grandmother">Maternal Grandmother</option>
+                        <option value="Maternal_Grandfather">Maternal Grandfather</option>
+                        <option value="Paternal_Grandmother">Paternal Grandmother</option>
+                        <option value="Paternal_Grandfather">Paternal Grandfather</option>
+                        <option value="Foster">Foster/Adoptive</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Patient diagnosis:</td>
+                <td>
+                    <select name="diagnostic" id="diagnosis">
+                        <option value="na">No Diagnosis</option>
+                        <option value="asd">Austism Spectrum Disorder</option>
+                        <option value="adhd">ADHD</option>
+                        <option value="ad">Anxiety Disorder</option>
+                        <option value="md">Mood Disorder</option>
+                        <option value="cogdis">Cognitive or intellectual impairment</option>
+                        <option value="other">other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Severity of Diagnosis:</td>
+                <td>
+                    <select name="severity" id="sever">
+                        <option value="na">Not applicable</option>
+                        <option value="ver_mild">Very Mild</option>
+                        <option value="mild">Mild</option>
+                        <option value="mod">Moderate</option>
+                        <option value="sev">Severe</option>
+                        <option value="ver_sev">Very Severe</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Age of child at Diagnosis:</td>
+                <td><input type="number" id='age_diag' name="" min="1" ></td>
+            </tr>
+        </table>
+    </div>
+
+
+
+
+
+    <div class="first_div">
+        <a href="1_cfql2_ChildSurvey.html"><input type="button" class="button"  value="Next Page" ></a>
+    </div>
+</div>
+
+
+</body>
+</html>
