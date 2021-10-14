@@ -187,3 +187,24 @@ VALUES (
 @Q39
 )
 GO
+
+CREATE PROCEDURE [dbo].addSurveyInformation
+@UniqueId varchar(64),
+@CFQL2Selected varchar(1),
+@ASDQ2Selected varchar(1),
+@PhysicianFirstName varchar(64),
+@PhysicianLastName varchar(64),
+@RequesterEmail varchar(64),
+@RecicipientEmail varchar(64)
+AS
+INSERT INTO [dbo].SurveyInformation
+VALUES (
+@UniqueId,
+@CFQL2Selected,
+@ASDQ2Selected,
+@PhysicianFirstName,
+@PhysicianLastName,
+@RequesterEmail,
+@RecicipientEmail
+)
+GO

@@ -212,11 +212,55 @@ async function getAsdq2Answers() {
   }
 }
 
+/**
+ * GET Method
+ * Gets all the current data in the database
+ * @returns JSON output of every survey submitted and data.
+ */
+ async function getSurveyInformation() {
+  try {
+    let pool = await sql.connect(config);
+    let result = await pool.request()
+    .query("SELECT * FROM SurveyInformation");
+    return result.recordsets;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//TODO Remove test data and extract survey inputs.
+/**
+ * POST Method
+ * Posts survey information to the SQL server.
+ * @param {Survey inputs} surveyInformation
+ * @returns
+ */
+ async function addSurveyInformation(surveyInformation) {
+  try {
+    let pool = await sql.connect(config);
+    let addSurveyInformation = await pool 
+      .request()
+      .input("UniqueId", sql.NVarChar(64), "Uqsas-1281")
+      .input("CFQL2Selected", sql.NVarChar(1), "Y")
+      .input("ASDQ2Selected", sql.NVarChar(1), "Y")
+      .input("PhysicianFirstName", sql.NVarChar(64), "Jeff")
+      .input("PhysicianLastName", sql.NVarChar(64), "Doctor")
+      .input("RequesterEmail", sql.NVarChar(64), "requester@jcu.edu")
+      .input("RecicipientEmail", sql.NVarChar(64), "recip@jcu.edu")
+      .execute("addSurveyInformation");
+    return addSurveyInformation.recordsets;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   getCfql2Answers: getCfql2Answers,
   getCfql2Answer: getCfql2Answer,
   addCfql2Answer: addCfql2Answer,
   getAsdq2Answers: getAsdq2Answers,
   getAsdq2Answer: getAsdq2Answer,
-  addAsdq2Answer: addAsdq2Answer
+  addAsdq2Answer: addAsdq2Answer,
+  getSurveyInformation: getSurveyInformation,
+  addSurveyInformation: addSurveyInformation
 };
