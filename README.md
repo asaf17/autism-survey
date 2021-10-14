@@ -30,7 +30,7 @@
       - Go back to  "SQL Server Services" tab -> right click SQL Server Browser -> start
     - Go to SQL Server Network Configuation -> Protocols for {SERVER NAME}
       - Right click "TCP/IP" -> Enable TCP/IP
-      - Right click TCP/IP -> Properties
+      - Right click "TCP/IP" -> Properties
       - Ensure under "Protocol" the settings are as follows:
         - Enabled: Yes
         - Keep Alive: 30000
@@ -53,7 +53,7 @@
     - Authentication: Windows Authentication
       - Should be autofilled, if not, these fields are your windows login
     - Click "Connect", if successful, you should now be connected to the database
-  - Right click "Databases" -> "New Database" -> Database name: autismsurvey -> click OK
+  - Right click "Databases" -> "New Database" -> Database name: **autismsurvey** -> click OK
   - Right click your server instance -> click "Security" -> change "Server Authentication" to "SQL Server and Windows Authentication mode"
   - Open up SQL Server Configuration Manager to restart your server again
     - In SQL Server Configuration Manager 
@@ -67,16 +67,9 @@
     - **Check OFF enforce password policy**
     - Click "User Mapping"
       - Select autismsurvey
-        - Go down to "Database role membership for {TABLE}" and select "db_owner"
-    - Select master
-        - Go down to "Database role membership for {TABLE}" and select "db_owner"
-    - Change "Default database" to "autismsurvey"
-    - Expand "Databases" -> expand "autismsurvey" -> expand "Security" -> right click "Users" -> click "New User"
-    - User Type: SQL user with login
-    - User name: username
-    - Login name: username
-    - Click "Membership"
-      - Select all roles
+        - Go down to "Database role membership for autismsurvey" and select "db_owner"
+      - Select master
+        - Go down to "Database role membership for master" and select "db_owner"
   - Right click "autismsurvey" database -> click "New Query"
     - Go to [Github Link](https://github.com/asaf17/autism-survey/blob/master/SQL/apiProcedure.sql) and copy the code under SQL -> apiProcedure.sql
       - Copy the code into the query field -> Click "Execute" at the top of SSMS
