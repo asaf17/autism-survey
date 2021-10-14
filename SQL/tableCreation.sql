@@ -91,3 +91,13 @@ Q37 int,
 Q38 int,
 Q39 int
 );
+
+CREATE TABLE autismsurvey.dbo.SurveyInformation (
+UniqueId varchar(64),
+CFQL2Selected varchar(1),
+ASDQ2Selected varchar(1),
+PhysicianFirstName varchar(64),
+PhysicianLastName varchar(64),
+RequesterEmail varchar(64),
+RecicipientEmail varchar(64)
+);

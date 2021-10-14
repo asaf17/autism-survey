@@ -54,6 +54,20 @@ router.route("/asdq2").post((request, response) => {
   });
 });
 
+router.route("/surveyInformation").get((request, response) => {
+  Db.getSurveyInformation().then((data) => {
+    response.json(data[0]);
+  });
+});
+
+
+router.route("/surveyInformation").post((request, response) => {
+  let surveyInformation = { ...request.body };
+  Db.addSurveyInformation(surveyInformation).then((data) => {
+    response.status(201).json(data);
+  });
+});
+
 var port = process.env.PORT || 8090;
 app.listen(port);
 console.log("API is runnning at " + port);
