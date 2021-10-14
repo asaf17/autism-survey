@@ -16,10 +16,10 @@
 
 ## Setting up Server Locally
 1. Download and install [SQL Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
-  - Basic installation
-  - Accept Terms and Conditions
-  - Install
-  - Save the instance name for later use - Example: INSTANCE NAME: SQLEXPRESS
+- Basic installation
+- Accept Terms and Conditions
+- Install
+- Save the instance name for later use - Example: INSTANCE NAME: SQLEXPRESS
 2. Open SQL Server Configuration Manager
   - Navigate to "SQL Server Services" tab
     - Ensure your SQL Server is running, it should say SQL Server {INSTANCE NAME} - Running
