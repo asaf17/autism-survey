@@ -16,10 +16,10 @@
 
 ## Setting up Server Locally
 1. Download and install [SQL Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
-- Basic installation
-- Accept Terms and Conditions
-- Install
-- Save the instance name for later use - Example: INSTANCE NAME: SQLEXPRESS
+  - Basic installation
+  - Accept Terms and Conditions
+  - Install
+  - Save the instance name for later use - Example: INSTANCE NAME: SQLEXPRESS
 2. Open SQL Server Configuration Manager
   - Navigate to "SQL Server Services" tab
     - Ensure your SQL Server is running, it should say SQL Server {INSTANCE NAME} - Running
@@ -65,8 +65,13 @@
     - Password: password
     - Confirm Password: password 
     - **Check OFF enforce password policy**
+    - Click "User Mapping"
+      - Select autismsurvey
+        - Go down to "Database role membership for {TABLE}" and select "db_owner"
+    - Select master
+        - Go down to "Database role membership for {TABLE}" and select "db_owner"
     - Change "Default database" to "autismsurvey"
-  - Expand "Databases" -> expand "autismsurvey" -> expand "Security" -> right click "Users" -> click "New User"
+    - Expand "Databases" -> expand "autismsurvey" -> expand "Security" -> right click "Users" -> click "New User"
     - User Type: SQL user with login
     - User name: username
     - Login name: username
@@ -121,14 +126,23 @@
     - Right click protocols for {INSTANCE NAME}
       - Scroll down to "IPAll" and copy the port in "TCP Dynamic Ports"
 3. Click "Terminal" -> "New Terminal"
-4. Run ```npm install```
-5. Run ```Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass```
-6. Run ```nodemon api.js```
-7. Open Postman
-- If you want to test the API's open up postman
-- GET: http://localhost:8090/api/cfql2/
-- GET {Name}: http://localhost:8090/api/cfql2/{name}
-- POST: http://localhost:8090/api/cfql2
-- GET: http://localhost:8090/api/asdq2/
-- GET {Name}: http://localhost:8090/api/asdq2/{name}
-- POST: http://localhost:8090/api/asdq2
+4. Run ```npm init -y```
+5. Run ```npm install```
+6. Run ```npm audit fix```
+7. Run ```npm install -g nodemon```
+8. Run ```Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass```
+9. Run ```nodemon api.js```
+  - If successful, you should see "API is running at 8090" in the console.
+10. Open Postman
+11. Click the "+" button to run a new API request
+12. Run/test the following API calls:
+  - GET: http://localhost:8090/api/cfql2/
+  - GET {Name}: http://localhost:8090/api/cfql2/{name}
+  - POST: http://localhost:8090/api/cfql2
+  - GET: http://localhost:8090/api/asdq2/
+  - GET {Name}: http://localhost:8090/api/asdq2/{name}
+  - POST: http://localhost:8090/api/asdq2
+  - GET: http://localhost:8090/api/surveyInformation
+  - POST: http://localhost:8090/api/surveyInformation
+13. Check the database to ensure data is properly pushed when POSTING
+14. Check to ensure when GETTING that data matches data in database
