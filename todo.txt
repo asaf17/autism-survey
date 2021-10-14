@@ -1,0 +1,16 @@
+1. API integrations (Matt)
+2. Emailing (Kyle)
+    - Includes unique ID assosicated with with emails for primary keying
+3. Mobile friendly UI (Ivan/Jake)
+4. Reporting (Kyle)
+    - Clarify with Dr. Frazier what he wants with that
+        - Are the respondants getting any of their data?
+5. Test cases (Austin)
+6. Clean up UI (Jake)
+    - Change selection boxes for survey selection.
+    - Change surveys to provide consistency
+        - Match spacing across
+        - Buttons in consistent location
+7. Validation for all user inputs (Ivan)
+    - Sync everything with backend to ensure backend setup doesn't get broken
+8. Implement scoring algorithms with front-end responses
