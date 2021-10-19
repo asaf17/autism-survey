@@ -1,5 +1,7 @@
 var Db = require("./dboperations");
 var Cfql2Answer = require("./cfql2Answer");
+var Asdq2Answer = require("./asdq2Answer");
+var SurveyInformation = require("./surveyInformation");
 var express = require("express");
 var bodyParser = require("body-parser");
 var cors = require("cors");
