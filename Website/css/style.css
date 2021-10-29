@@ -72,6 +72,7 @@ body {
 }
 .quiz_div{
     padding: 30px;
+    width:1250px
 }
 .first_div{
     width: 100%;
@@ -84,4 +85,17 @@ body {
     display: flex;
     justify-content: space-between;
 
+}
+.instructions_pg{
+    font-size: 18px;
+    line-height: 24px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flex;
+}
+.instruct_button{
+    padding-top: 50px;
+    padding-right: 25px;
+    display: flex;
+    justify-content: flex-end;
 }
