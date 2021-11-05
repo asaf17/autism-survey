@@ -25,6 +25,8 @@
 		}
 
 		//Ensure that the vector of scores is compliant with the needed formatting. 
+		//AN: Ideally, this should not be the case. Opininos differ on this of course, 
+		//... but really the function should just do nothing upon invalid input. 
 		function validatescores(scores, requiredlength, minscore, maxscore) {
 			//Ensure correct length of score vector. 
 			while(scores.length < requiredlength) scores.push(minscore); 
