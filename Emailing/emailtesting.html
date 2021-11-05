@@ -12,19 +12,25 @@
 	<script type="text/javascript">
 
 		//Send an email from our "donotreply" email to a desired recipient (4 Nov. '21). 
-		//AN: See "https://www.geeksforgeeks.org/how-to-send-an-email-from-javascript/". 
-		function sendemail(recipient, subject, body) {
+		//AN1: See "https://www.geeksforgeeks.org/how-to-send-an-email-from-javascript/". 
+		//AN2: This approach is really quite bad. Whoever the next person to look at this
+		//...  happens to be, you need to change this to be something better. Please. 
+		//...  The right way to do this is to have it run on the backend, with the code there
+		//...  logged in serverside to a proper mail server, this here is because of beta code. 
+		function sendemail(recipient, subject, body, pword) {
+			//AN: There should really be at least regex validation on all the above fields here. 
 			//JSON object representing the email form, including our sending email. 
 			let emailjsonraw = {
 				Host: "smtp.gmail.com",
 				Username: "donotreplyautismsurvey@gmail.com",
-				Password: "donotreplyautismsurvey1101",
+				Password: "adsf",
 				To: "asdf",
 				From: "donotreplyautismsurvey@gmail.com",
 				Subject: "adsf",
 				Body: "asdf",
 			}; 
 			//Populate relevant fields. 
+			emailjsonraw.Password = pword; 
 			emailjsonraw.To = recipient; 
 			emailjsonraw.Subject = subject; 
 			emailjsonraw.Body = body; 
@@ -32,19 +38,28 @@
 			Email.send(emailjsonraw)
 				.then(function (message) {
 					alert("mail sent successfully")
+					return; 
 				});
 		}
 
+		//Example showing how the function call works. 
 		function test() {
-			sendemail("kyletwylie@gmail.com", "test email", "bold move"); 
+			var pword = document.getElementById("passwordfield").value; 
+			var recip = document.getElementById("recipientfield").value; 
+			sendemail(recip, "test email", "<b>bold move</b>", pword); 
 		}
 	</script>
 </head>
 	
 <body>
 	<form method="post">
-		<input type="button" value="Send Email" 
-				onclick="test()" />
+		Enter the password of the email account. 
+		<input type="text" id="passwordfield">
+		<br>
+		Enter the email of the recipient. 
+		<input type="text" id="recipientfield">
+		<br>
+		<input type="button" value="Send Email" onclick="test()">
 	</form>
 </body>
 	
