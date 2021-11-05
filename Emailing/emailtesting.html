@@ -8,16 +8,16 @@
 	<script src=
 		"https://smtpjs.com/v3/smtp.js">
 	</script>
+
+	<!-- 
+	Script whose inclusion allows creation of universially unique identifiers. 
+	Call with uuidv4()
+	-->
+	<script type="module">
+		import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
+	</script>
 	
 	<script type="text/javascript">
-
-	import { v4 as uuidv4 } from 'uuid';
-	
-	
-	import { ms } from "./ms.js";
-	import Symbol from "./ms/symbol.js";
-	ms.Symbol = Symbol;
-	export { ms };
 
 		//Send an email from our "donotreply" email to a desired recipient (4 Nov. '21). 
 		//AN: See "https://www.geeksforgeeks.org/how-to-send-an-email-from-javascript/". 
@@ -44,11 +44,11 @@
 		}
 
 		function test() {
-			const uuid = uuidv4().toString();
+			const uuid = uuidv4();
 			//console.log(uuid)
 			//const uuid2 = uuid.v4().toString();
 			//sendemail("kyletwylie@gmail.com", "test email", uuid); 
-			//sendemail("asafko22@jcu.edu", "test email", uuid); 
+			sendemail("asafko22@jcu.edu", "test email", uuid); 
 		}
 	</script>
 </head>
