@@ -61,24 +61,20 @@
 
                             <!--paragraph will display if ASDQ survey checkbox is checked-->
                             <p id="asdq_Description"></p>
-                            
-                            <!--TODO: Clear other checkboxes when this option is selected-->
-                            <input type="checkbox" id="both" name="both" value="both">
-                            <label for="both">CFQL-2 & ASDQ-2</label><br>
 
-                            <label for="fName">Physician First Name: </label><br>
+                            <label for="fName">Clinician First Name: </label><br>
                             <input type="text" id="fName" name="emailRequestor"><br>
 
-                            <label for="lName">Physician Last Name: </label><br>
+                            <label for="lName">Clinician Last Name: </label><br>
                             <input type="text" id="lName" name="emailRequestor"><br>
 
-                            <label for="emailRequestor">Requestor Email:</label><br>
+                            <label for="emailRequestor">Clinician Email:</label><br>
                             <input type="email" id="emailRequestor" name="emailRequestor"><br>
                             
-                            <label for="emailRecipient">Recipient Email:</label><br>
+                            <label for="emailRecipient">Patient Email:</label><br>
                             <input type="email" id="emailRecipient" name="emailRecipient"><br>
                             <p>&nbsp;</p>
-                            <button type="button" onclick="validateEmail('#emailRequestor', '#emailRecipient');">Submit</button>
+                            <button type="button" onclick="validateEntries('#emailRequestor', '#emailRecipient');">Submit</button>
                         </form>
                     </div>
                     <p>&nbsp;</p>
@@ -123,92 +119,139 @@
 
 </body>
 
-<script type="text/javascript" >
-    //TO DO 
+<script type="text/javascript" > 
+
+    //variables assigned to the user upon
+    //signing up for surveys
+    let clinicianName = " ";
+    let clinicianEmail = " ";
+    let patientEmail = " ";
+    //selectedSurvs indicates what survey(s) were chosen
+    let selectedSurvs = " ";
+
     //When survey option checked, a small CFQL description should appear.
     function cfqlDesc(){
-        
-        // Grabbing the CFQL and ASDQ checkbox and assigning into var
-        var cfql_checkbox = document.getElementById("cfql");// Get the ASQD chekcbox
-        //var asdq_checkbox = document.getElementById("asdq");
 
-        //Grabbing the paragraph text and assigning into var
+        // Grabbing CFQL elements and assigning them to variables
+        var cfql_checkbox = document.getElementById("cfql");
         var cfql_description_paragraph = document.getElementById("cfql_Description");
-       // var asdq_description_paragraph = document.getElementById("asdq_Description");
 
         // If the checkbox is checked, display the survey description
         if (cfql_checkbox.checked == true){
-            document.getElementById("cfql_Description").innerHTML = 'CFQL Quick Description';
+            cfql_description_paragraph.innerHTML = 'CFQL Quick Description';
+            return true;
         }
         if (cfql_checkbox.checked == false){
-            document.getElementById("cfql_Description").innerHTML = '';
-            
+            cfql_description_paragraph.innerHTML = '';
+            return false;
         }
     }
 
-    //TO DO
     //When survey option checked, a small ASDQ description should appear.
     function asdqDesc(){
-        
-        // Grabbing the ASDQ checkbox and assigning into var
+        //Grabbing ASDQ checkbox + paragraph elements, assigning them to variables
         var asdq_checkbox = document.getElementById("asdq");
-
-        //Grabbing the paragraph text and assigning into var
-       var asdq_description_paragraph = document.getElementById("asdq_Description");
+        var asdq_description_paragraph = document.getElementById("asdq_Description");
 
         // If the checkbox is checked, display the survey description
         if (asdq_checkbox.checked == true){
             document.getElementById("asdq_Description").innerHTML = 'ASDQ Quick Description';
+            return true;
         }
         if (asdq_checkbox.checked == false){
             document.getElementById("asdq_Description").innerHTML = '';
-            
+            return false;
         }
     }
 
-    // TO DO
-    //saves the requestor's email input
+    // TO DO, improve these functions getEmail
+    //Saves the requestor's email input
     function getReqEmail(){
-        //var requestorEmail = document.querySelector('#emailRequestor').value;
+        clinicianEmail = document.querySelector('#emailRequestor').value;
+       // alert(clinicianEmail);
     }
 
-    //saves the recipient's email input
+    //Saves the recipient's email input
     function getReciEmail(){
-        //var recipientEmail = document.querySelector('#emailRecipient').value;
+        patientEmail = document.querySelector('#emailRecipient').value;
+        // alert(recipientEmail);
     }
 
-    //TO DO 
-    //Cannot submit information if there are empty fields.
-    //If input is valid, it will send link to the respective
-    //surveys to their emails.
+    //Verifies name fields have entries, saves names entered
+    function saveNames(){
+        var fName = document.querySelector('#fName').value.replace(/ /g, "");
+        var lName = document.querySelector('#lName').value.replace(/ /g, "");
+        var fullName = fName + " " + lName;
+        // alert(fullName);
+
+        //Verifies name is only alphabetic characters Aa - Zz
+        var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+        if(!regName.test(fullName)){
+            alert('Please enter your full name (first & last name).');
+           // document.getElementById('#fName').focus();
+        return false;
+        }else{
+            clinicianName = fullName;
+            //alert('Full Name Correct');
+         return true;
+        }
+
+    }
+
+    //checks if the provided email inputs are
+    //formatted correctly, if not, they must try again
     function inputValid(email_id){
+
+        //document.getElementById(email_id).maxValue = 320;
         var email = document.querySelector(email_id).value;
 
-        //correct email format 
+        //correct email format
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             
             //compares user email input with correct format
             if(email.match(mailformat))
-            {
+            {  
             return true;
             }
             else
             {
-            //alert("Please Enter A Valid Email Address");
+            alert("One or more email fields have an invalid entry!");
             document.querySelector(email_id).focus();
             return false;
             }
+    }
 
-            //TO DO: send email with correct links
+    //assigns the survey(s) that were chosen and will be sent
+    function surveyToSend(){
+        if(cfqlDesc() && asdqDesc()){
+            selectedSurvs = 'both';
+          //  alert(selectedSurvs);
+        }else if(cfqlDesc() && asdqDesc() == false){
+            selectedSurvs = 'cfql';
+           // alert(selectedSurvs);
+        }else if(cfqlDesc() == false && asdqDesc()){
+            selectedSurvs = 'asdq';
+           // alert(selectedSurvs);
+        }else if(cfqlDesc() == false && asdqDesc() == false){
+            alert("Please select a Survey");
+        }
     }
 
     //Checks if all email inputs are valid
-    function validateEmail(email_id1, email_id2){
-        inputValid(email_id1);
-        inputValid(email_id2);
+    function validateEntries(email_id1, email_id2){
+        if(inputValid(email_id1)){
+            getReqEmail();
+        }
+        if(inputValid(email_id2)){
+            getReciEmail();
+        }
+        
+        if(inputValid(email_id1) && inputValid(email_id2) ){
+            saveNames();
+            surveyToSend();
+        }
     }
 
-    
 </script>
 
 </html>
