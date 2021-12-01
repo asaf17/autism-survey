@@ -11,6 +11,7 @@
         <h1>Child Info</h1>
     </div>
 
+    <form action="/ASDQ2/asdq2_userinput.html" method="post">
 
 
 
@@ -22,28 +23,28 @@
             </tr>
             <tr>
                 <td>Child Name:</td>
-                <td><input type="text" id='name_child' name=""></td>
+                <td><input type="text" id='name_child' name="name_child"></td>
             </tr>
             <tr>
                 <td>Child Age:</td>
-                <td><input type="number" id='age_child' name="" min="1" max="30"></td>
+                <td><input type="number" id='age_child' name="age_child" min="1" max="30"></td>
             </tr>
             <tr>
                 <td>Child Date of Birth:</td>
-                <td><input type="date" id='dob' name="" value="2021-01-01"
+                <td><input type="date" id='dob' name="dob" value="2021-01-01"
                            min="1900-01-01" max="<?= date('Y-m-d'); ?>">></td>
             </tr>
             <tr>
                 <td>Informant Name:</td>
-                <td><input type="text" id='name_inform' name=""></td>
+                <td><input type="text" id='name_inform' name="name_inform"></td>
             </tr>
             <tr>
                 <td>Informant Age:</td>
-                <td><input type="number" id='age_inform' name="" min="1" ></td>
+                <td><input type="number" id='age_inform' name="age_inform" min="1" ></td>
             </tr>
             <tr>
                 <td>Date:</td>
-                <td><input type="date" id='doa' name="" value="2021-01-01"
+                <td><input type="date" id='doa' name="doa" value="2021-01-01"
                            min="1900-01-01" max="<?= date('Y-m-d'); ?>">></td>
             </tr>
             <tr>
@@ -101,7 +102,7 @@
             </tr>
             <tr>
                 <td>Age of child at Diagnosis:</td>
-                <td><input type="number" id='age_diag' name="" min="1" ></td>
+                <td><input type="number" id='age_diag' name="age_diag" min="1" ></td>
             </tr>
         </table>
     </div>
@@ -111,10 +112,13 @@
 
 
     <div class="first_div">
-        <a href= "1_asdq2.html"><input type="button" class="button"  value="Next Page" ></a>
+        <!-- <a href= "1_asdq2.html"><input type="button" class="button"  value="Next Page" ></a> -->
+        <button type="submit" class="button"  value="Next Page">Next Page</button>
+
     </div>
 </div>
 
+</form>
 
 </body>
 </html>
