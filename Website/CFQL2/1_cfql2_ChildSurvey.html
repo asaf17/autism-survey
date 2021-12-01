@@ -1,51 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="background">
+    
 <div>
+    <form action="/CFQL2/1_cfql2_ChildSurvey.html" method="post">
+
     <div>
         <h1>Child QoL</h1>
     </div>
+
     <div class="quiz_div">
         <table class="Quiz_table">
-            <tr>
-                <th></th>
-                <th>Strongly Disagree</th>
-                <th>Disagree</th>
-                <th>Neutral</th>
-                <th>Agree</th>
-                <th>Strongly Agree</th>
+                <tr>
+                    <th></th>
+                    <th>Strongly Disagree</th>
+                    <th>Disagree</th>
+                    <th>Neutral</th>
+                    <th>Agree</th>
+                    <th>Strongly Agree</th>
 
-            </tr>
-            <tr>
-                <td>My child deals with daily hassles and daily activities well</td>
-                <td><input type="radio" id='1a' name="1" value="1"></td>
-                <td><input type="radio" id='1b' name="1" value="2"></td>
-                <td><input type="radio" id='1c' name="1" value="3"></td>
-                <td><input type="radio" id='1d' name="1" value="4"></td>
-                <td><input type="radio" id='1e' name="1" value="5"></td>
-            </tr>
-            <tr>
-                <td>My child requires reminders to complete everyday tasks that are appropriate for him/her</td>
-                <td><input type="radio" id='2a' name="2" value="1"></td>
-                <td><input type="radio" id='2b' name="2" value="2"></td>
-                <td><input type="radio" id='2c' name="2" value="3"></td>
-                <td><input type="radio" id='2d' name="2" value="4"></td>
-                <td><input type="radio" id='2e' name="2" value="5"></td>
-            </tr>
-            <tr>
-                <td>My child appears happy and content</td>
-                <td><input type="radio" id='3a' name="3" value="1"></td>
-                <td><input type="radio" id='3b' name="3" value="2"></td>
-                <td><input type="radio" id='3c' name="3" value="3"></td>
-                <td><input type="radio" id='3d' name="3" value="4"></td>
-                <td><input type="radio" id='3e' name="3" value="5"></td>
-            </tr>
-
+                </tr>
+                <tr>
+                    <td>My child deals with daily hassles and daily activities well</td>
+                    <td><input type="radio" id='1a' name="q1" value="1"></td>
+                    <td><input type="radio" id='1b' name="q1" value="2" ></td>
+                    <td><input type="radio" id='1c' name="q1" value="3" ></td>
+                    <td><input type="radio" id='1d' name="q1" value="4" ></td>
+                    <td><input type="radio" id='1e' name="q1" value="5" ></td>
+                </tr>
+                <tr>
+                    <td>My child requires reminders to complete everyday tasks that are appropriate for him/her</td>
+                    <td><input type="radio" id='2a' name="q2" value="1"></td>
+                    <td><input type="radio" id='2b' name="q2" value="2"></td>
+                    <td><input type="radio" id='2c' name="q2" value="3"></td>
+                    <td><input type="radio" id='2d' name="q2" value="4"></td>
+                    <td><input type="radio" id='2e' name="q2" value="5"></td>
+                </tr>
+                <tr>
+                    <td>My child appears happy and content</td>
+                    <td><input type="radio" id='3a' name="q3" value="1"></td>
+                    <td><input type="radio" id='3b' name="q3" value="2"></td>
+                    <td><input type="radio" id='3c' name="q3" value="3"></td>
+                    <td><input type="radio" id='3d' name="q3" value="4"></td>
+                    <td><input type="radio" id='3e' name="q3" value="5"></td>
+                </tr>
+            
         </table>
     </div>
     <div class="quiz_div">
@@ -60,23 +66,29 @@
             </tr>
             <tr>
                 <td>Over the last month, my child’s quality of life has:</td>
-                <td><input type="radio" id='4a' name="4" value="1"></td>
-                <td><input type="radio" id='4b' name="4" value="2"></td>
-                <td><input type="radio" id='4c' name="4" value="3"></td>
-                <td><input type="radio" id='4d' name="4" value="4"></td>
-                <td><input type="radio" id='4e' name="4" value="5"></td>
+                <td><input type="radio" id='4a' name="q4" value="1"></td>
+                <td><input type="radio" id='4b' name="q4" value="2"></td>
+                <td><input type="radio" id='4c' name="q4" value="3"></td>
+                <td><input type="radio" id='4d' name="q4" value="4"></td>
+                <td><input type="radio" id='4e' name="q4" value="5"></td>
             </tr>
+            
         </table>
+        
     </div>
 
 
 
     <div class="next_div">
         <a href="cfql2_userInput.html"><input type="button" class="button"  value="Previous Page" ></a>
-        <a href="2_cfql2_FamilySurvey.html"><input type="button" class="button"  value="Next Page" ></a>
-
+        <!--a href="2_cfql2_FamilySurvey.html"><input type="button" class="button"  value="Next Page" ></a-->
+        <button type="submit" class="button"  value="Next Page">Next Page</button>
     </div>
+
+    </form> 
+
 </div>
+
 
 
 </body>
