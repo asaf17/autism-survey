@@ -140,7 +140,20 @@ CREATE PROCEDURE [dbo].addAsdq2Answer
 @Q36 int,
 @Q37 int,
 @Q38 int,
-@Q39 int
+@Q39 int,
+@SCISubscore decimal(5,2),
+@RRBSubscore decimal(5,2),
+@SocialMotivationSubscore decimal(5,2),
+@NonVervalCommunicationSubscore decimal(5,2),
+@ReciprocitySubscore decimal(5,2),
+@PerspectiveTakingSubscore decimal(5,2),
+@RelationshipsSubscore decimal(5,2),
+@RepetitiveBehaviorSubscore decimal(5,2),
+@NeedForSamenessSubscore decimal(5,2),
+@SensorySenstivitySubscore decimal(5,2),
+@SensoryInterestsSubscore decimal(5,2),
+@RestrictedInterestsSubscore decimal(5,2),
+@CumulativeScore decimal(5,2)
 AS
 INSERT INTO [dbo].ASDQ2
 VALUES (
