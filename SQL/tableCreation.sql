@@ -50,7 +50,16 @@ CumulativeScore decimal(5,2)
 
 CREATE TABLE autismsurvey.dbo.ASDQ2 (
 ParticipantName varchar(64),
-SurveyDate date,
+ParticipantAge int,
+DateOfBirth date,
+Sex varchar(64),
+InformantName varchar(64),
+InformantAge int,
+DateOfSurvey date,
+InformantRelationshipToPatient varchar(64),
+ParticipantDiagnosis varchar(64),
+ParticipantAgeDiagnosis int,
+ParticipantDiagosisSeverity varchar (64),
 Q1 int,
 Q2 int,
 Q3 int,
@@ -102,7 +111,7 @@ NeedForSamenessSubscore decimal(5,2),
 SensorySenstivitySubscore decimal(5,2),
 SensoryInterestsSubscore decimal(5,2),
 RestrictedInterestsSubscore decimal(5,2),
-CumulativeSubscore decimal(5,2)
+CumulativeScore decimal(5,2)
 );
 
 CREATE TABLE autismsurvey.dbo.SurveyInformation (
