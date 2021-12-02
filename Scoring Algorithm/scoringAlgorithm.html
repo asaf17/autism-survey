@@ -168,19 +168,19 @@
 			row = row[0]; //Access the inner data. 
 			//Accumulate the relevant entries of 'row'. 
 			//As far as I can tell, the database does not actually store these scores, so that needs to be corrected. 
-			var asdtotal = row.ASDTotal; 
-			var sci = row.SCI; 
-			var rrb = row.RRB; 
-			var socialmotivation = row.SocialMotivation; 
-			var nonverbalcommunication = row.NonVerbalCommunication; 
-			var reciprocity = row.Reciprocity; 
-			var perspectivetaking = row.PerspectiveTaking; 
-			var relationships = row.Relationships; 
-			var repetitive = row.RepetitiveBehavior; 
-			var sameness = row.NeedForSameness; 
-			var sensitiviy = row.SensorySensitivity; 
-			var interests = row.SensoryInterests; 
-			var restrictedinterests = row.RestrictedInterests; 
+			var asdtotal = row.CumulativeScore; 
+			var sci = row.SCISubscore; 
+			var rrb = row.RRBSubscore; 
+			var socialmotivation = row.SocialMotivationSubscore; 
+			var nonverbalcommunication = row.NonVervalCommunicationSubscore; 
+			var reciprocity = row.ReciprocitySubscore; 
+			var perspectivetaking = row.PerspectiveTakingSubscore; 
+			var relationships = row.RelationshipsSubscore; 
+			var repetitive = row.RepetitiveBehaviorSubscore; 
+			var sameness = row.NeedForSamenessSubscore; 
+			var sensitiviy = row.SensorySenstivitySubscore; 
+			var interests = row.SensoryInterestsSubscore; 
+			var restrictedinterests = row.RestrictedInterestsSubscore; 
 			//Format those values into the desired formatting. 
 			var outline1 = "ASD Total: " + asdtotal + "\n" + 
 						   "Domains\n" + 
