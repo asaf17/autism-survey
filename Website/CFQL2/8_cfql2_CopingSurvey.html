@@ -14,6 +14,10 @@
     <div>
         <h1>Coping QoL</h1>
     </div>
+
+    <form action="/CFQL2/8_cfql2_CopingSurvey.html" method="post">
+
+
     <div class="quiz_div">
         <table class="Quiz_table">
             <tr>
@@ -27,19 +31,19 @@
             </tr>
             <tr>
                 <td>I find it difficult to cope with my child’s difficulties</td>
-                <td><input type="radio" id='24a' name="24" value="1"></td>
-                <td><input type="radio" id='24b' name="24" value="2"></td>
-                <td><input type="radio" id='24c' name="24" value="3"></td>
-                <td><input type="radio" id='24d' name="24" value="4"></td>
-                <td><input type="radio" id='24e' name="24" value="5"></td>
+                <td><input type="radio" id='24a' name="q24" value="1"></td>
+                <td><input type="radio" id='24b' name="q24" value="2"></td>
+                <td><input type="radio" id='24c' name="q24" value="3"></td>
+                <td><input type="radio" id='24d' name="q24" value="4"></td>
+                <td><input type="radio" id='24e' name="q24" value="5"></td>
             </tr>
             <tr>
                 <td>I feel angry about my child’s condition</td>
-                <td><input type="radio" id='25a' name="25" value="1"></td>
-                <td><input type="radio" id='25b' name="25" value="2"></td>
-                <td><input type="radio" id='25c' name="25" value="3"></td>
-                <td><input type="radio" id='25d' name="25" value="4"></td>
-                <td><input type="radio" id='25e' name="25" value="5"></td>
+                <td><input type="radio" id='25a' name="q25" value="1"></td>
+                <td><input type="radio" id='25b' name="q25" value="2"></td>
+                <td><input type="radio" id='25c' name="q25" value="3"></td>
+                <td><input type="radio" id='25d' name="q25" value="4"></td>
+                <td><input type="radio" id='25e' name="q25" value="5"></td>
             </tr>
 
         </table>
@@ -57,11 +61,11 @@
             </tr>
             <tr>
                 <td>Over the last month, my ability to cope with my child’s difficulties has:</td>
-                <td><input type="radio" id='26a' name="26" value="1"></td>
-                <td><input type="radio" id='26b' name="26" value="2"></td>
-                <td><input type="radio" id='26c' name="26" value="3"></td>
-                <td><input type="radio" id='26d' name="26" value="4"></td>
-                <td><input type="radio" id='26e' name="26" value="5"></td>
+                <td><input type="radio" id='26a' name="q26" value="1"></td>
+                <td><input type="radio" id='26b' name="q26" value="2"></td>
+                <td><input type="radio" id='26c' name="q26" value="3"></td>
+                <td><input type="radio" id='26d' name="q26" value="4"></td>
+                <td><input type="radio" id='26e' name="q26" value="5"></td>
             </tr>
         </table>
     </div>
@@ -71,9 +75,13 @@
     <div class="next_div">
         <!--TODO: Put in logic that remembers selection so it knows which page to go back to-->
         <a href="5_cfql2_SocialNetworkSurvey.html"><input type="button" class="button"  value="Previous Page" ></a>
-        <input type="button" class="button"  value="Submit">
+        <!-- <input type="button" class="button"  value="Submit"> -->
+        <button type="submit" class="button"  value="Submit">Submit</button>
 
     </div>
+
+    </form>
+
 </div>
 
 
