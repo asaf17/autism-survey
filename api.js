@@ -73,16 +73,16 @@ app.post("/CFQL2/cfql2_userInput.html", function(req, res){
   console.log('childs age: ' + req.body.age_child)
 
   Cfql2Answer.participantName = req.body.name_child;
-  Cfql2Answer.ParticipantAge = req.body.age_child;
+  Cfql2Answer.ParticipantAge = parseInt(req.body.age_child);
   Cfql2Answer.DateOfBirth = req.body.dob;
   Cfql2Answer.InformantName = req.body.name_inform;
-  Cfql2Answer.InformantAge = req.body.age_inform;
+  Cfql2Answer.InformantAge = parseInt(req.body.age_inform);
   Cfql2Answer.DateOfSurvey = req.body.doa;
   Cfql2Answer.Sex = req.body.sex;
   Cfql2Answer.InformantRelationshipToPatient = req.body.relationship;
   Cfql2Answer.ParticipantDiagnosis = req.body.diagnostic;
   Cfql2Answer.ParticipantDiagosisSeverity = req.body.severity;
-  Cfql2Answer.ParticipantAgeDiagnosis = req.body.age_diag;
+  Cfql2Answer.ParticipantAgeDiagnosis = parseInt(req.body.age_diag);
 
   //queryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis) values ('"+cfql2Answer.name_child+"', '"+cfql2Answer.age_child+"', '"+cfql2Answer.dob+"', '"+cfql2Answer.sex+"', '"+cfql2Answer.name_inform+"', '"+cfql2Answer.age_inform+"', '"+cfql2Answer.doa+"', '"+cfql2Answer.relationship+"', '"+cfql2Answer.diagnostic+"', '"+cfql2Answer.severity+"', '"+cfql2Answer.age_diag+"')";
   //executeQuery(res, queryString);
@@ -271,17 +271,17 @@ app.post("/ASDQ2/asdq2_userinput.html", function(req, res){
   console.log('childs name: ' +req.body.name_child);
   console.log('childs age: ' + req.body.age_child)
 
-  Asdq2Answer.participantName = req.body.name_child;
-  Asdq2Answer.ParticipantAge = req.body.age_child;
-  Asdq2Answer.DateOfBirth = req.body.dob;
-  Asdq2Answer.InformantName = req.body.name_inform;
-  Asdq2Answer.InformantAge = req.body.age_inform;
-  Asdq2Answer.DateOfSurvey = req.body.doa;
-  Asdq2Answer.Sex = req.body.sex;
-  Asdq2Answer.InformantRelationshipToPatient = req.body.relationship;
-  Asdq2Answer.ParticipantDiagnosis = req.body.diagnostic;
-  Asdq2Answer.ParticipantDiagosisSeverity = req.body.severity;
-  Asdq2Answer.ParticipantAgeDiagnosis = req.body.age_diag;
+  Cfql2Answer.participantName = req.body.name_child;
+  Cfql2Answer.ParticipantAge = parseInt(req.body.age_child);
+  Cfql2Answer.DateOfBirth = req.body.dob;
+  Cfql2Answer.InformantName = req.body.name_inform;
+  Cfql2Answer.InformantAge = parseInt(req.body.age_inform);
+  Cfql2Answer.DateOfSurvey = req.body.doa;
+  Cfql2Answer.Sex = req.body.sex;
+  Cfql2Answer.InformantRelationshipToPatient = req.body.relationship;
+  Cfql2Answer.ParticipantDiagnosis = req.body.diagnostic;
+  Cfql2Answer.ParticipantDiagosisSeverity = req.body.severity;
+  Cfql2Answer.ParticipantAgeDiagnosis = parseInt(req.body.age_diag);
 
   //queryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis) values ('"+cfql2Answer.name_child+"', '"+cfql2Answer.age_child+"', '"+cfql2Answer.dob+"', '"+cfql2Answer.sex+"', '"+cfql2Answer.name_inform+"', '"+cfql2Answer.age_inform+"', '"+cfql2Answer.doa+"', '"+cfql2Answer.relationship+"', '"+cfql2Answer.diagnostic+"', '"+cfql2Answer.severity+"', '"+cfql2Answer.age_diag+"')";
   //executeQuery(res, queryString);
