@@ -274,6 +274,8 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
 
   executeQuery(res, cfqlQueryString);
 
+  console.log("FINAL SCORE: "+Cfql2Answer.CumulativeScore);
+
 
 });
 
@@ -496,12 +498,12 @@ function validatescores(scores, requiredlength, minscore, maxscore) {
 //function cfql2(scores, print) {
  function cfql2(scores) {
   //Ensure scores vector is conforming.
-  // scores = validatescores(scores, 26, 1, 5);
-  // //Transform scores (subtract some from 6).
-  // scores = scorefrom6(
-  //   scores,
-  //   [1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 17, 18, 22, 23, 24, 25]
-  // );
+  scores = validatescores(scores, 26, 1, 5);
+  //Transform scores (subtract some from 6).
+  scores = scorefrom6(
+    scores,
+    [1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 17, 18, 22, 23, 24, 25]
+  );
   //Determine qol scores for each of these parameters.
   var childqol = sumoverindices(scores, 0, 3);
   var childpossible = 20;
