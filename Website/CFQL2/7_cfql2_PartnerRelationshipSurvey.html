@@ -10,6 +10,10 @@
     <div>
         <h1>Partner Relationship QoL</h1>
     </div>
+
+    <form action="/CFQL2/7_cfql2_PartnerRelationshipSurvey.html" method="post">
+
+
     <div class="quiz_div">
         <table class="Quiz_table">
             <tr>
@@ -21,9 +25,9 @@
             </tr>
             <tr>
                 <td>Relationship between your spouse/partner and your child</td>
-                <td><input type="radio" id='bp' name="1"></td>
-                <td><input type="radio" id='nbp' name="1"></td>
-                <td><input type="text" id='op' name="1"></td>
+                <td><input type="radio" id='bp' name="qRelate" value="Biological"></td>
+                <td><input type="radio" id='nbp' name="qRelate" value="Non-Biological"></td>
+                <td><input type="text" id='op' name="qRelate" ></td>
             </tr>
         </table>
     </div>
@@ -40,27 +44,27 @@
             </tr>
             <tr>
                 <td>My relationship with my spouse/partner is positive</td>
-                <td><input type="radio" id='20a' name="20" value="1"></td>
-                <td><input type="radio" id='20b' name="20" value="2"></td>
-                <td><input type="radio" id='20c' name="20" value="3"></td>
-                <td><input type="radio" id='20d' name="20" value="4"></td>
-                <td><input type="radio" id='20e' name="20" value="5"></td>
+                <td><input type="radio" id='20a' name="q20" value="1"></td>
+                <td><input type="radio" id='20b' name="q20" value="2"></td>
+                <td><input type="radio" id='20c' name="q20" value="3"></td>
+                <td><input type="radio" id='20d' name="q20" value="4"></td>
+                <td><input type="radio" id='20e' name="q20" value="5"></td>
             </tr>
             <tr>
                 <td>My spouse/partner and I see eye-to-eye on how to best care for my child</td>
-                <td><input type="radio" id='21a' name="21" value="1"></td>
-                <td><input type="radio" id='21b' name="21" value="2"></td>
-                <td><input type="radio" id='21c' name="21" value="3"></td>
-                <td><input type="radio" id='21d' name="21" value="4"></td>
-                <td><input type="radio" id='21e' name="21" value="5"></td>
+                <td><input type="radio" id='21a' name="q21" value="1"></td>
+                <td><input type="radio" id='21b' name="q21" value="2"></td>
+                <td><input type="radio" id='21c' name="q21" value="3"></td>
+                <td><input type="radio" id='21d' name="q21" value="4"></td>
+                <td><input type="radio" id='21e' name="q21" value="5"></td>
             </tr>
             <tr>
                 <td>My spouse/partner and I communicate well about our child and family’s needs</td>
-                <td><input type="radio" id='22a' name="22" value="1"></td>
-                <td><input type="radio" id='22b' name="22" value="2"></td>
-                <td><input type="radio" id='22c' name="22" value="3"></td>
-                <td><input type="radio" id='22d' name="22" value="4"></td>
-                <td><input type="radio" id='22e' name="22" value="5"></td>
+                <td><input type="radio" id='22a' name="q22" value="1"></td>
+                <td><input type="radio" id='22b' name="q22" value="2"></td>
+                <td><input type="radio" id='22c' name="q22" value="3"></td>
+                <td><input type="radio" id='22d' name="q22" value="4"></td>
+                <td><input type="radio" id='22e' name="q22" value="5"></td>
             </tr>
 
         </table>
@@ -77,11 +81,11 @@
             </tr>
             <tr>
                 <td>Over the last month, my relationship with my spouse/partner has:</td>
-                <td><input type="radio" id='23a' name="23" value="1"></td>
-                <td><input type="radio" id='23b' name="23" value="2"></td>
-                <td><input type="radio" id='23c' name="23" value="3"></td>
-                <td><input type="radio" id='23d' name="23" value="4"></td>
-                <td><input type="radio" id='23e' name="23" value="5"></td>
+                <td><input type="radio" id='23a' name="q23" value="1"></td>
+                <td><input type="radio" id='23b' name="q23" value="2"></td>
+                <td><input type="radio" id='23c' name="q23" value="3"></td>
+                <td><input type="radio" id='23d' name="q23" value="4"></td>
+                <td><input type="radio" id='23e' name="q23" value="5"></td>
             </tr>
         </table>
     </div>
@@ -90,9 +94,13 @@
 
     <div class="next_div">
         <a href="5_cfql2_SocialNetworkSurvey.html"><input type="button" class="button"  value="Previous Page" ></a>
-        <a href="8_cfql2_CopingSurvey.html"><input type="button" class="button"  value="Next Page" ></a>
+        <!-- <a href="8_cfql2_CopingSurvey.html"><input type="button" class="button"  value="Next Page" ></a> -->
+        <button type="submit" class="button"  value="Next Page">Next Page</button>
 
     </div>
+
+    </form>
+
 </div>
 
 
