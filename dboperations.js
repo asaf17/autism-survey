@@ -254,6 +254,66 @@ async function getAsdq2Answers() {
   }
 }
 
+//Unsupported API routes. Couldnt work from js errors
+
+// router.use((request, response, next) => {
+//   console.log("middleware");
+//   next();
+// });
+
+// router.route("/cfql2").get((request, response) => {
+//   Db.getCfql2Answers().then((data) => {
+//     response.json(data[0]);
+//   });
+// });
+
+// router.route("/cfql2/:participantName").get((request, response) => {
+//   Db.getCfql2Answer(request.params.participantName).then((data) => {
+//     response.json(data[0]);
+//   });
+// });
+
+// router.route("/cfql2").post((request, response) => {
+//   let cfql2Answer = { ...request.body };
+//   Db.addCfql2Answer(cfql2Answer).then((data) => {
+//     response.status(201).json(data);
+//   });
+// });
+
+// router.route("/asdq2").get((request, response) => {
+//   Db.getAsdq2Answers().then((data) => {
+//     response.json(data[0]);
+//   });
+// });
+
+// router.route("/asdq2/:participantName").get((request, response) => {
+//   Db.getAsdq2Answer(request.params.participantName).then((data) => {
+//     response.json(data[0]);
+//   });
+// });
+
+// router.route("/asdq2").post((request, response) => {
+//   let asdq2Answer = { ...request.body };
+//   Db.addAsdq2Answer(asdq2Answer).then((data) => {
+//     response.status(201).json(data);
+//   });
+// });
+
+// router.route("/surveyInformation").get((request, response) => {
+//   Db.getSurveyInformation().then((data) => {
+//     response.json(data[0]);
+//   });
+// });
+
+
+// router.route("/surveyInformation").post((request, response) => {
+//   let surveyInformation = { ...request.body };
+//   Db.addSurveyInformation(surveyInformation).then((data) => {
+//     response.status(201).json(data);
+//   });
+// });
+
+
 module.exports = {
   getCfql2Answers: getCfql2Answers,
   getCfql2Answer: getCfql2Answer,

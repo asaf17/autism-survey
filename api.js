@@ -186,11 +186,12 @@ app.post('/CFQL2/5_cfql2_SocialNetworkSurvey.html', function(req, res){
 
   marry = parseInt(req.body.marry);
   
-
+  //USER CLICKS YES ON "I have a significant other/spouse/partner:" radio button
   if(marry == 1){
     console.log("Yes: "+parseInt(marry));
     res.redirect('/CFQL2/7_cfql2_PartnerRelationshipSurvey.html')
   }
+  //USER CLICKS NO ON "I have a significant other/spouse/partner:" radio button
   if(marry == 2){
     console.log("No: "+parseInt(marry));
     res.redirect('/CFQL2/8_cfql2_CopingSurvey.html')
@@ -292,8 +293,16 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
   // console.log(cfql2Score);
 
 
-  //cfqlQueryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, ChildQol1, ChildQol2, ChildQol3, ChildQol4, FamilyQol5, FamilyQol6, FamilyQol7, FamilyQol8, CaregiverQol9, CaregiverQol10, CaregiverQol11, CaregiverQol12, FinancialQol13, FinancialQol14, FinancialQol15, SocialNetworkQol16, SocialNetworkQol17, SocialNetworkQol18, SocialNetworkQol19, PartnerRelationshipQol20, PartnerRelationshipQol21, PartnerRelationshipQol22, PartnerRelationshipQol23, CopingQol24, CopingQol25, CopingQol26) values ('"+Cfql2Answer.participantName+"', '"+Cfql2Answer.ParticipantAge+"', '"+Cfql2Answer.DateOfBirth+"', '"+Cfql2Answer.Sex+"', '"+Cfql2Answer.InformantName+"', '"+Cfql2Answer.InformantAge+"', '"+Cfql2Answer.DateOfSurvey+"', '"+Cfql2Answer.InformantRelationshipToPatient+"', '"+Cfql2Answer.ParticipantDiagnosis+"', '"+Cfql2Answer.ParticipantDiagosisSeverity+"', '"+Cfql2Answer.ParticipantAgeDiagnosis+"', '"+Cfql2Answer.ChildQol1+"', '"+Cfql2Answer.ChildQol2+"', '"+Cfql2Answer.ChildQol3+"', '"+Cfql2Answer.ChildQol4+"', '"+Cfql2Answer.FamilyQol5+"', '"+Cfql2Answer.FamilyQol6+"', '"+Cfql2Answer.FamilyQol7+"', '"+Cfql2Answer.FamilyQol8+"', '"+Cfql2Answer.CaregiverQol9+"', '"+Cfql2Answer.CaregiverQol10+"', '"+Cfql2Answer.CaregiverQol11+"', '"+Cfql2Answer.CaregiverQol12+"', '"+Cfql2Answer.FinancialQol13+"', '"+Cfql2Answer.FinancialQol14+"', '"+Cfql2Answer.FinancialQol15+"', '"+Cfql2Answer.SocialNetworkQol16+"', '"+Cfql2Answer.SocialNetworkQol17+"', '"+Cfql2Answer.SocialNetworkQol18+"', '"+Cfql2Answer.SocialNetworkQol19+"', '"+Cfql2Answer.PartnerRelationshipQol20+"', '"+Cfql2Answer.PartnerRelationshipQol21+"', '"+Cfql2Answer.PartnerRelationshipQol22+"', '"+Cfql2Answer.PartnerRelationshipQol23+"', '"+Cfql2Answer.CopingQol24+"', '"+Cfql2Answer.CopingQol25+"', '"+Cfql2Answer.CopingQol26+"')";
-  cfqlQueryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, ChildQol1, ChildQol2, ChildQol3, ChildQol4, ChildQolAverage, FamilyQol5, FamilyQol6, FamilyQol7, FamilyQol8, FamilyQolAverage, CaregiverQol9, CaregiverQol10, CaregiverQol11, CaregiverQol12, CaregiverQolAverage, FinancialQol13, FinancialQol14, FinancialQol15, FinancialQolAverage, SocialNetworkQol16, SocialNetworkQol17, SocialNetworkQol18, SocialNetworkQol19, SocialQolAverage, PartnerRelationshipQolSpouseRelation, PartnerRelationshipQol20, PartnerRelationshipQol21, PartnerRelationshipQol22, PartnerRelationshipQol23, PartnerRelationshipQolAverage, CopingQol24, CopingQol25, CopingQol26, CopingQolAverage, CumulativeScore) values ('"+
+  //cfqlQueryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge,DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, ChildQol1, ChildQol2, ChildQol3, ChildQol4, ChildQolAverage, FamilyQol5, FamilyQol6, FamilyQol7, FamilyQol8, FamilyQolAverage, CaregiverQol9, CaregiverQol10, CaregiverQol11, CaregiverQol12, CaregiverQolAverage, FinancialQol13, FinancialQol14, FinancialQol15, FinancialQolAverage, SocialNetworkQol16, SocialNetworkQol17, SocialNetworkQol18, SocialNetworkQol19, SocialQolAverage, PartnerRelationshipQolSpouseRelation, PartnerRelationshipQol20, PartnerRelationshipQol21, PartnerRelationshipQol22, PartnerRelationshipQol23, PartnerRelationshipQolAverage, CopingQol24, CopingQol25, CopingQol26, CopingQolAverage, CumulativeScore) values ('"+
+  cfqlQueryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge,"+
+  "DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient,"+ 
+  "ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, ChildQol1, ChildQol2, "+
+  "ChildQol3, ChildQol4, ChildQolAverage, FamilyQol5, FamilyQol6, FamilyQol7, FamilyQol8, FamilyQolAverage, "+
+  "CaregiverQol9, CaregiverQol10, CaregiverQol11, CaregiverQol12, CaregiverQolAverage, FinancialQol13, "+
+  "FinancialQol14, FinancialQol15, FinancialQolAverage, SocialNetworkQol16, SocialNetworkQol17, "+
+  "SocialNetworkQol18, SocialNetworkQol19, SocialQolAverage, PartnerRelationshipQolSpouseRelation, "+
+  "PartnerRelationshipQol20, PartnerRelationshipQol21, PartnerRelationshipQol22, PartnerRelationshipQol23, "+
+  "PartnerRelationshipQolAverage, CopingQol24, CopingQol25, CopingQol26, CopingQolAverage, CumulativeScore) values ('"+
   Cfql2Answer.participantName+
   "', '"+Cfql2Answer.ParticipantAge+
   "', '"+Cfql2Answer.DateOfBirth+
@@ -565,7 +574,13 @@ app.post('/ASDQ2/7_asdq2.html', function(req, res){
   
 
 
-  asdqQueryString = "INSERT INTO [ASDQ2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21,Q22, Q23,Q24,Q25,Q26,Q27,Q28,Q29,Q30,Q31,Q32,Q33,Q34,Q35,Q36,Q37,Q38,Q39,SCISubscore, RRBSubscore, SocialMotivationSubscore, NonVervalCommunicationSubscore, ReciprocitySubscore, PerspectiveTakingSubscore, RelationshipsSubscore, RepetitiveBehaviorSubscore, NeedForSamenessSubscore, SensorySenstivitySubscore, SensoryInterestsSubscore, RestrictedInterestsSubscore, CumulativeScore) values ('"+
+  asdqQueryString = "INSERT INTO [ASDQ2] (ParticipantName, ParticipantAge, DateOfBirth, "+
+  "Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, "+
+  "ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, "+
+  "Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21,Q22, Q23,Q24,Q25,Q26,Q27,Q28,Q29,Q30,Q31,Q32,Q33,Q34,"+
+  "Q35,Q36,Q37,Q38,Q39,SCISubscore, RRBSubscore, SocialMotivationSubscore, NonVervalCommunicationSubscore, "+
+  "ReciprocitySubscore, PerspectiveTakingSubscore, RelationshipsSubscore, RepetitiveBehaviorSubscore, "+
+  "NeedForSamenessSubscore, SensorySenstivitySubscore, SensoryInterestsSubscore, RestrictedInterestsSubscore, CumulativeScore) values ('"+
   Asdq2Answer.participantName+
   "', '"+Asdq2Answer.ParticipantAge+
   "', '"+Asdq2Answer.DateOfBirth+
@@ -773,70 +788,6 @@ function asdq(scores) {
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-router.use((request, response, next) => {
-  console.log("middleware");
-  next();
-});
-
-router.route("/cfql2").get((request, response) => {
-  Db.getCfql2Answers().then((data) => {
-    response.json(data[0]);
-  });
-});
-
-router.route("/cfql2/:participantName").get((request, response) => {
-  Db.getCfql2Answer(request.params.participantName).then((data) => {
-    response.json(data[0]);
-  });
-});
-
-router.route("/cfql2").post((request, response) => {
-  let cfql2Answer = { ...request.body };
-  Db.addCfql2Answer(cfql2Answer).then((data) => {
-    response.status(201).json(data);
-  });
-});
-
-router.route("/asdq2").get((request, response) => {
-  Db.getAsdq2Answers().then((data) => {
-    response.json(data[0]);
-  });
-});
-
-router.route("/asdq2/:participantName").get((request, response) => {
-  Db.getAsdq2Answer(request.params.participantName).then((data) => {
-    response.json(data[0]);
-  });
-});
-
-router.route("/asdq2").post((request, response) => {
-  let asdq2Answer = { ...request.body };
-  Db.addAsdq2Answer(asdq2Answer).then((data) => {
-    response.status(201).json(data);
-  });
-});
-
-router.route("/surveyInformation").get((request, response) => {
-  Db.getSurveyInformation().then((data) => {
-    response.json(data[0]);
-  });
-});
-
-
-router.route("/surveyInformation").post((request, response) => {
-  let surveyInformation = { ...request.body };
-  Db.addSurveyInformation(surveyInformation).then((data) => {
-    response.status(201).json(data);
-  });
-});
 
 var port = process.env.PORT || 8090;
 app.listen(port);
