@@ -719,7 +719,12 @@ function cfql2(scores) {
   var socialqol = sumoverindices(scores, 15, 18); 
   var socialpossible = 20; 
   var relationshipqol = sumoverindices(scores, 19, 22); 
-  var relationshippossible = 20; 
+  var relationshippossible; 
+  if(relationshipqol == 0) { //Handle case where participant does not have a spouse (3 Dec. '21). 
+    relationshippossible = 0; 
+  } else {
+    relationshippossible = 20; 
+  }
   var copingqol = sumoverindices(scores, 23, 25); 
   var copingpossible = 15; 
   var changescale = scores[3]+scores[7]+scores[11]+scores[14]+scores[18]+scores[22]+scores[25];
