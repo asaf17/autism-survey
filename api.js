@@ -250,12 +250,32 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
 
 
   var cfql2Responses = [
-    parseFloat(Cfql2Answer.ChildQol1),parseFloat(Cfql2Answer.ChildQol2),parseFloat(Cfql2Answer.ChildQol3),parseFloat(Cfql2Answer.ChildQol4),parseFloat(Cfql2Answer.FamilyQol5),
-    parseFloat(Cfql2Answer.FamilyQol6),parseFloat(Cfql2Answer.FamilyQol7),parseFloat(Cfql2Answer.FamilyQol8),parseFloat(Cfql2Answer.CaregiverQol9),parseFloat(Cfql2Answer.CaregiverQol10),
-      parseFloat(Cfql2Answer.CaregiverQol11),parseFloat(Cfql2Answer.CaregiverQol12),parseFloat(Cfql2Answer.FinancialQol13),parseFloat(Cfql2Answer.FinancialQol14),parseFloat(Cfql2Answer.FinancialQol15),
-        parseFloat(Cfql2Answer.SocialNetworkQol16),parseFloat(Cfql2Answer.SocialNetworkQol17),parseFloat(Cfql2Answer.SocialNetworkQol18),parseFloat(Cfql2Answer.SocialNetworkQol19),parseFloat(Cfql2Answer.PartnerRelationshipQol20),
-          parseFloat(Cfql2Answer.PartnerRelationshipQol21),parseFloat(Cfql2Answer.PartnerRelationshipQol22),parseFloat(Cfql2Answer.PartnerRelationshipQol23),parseFloat(Cfql2Answer.CopingQol24),parseFloat(Cfql2Answer.CopingQol25),
-            parseFloat(Cfql2Answer.CopingQol26)
+    parseFloat(Cfql2Answer.ChildQol1),
+    parseFloat(Cfql2Answer.ChildQol2),
+    parseFloat(Cfql2Answer.ChildQol3),
+    parseFloat(Cfql2Answer.ChildQol4),
+    parseFloat(Cfql2Answer.FamilyQol5),
+    parseFloat(Cfql2Answer.FamilyQol6),
+    parseFloat(Cfql2Answer.FamilyQol7),
+    parseFloat(Cfql2Answer.FamilyQol8),
+    parseFloat(Cfql2Answer.CaregiverQol9),
+    parseFloat(Cfql2Answer.CaregiverQol10),
+    parseFloat(Cfql2Answer.CaregiverQol11),
+    parseFloat(Cfql2Answer.CaregiverQol12),
+    parseFloat(Cfql2Answer.FinancialQol13),
+    parseFloat(Cfql2Answer.FinancialQol14),
+    parseFloat(Cfql2Answer.FinancialQol15),
+    parseFloat(Cfql2Answer.SocialNetworkQol16),
+    parseFloat(Cfql2Answer.SocialNetworkQol17),
+    parseFloat(Cfql2Answer.SocialNetworkQol18),
+    parseFloat(Cfql2Answer.SocialNetworkQol19),
+    parseFloat(Cfql2Answer.PartnerRelationshipQol20),
+    parseFloat(Cfql2Answer.PartnerRelationshipQol21),
+    parseFloat(Cfql2Answer.PartnerRelationshipQol22),
+    parseFloat(Cfql2Answer.PartnerRelationshipQol23),
+    parseFloat(Cfql2Answer.CopingQol24),
+    parseFloat(Cfql2Answer.CopingQol25),
+    parseFloat(Cfql2Answer.CopingQol26)
   ];
   const cfql2ScoringArray = cfql2(cfql2Responses);
 
