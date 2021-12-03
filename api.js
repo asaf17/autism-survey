@@ -248,7 +248,7 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
 
   //cfqlQueryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, ChildQol1, ChildQol2, ChildQol3, ChildQol4, FamilyQol5, FamilyQol6, FamilyQol7, FamilyQol8, CaregiverQol9, CaregiverQol10, CaregiverQol11, CaregiverQol12, FinancialQol13, FinancialQol14, FinancialQol15, SocialNetworkQol16, SocialNetworkQol17, SocialNetworkQol18, SocialNetworkQol19, PartnerRelationshipQol20, PartnerRelationshipQol21, PartnerRelationshipQol22, PartnerRelationshipQol23) values ('"+Cfql2Answer.participantName+"', '"+Cfql2Answer.ParticipantAge+"', '"+Cfql2Answer.DateOfBirth+"', '"+Cfql2Answer.Sex+"', '"+Cfql2Answer.InformantName+"', '"+Cfql2Answer.InformantAge+"', '"+Cfql2Answer.DateOfSurvey+"', '"+Cfql2Answer.InformantRelationshipToPatient+"', '"+Cfql2Answer.ParticipantDiagnosis+"', '"+Cfql2Answer.ParticipantDiagosisSeverity+"', '"+Cfql2Answer.ParticipantAgeDiagnosis+"', '"+Cfql2Answer.ChildQol1+"', '"+Cfql2Answer.ChildQol2+"', '"+Cfql2Answer.ChildQol3+"', '"+Cfql2Answer.ChildQol4+"', '"+Cfql2Answer.FamilyQol5+"', '"+Cfql2Answer.FamilyQol6+"', '"+Cfql2Answer.FamilyQol7+"', '"+Cfql2Answer.FamilyQol8+"', '"+Cfql2Answer.CaregiverQol9+"', '"+Cfql2Answer.CaregiverQol10+"', '"+Cfql2Answer.CaregiverQol11+"', '"+Cfql2Answer.CaregiverQol12+"', '"+Cfql2Answer.FinancialQol13+"', '"+Cfql2Answer.FinancialQol14+"', '"+Cfql2Answer.FinancialQol15+"', '"+Cfql2Answer.SocialNetworkQol16+"', '"+Cfql2Answer.SocialNetworkQol17+"', '"+Cfql2Answer.SocialNetworkQol18+"', '"+Cfql2Answer.SocialNetworkQol19+"', '"+Cfql2Answer.PartnerRelationshipQol20+"', '"+Cfql2Answer.PartnerRelationshipQol21+"', '"+Cfql2Answer.PartnerRelationshipQol22+"', '"+Cfql2Answer.PartnerRelationshipQol23+"')";
 
-    
+
   var cfql2Responses = [
     parseFloat(Cfql2Answer.ChildQol1),parseFloat(Cfql2Answer.ChildQol2),parseFloat(Cfql2Answer.ChildQol3),parseFloat(Cfql2Answer.ChildQol4),parseFloat(Cfql2Answer.FamilyQol5),
     parseFloat(Cfql2Answer.FamilyQol6),parseFloat(Cfql2Answer.FamilyQol7),parseFloat(Cfql2Answer.FamilyQol8),parseFloat(Cfql2Answer.CaregiverQol9),parseFloat(Cfql2Answer.CaregiverQol10),
@@ -257,38 +257,72 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
           parseFloat(Cfql2Answer.PartnerRelationshipQol21),parseFloat(Cfql2Answer.PartnerRelationshipQol22),parseFloat(Cfql2Answer.PartnerRelationshipQol23),parseFloat(Cfql2Answer.CopingQol24),parseFloat(Cfql2Answer.CopingQol25),
             parseFloat(Cfql2Answer.CopingQol26)
   ];
-  ///var cfql2Score = cfql2(cfql2Responses);
-  // var cfql2ScoreEdit = parseFloat(cfql2Score).toFixed(2);
-  // var cfql2ScoreDouble = Number(cfql2ScoreEdit);
-  ///Cfql2Answer.CumulativeScore=cfql2Score;
-  Cfql2Answer.CumulativeScore = parseFloat(cfql2(cfql2Responses));
+  const cfql2ScoringArray = cfql2(cfql2Responses);
+
+  Cfql2Answer.ChildQolAverage = parseFloat(cfql2ScoringArray[0]);
+  Cfql2Answer.FamilyQolAverage = parseFloat(cfql2ScoringArray[1]);
+  Cfql2Answer.CaregiverQolAverage = parseFloat(cfql2ScoringArray[2]);
+  Cfql2Answer.FinancialQolAverage = parseFloat(cfql2ScoringArray[3]);
+  Cfql2Answer.SocialQolAverage = parseFloat(cfql2ScoringArray[4]);
+  Cfql2Answer.PartnerRelationshipQolAverage = parseFloat(cfql2ScoringArray[5]);
+  Cfql2Answer.CopingQolAverage = parseFloat(cfql2ScoringArray[6]);
+  Cfql2Answer.CumulativeScore = parseFloat(cfql2ScoringArray[7]);
   
 
   // console.log(cfql2Score);
 
 
-  var cfql2Responses = [
-    parseFloat(Cfql2Answer.ChildQol1),parseFloat(Cfql2Answer.ChildQol2),parseFloat(Cfql2Answer.ChildQol3),parseFloat(Cfql2Answer.ChildQol4),parseFloat(Cfql2Answer.FamilyQol5),
-    parseFloat(Cfql2Answer.FamilyQol6),parseFloat(Cfql2Answer.FamilyQol7),parseFloat(Cfql2Answer.FamilyQol8),parseFloat(Cfql2Answer.CaregiverQol9),parseFloat(Cfql2Answer.CaregiverQol10),
-      parseFloat(Cfql2Answer.CaregiverQol11),parseFloat(Cfql2Answer.CaregiverQol12),parseFloat(Cfql2Answer.FinancialQol13),parseFloat(Cfql2Answer.FinancialQol14),parseFloat(Cfql2Answer.FinancialQol15),
-        parseFloat(Cfql2Answer.SocialNetworkQol16),parseFloat(Cfql2Answer.SocialNetworkQol17),parseFloat(Cfql2Answer.SocialNetworkQol18),parseFloat(Cfql2Answer.SocialNetworkQol19),parseFloat(Cfql2Answer.PartnerRelationshipQol20),
-          parseFloat(Cfql2Answer.PartnerRelationshipQol21),parseFloat(Cfql2Answer.PartnerRelationshipQol22),parseFloat(Cfql2Answer.PartnerRelationshipQol23),parseFloat(Cfql2Answer.CopingQol24),parseFloat(Cfql2Answer.CopingQol25),
-            parseFloat(Cfql2Answer.CopingQol26)
-  ];
-  ///var cfql2Score = cfql2(cfql2Responses);
-  // var cfql2ScoreEdit = parseFloat(cfql2Score).toFixed(2);
-  // var cfql2ScoreDouble = Number(cfql2ScoreEdit);
-  ///Cfql2Answer.CumulativeScore=cfql2Score;
-  Cfql2Answer.CumulativeScore = parseFloat(cfql2(cfql2Responses));
-
-
   //cfqlQueryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, ChildQol1, ChildQol2, ChildQol3, ChildQol4, FamilyQol5, FamilyQol6, FamilyQol7, FamilyQol8, CaregiverQol9, CaregiverQol10, CaregiverQol11, CaregiverQol12, FinancialQol13, FinancialQol14, FinancialQol15, SocialNetworkQol16, SocialNetworkQol17, SocialNetworkQol18, SocialNetworkQol19, PartnerRelationshipQol20, PartnerRelationshipQol21, PartnerRelationshipQol22, PartnerRelationshipQol23, CopingQol24, CopingQol25, CopingQol26) values ('"+Cfql2Answer.participantName+"', '"+Cfql2Answer.ParticipantAge+"', '"+Cfql2Answer.DateOfBirth+"', '"+Cfql2Answer.Sex+"', '"+Cfql2Answer.InformantName+"', '"+Cfql2Answer.InformantAge+"', '"+Cfql2Answer.DateOfSurvey+"', '"+Cfql2Answer.InformantRelationshipToPatient+"', '"+Cfql2Answer.ParticipantDiagnosis+"', '"+Cfql2Answer.ParticipantDiagosisSeverity+"', '"+Cfql2Answer.ParticipantAgeDiagnosis+"', '"+Cfql2Answer.ChildQol1+"', '"+Cfql2Answer.ChildQol2+"', '"+Cfql2Answer.ChildQol3+"', '"+Cfql2Answer.ChildQol4+"', '"+Cfql2Answer.FamilyQol5+"', '"+Cfql2Answer.FamilyQol6+"', '"+Cfql2Answer.FamilyQol7+"', '"+Cfql2Answer.FamilyQol8+"', '"+Cfql2Answer.CaregiverQol9+"', '"+Cfql2Answer.CaregiverQol10+"', '"+Cfql2Answer.CaregiverQol11+"', '"+Cfql2Answer.CaregiverQol12+"', '"+Cfql2Answer.FinancialQol13+"', '"+Cfql2Answer.FinancialQol14+"', '"+Cfql2Answer.FinancialQol15+"', '"+Cfql2Answer.SocialNetworkQol16+"', '"+Cfql2Answer.SocialNetworkQol17+"', '"+Cfql2Answer.SocialNetworkQol18+"', '"+Cfql2Answer.SocialNetworkQol19+"', '"+Cfql2Answer.PartnerRelationshipQol20+"', '"+Cfql2Answer.PartnerRelationshipQol21+"', '"+Cfql2Answer.PartnerRelationshipQol22+"', '"+Cfql2Answer.PartnerRelationshipQol23+"', '"+Cfql2Answer.CopingQol24+"', '"+Cfql2Answer.CopingQol25+"', '"+Cfql2Answer.CopingQol26+"')";
-  cfqlQueryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, ChildQol1, ChildQol2, ChildQol3, ChildQol4, FamilyQol5, FamilyQol6, FamilyQol7, FamilyQol8, CaregiverQol9, CaregiverQol10, CaregiverQol11, CaregiverQol12, FinancialQol13, FinancialQol14, FinancialQol15, SocialNetworkQol16, SocialNetworkQol17, SocialNetworkQol18, SocialNetworkQol19, PartnerRelationshipQolSpouseRelation, PartnerRelationshipQol20, PartnerRelationshipQol21, PartnerRelationshipQol22, PartnerRelationshipQol23, CopingQol24, CopingQol25, CopingQol26, CumulativeScore) values ('"+Cfql2Answer.participantName+"', '"+Cfql2Answer.ParticipantAge+"', '"+Cfql2Answer.DateOfBirth+"', '"+Cfql2Answer.Sex+"', '"+Cfql2Answer.InformantName+"', '"+Cfql2Answer.InformantAge+"', '"+Cfql2Answer.DateOfSurvey+"', '"+Cfql2Answer.InformantRelationshipToPatient+"', '"+Cfql2Answer.ParticipantDiagnosis+"', '"+Cfql2Answer.ParticipantDiagosisSeverity+"', '"+Cfql2Answer.ParticipantAgeDiagnosis+"', '"+Cfql2Answer.ChildQol1+"', '"+Cfql2Answer.ChildQol2+"', '"+Cfql2Answer.ChildQol3+"', '"+Cfql2Answer.ChildQol4+"', '"+Cfql2Answer.FamilyQol5+"', '"+Cfql2Answer.FamilyQol6+"', '"+Cfql2Answer.FamilyQol7+"', '"+Cfql2Answer.FamilyQol8+"', '"+Cfql2Answer.CaregiverQol9+"', '"+Cfql2Answer.CaregiverQol10+"', '"+Cfql2Answer.CaregiverQol11+"', '"+Cfql2Answer.CaregiverQol12+"', '"+Cfql2Answer.FinancialQol13+"', '"+Cfql2Answer.FinancialQol14+"', '"+Cfql2Answer.FinancialQol15+"', '"+Cfql2Answer.SocialNetworkQol16+"', '"+Cfql2Answer.SocialNetworkQol17+"', '"+Cfql2Answer.SocialNetworkQol18+"', '"+Cfql2Answer.SocialNetworkQol19+"', '"+Cfql2Answer.PartnerRelationshipQolSpouseRelation+"', '"+Cfql2Answer.PartnerRelationshipQol20+"', '"+Cfql2Answer.PartnerRelationshipQol21+"', '"+Cfql2Answer.PartnerRelationshipQol22+"', '"+Cfql2Answer.PartnerRelationshipQol23+"', '"+Cfql2Answer.CopingQol24+"', '"+Cfql2Answer.CopingQol25+"', '"+Cfql2Answer.CopingQol26+"', '"+Cfql2Answer.CumulativeScore+"')";
+  cfqlQueryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, ChildQol1, ChildQol2, ChildQol3, ChildQol4, ChildQolAverage, FamilyQol5, FamilyQol6, FamilyQol7, FamilyQol8, FamilyQolAverage, CaregiverQol9, CaregiverQol10, CaregiverQol11, CaregiverQol12, CaregiverQolAverage, FinancialQol13, FinancialQol14, FinancialQol15, FinancialQolAverage, SocialNetworkQol16, SocialNetworkQol17, SocialNetworkQol18, SocialNetworkQol19, SocialQolAverage, PartnerRelationshipQolSpouseRelation, PartnerRelationshipQol20, PartnerRelationshipQol21, PartnerRelationshipQol22, PartnerRelationshipQol23, PartnerRelationshipQolAverage, CopingQol24, CopingQol25, CopingQol26, CopingQolAverage, CumulativeScore) values ('"+
+  Cfql2Answer.participantName+
+  "', '"+Cfql2Answer.ParticipantAge+
+  "', '"+Cfql2Answer.DateOfBirth+
+  "', '"+Cfql2Answer.Sex+
+  "', '"+Cfql2Answer.InformantName+
+  "', '"+Cfql2Answer.InformantAge+
+  "', '"+Cfql2Answer.DateOfSurvey+
+  "', '"+Cfql2Answer.InformantRelationshipToPatient+
+  "', '"+Cfql2Answer.ParticipantDiagnosis+
+  "', '"+Cfql2Answer.ParticipantDiagosisSeverity+
+  "', '"+Cfql2Answer.ParticipantAgeDiagnosis+
+  "', '"+Cfql2Answer.ChildQol1+
+  "', '"+Cfql2Answer.ChildQol2+
+  "', '"+Cfql2Answer.ChildQol3+
+  "', '"+Cfql2Answer.ChildQol4+
+  "', '"+Cfql2Answer.ChildQolAverage+
+  "', '"+Cfql2Answer.FamilyQol5+
+  "', '"+Cfql2Answer.FamilyQol6+
+  "', '"+Cfql2Answer.FamilyQol7+
+  "', '"+Cfql2Answer.FamilyQol8+
+  "', '"+Cfql2Answer.FamilyQolAverage+
+  "', '"+Cfql2Answer.CaregiverQol9+
+  "', '"+Cfql2Answer.CaregiverQol10+
+  "', '"+Cfql2Answer.CaregiverQol11+
+  "', '"+Cfql2Answer.CaregiverQol12+
+  "', '"+Cfql2Answer.CaregiverQolAverage+
+  "', '"+Cfql2Answer.FinancialQol13+
+  "', '"+Cfql2Answer.FinancialQol14+
+  "', '"+Cfql2Answer.FinancialQol15+
+  "', '"+Cfql2Answer.FinancialQolAverage+
+  "', '"+Cfql2Answer.SocialNetworkQol16+
+  "', '"+Cfql2Answer.SocialNetworkQol17+
+  "', '"+Cfql2Answer.SocialNetworkQol18+
+  "', '"+Cfql2Answer.SocialNetworkQol19+
+  "', '"+Cfql2Answer.SocialQolAverage+
+  "', '"+Cfql2Answer.PartnerRelationshipQolSpouseRelation+
+  "', '"+Cfql2Answer.PartnerRelationshipQol20+
+  "', '"+Cfql2Answer.PartnerRelationshipQol21+
+  "', '"+Cfql2Answer.PartnerRelationshipQol22+
+  "', '"+Cfql2Answer.PartnerRelationshipQol23+
+  "', '"+Cfql2Answer.PartnerRelationshipQolAverage+
+  "', '"+Cfql2Answer.CopingQol24+
+  "', '"+Cfql2Answer.CopingQol25+
+  "', '"+Cfql2Answer.CopingQol26+
+  "', '"+Cfql2Answer.CopingQolAverage+
+  "', '"+Cfql2Answer.CumulativeScore+"')";
 
 
   executeQuery(res, cfqlQueryString);
-
-  console.log("FINAL SCORE: "+Cfql2Answer.CumulativeScore);
 });
 
 
@@ -310,17 +344,17 @@ app.post("/ASDQ2/asdq2_userinput.html", function(req, res){
   console.log('childs name: ' +req.body.name_child);
   console.log('childs age: ' + req.body.age_child)
 
-  Cfql2Answer.participantName = req.body.name_child;
-  Cfql2Answer.ParticipantAge = parseInt(req.body.age_child);
-  Cfql2Answer.DateOfBirth = req.body.dob;
-  Cfql2Answer.InformantName = req.body.name_inform;
-  Cfql2Answer.InformantAge = parseInt(req.body.age_inform);
-  Cfql2Answer.DateOfSurvey = req.body.doa;
-  Cfql2Answer.Sex = req.body.sex;
-  Cfql2Answer.InformantRelationshipToPatient = req.body.relationship;
-  Cfql2Answer.ParticipantDiagnosis = req.body.diagnostic;
-  Cfql2Answer.ParticipantDiagosisSeverity = req.body.severity;
-  Cfql2Answer.ParticipantAgeDiagnosis = parseInt(req.body.age_diag);
+  Asdq2Answer.participantName = req.body.name_child;
+  Asdq2Answer.ParticipantAge = parseInt(req.body.age_child);
+  Asdq2Answer.DateOfBirth = req.body.dob;
+  Asdq2Answer.InformantName = req.body.name_inform;
+  Asdq2Answer.InformantAge = parseInt(req.body.age_inform);
+  Asdq2Answer.DateOfSurvey = req.body.doa;
+  Asdq2Answer.Sex = req.body.sex;
+  Asdq2Answer.InformantRelationshipToPatient = req.body.relationship;
+  Asdq2Answer.ParticipantDiagnosis = req.body.diagnostic;
+  Asdq2Answer.ParticipantDiagosisSeverity = req.body.severity;
+  Asdq2Answer.ParticipantAgeDiagnosis = parseInt(req.body.age_diag);
 
   //queryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis) values ('"+cfql2Answer.name_child+"', '"+cfql2Answer.age_child+"', '"+cfql2Answer.dob+"', '"+cfql2Answer.sex+"', '"+cfql2Answer.name_inform+"', '"+cfql2Answer.age_inform+"', '"+cfql2Answer.doa+"', '"+cfql2Answer.relationship+"', '"+cfql2Answer.diagnostic+"', '"+cfql2Answer.severity+"', '"+cfql2Answer.age_diag+"')";
   //executeQuery(res, queryString);
@@ -450,7 +484,132 @@ app.post('/ASDQ2/7_asdq2.html', function(req, res){
   Asdq2Answer.Q39 = parseInt(req.body.q39);
 
 
-  asdqQueryString = "INSERT INTO [ASDQ2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21,Q22, Q23,Q24,Q25,Q26,Q27,Q28,Q29,Q30,Q31,Q32,Q33,Q34,Q35,Q36,Q37,Q38,Q39) values ('"+Asdq2Answer.participantName+"', '"+Asdq2Answer.ParticipantAge+"', '"+Asdq2Answer.DateOfBirth+"', '"+Asdq2Answer.Sex+"', '"+Asdq2Answer.InformantName+"', '"+Asdq2Answer.InformantAge+"', '"+Asdq2Answer.DateOfSurvey+"', '"+Asdq2Answer.InformantRelationshipToPatient+"', '"+Asdq2Answer.ParticipantDiagnosis+"', '"+Asdq2Answer.ParticipantDiagosisSeverity+"', '"+Asdq2Answer.ParticipantAgeDiagnosis+"', '"+Asdq2Answer.Q1+"', '"+Asdq2Answer.Q2+"', '"+Asdq2Answer.Q3+"', '"+Asdq2Answer.Q4+"','"+Asdq2Answer.Q5+"','"+Asdq2Answer.Q6+"', '"+Asdq2Answer.Q7+"', '"+Asdq2Answer.Q8+"', '"+Asdq2Answer.Q9+"', '"+Asdq2Answer.Q10+"', '"+Asdq2Answer.Q11+"', '"+Asdq2Answer.Q12+"', '"+Asdq2Answer.Q13+"', '"+Asdq2Answer.Q14+"', '"+Asdq2Answer.Q15+"', '"+Asdq2Answer.Q16+"', '"+Asdq2Answer.Q17+"', '"+Asdq2Answer.Q18+"','"+Asdq2Answer.Q19+"','"+Asdq2Answer.Q20+"','"+Asdq2Answer.Q21+"','"+Asdq2Answer.Q22+"','"+Asdq2Answer.Q23+"','"+Asdq2Answer.Q24+"','"+Asdq2Answer.Q25+"','"+Asdq2Answer.Q26+"','"+Asdq2Answer.Q27+"','"+Asdq2Answer.Q28+"','"+Asdq2Answer.Q29+"','"+Asdq2Answer.Q30+"','"+Asdq2Answer.Q31+"','"+Asdq2Answer.Q32+"','"+Asdq2Answer.Q33+"','"+Asdq2Answer.Q34+"','"+Asdq2Answer.Q35+"','"+Asdq2Answer.Q36+"','"+Asdq2Answer.Q37+"','"+Asdq2Answer.Q38+"','"+Asdq2Answer.Q39+"')";
+  var asdq2Responses = [
+    Asdq2Answer.Q1,
+    Asdq2Answer.Q2,
+    Asdq2Answer.Q3,
+    Asdq2Answer.Q4,
+    Asdq2Answer.Q5,
+    Asdq2Answer.Q6,
+    Asdq2Answer.Q7,
+    Asdq2Answer.Q8,
+    Asdq2Answer.Q9,
+    Asdq2Answer.Q10,
+    Asdq2Answer.Q11,
+    Asdq2Answer.Q12,
+    Asdq2Answer.Q13,
+    Asdq2Answer.Q14,
+    Asdq2Answer.Q15,
+    Asdq2Answer.Q16,
+    Asdq2Answer.Q17,
+    Asdq2Answer.Q18,
+    Asdq2Answer.Q19,
+    Asdq2Answer.Q20,
+    Asdq2Answer.Q21,
+    Asdq2Answer.Q22,
+    Asdq2Answer.Q23,
+    Asdq2Answer.Q24,
+    Asdq2Answer.Q25,
+    Asdq2Answer.Q26,
+    Asdq2Answer.Q27,
+    Asdq2Answer.Q28,
+    Asdq2Answer.Q29,
+    Asdq2Answer.Q30,
+    Asdq2Answer.Q31,
+    Asdq2Answer.Q32,
+    Asdq2Answer.Q33,
+    Asdq2Answer.Q34,
+    Asdq2Answer.Q35,
+    Asdq2Answer.Q36,
+    Asdq2Answer.Q37,
+    Asdq2Answer.Q38,
+    Asdq2Answer.Q39,
+  ];
+  
+  const asdq2ScoringArray = asdq(asdq2Responses);
+
+  Asdq2Answer.SCISubscore = parseFloat(asdq2ScoringArray[0]);
+  Asdq2Answer.RRBSubscore = parseFloat(asdq2ScoringArray[1]);
+  Asdq2Answer.SocialMotivationSubscore = parseFloat(asdq2ScoringArray[2]);
+  Asdq2Answer.NonVervalCommunicationSubscore = parseFloat(asdq2ScoringArray[3]);
+  Asdq2Answer.ReciprocitySubscore = parseFloat(asdq2ScoringArray[4]);
+  Asdq2Answer.PerspectiveTakingSubscore = parseFloat(asdq2ScoringArray[5]);
+  Asdq2Answer.RelationshipsSubscore = parseFloat(asdq2ScoringArray[6]);
+  Asdq2Answer.RepetitiveBehaviorSubscore = parseFloat(asdq2ScoringArray[7]);
+  Asdq2Answer.NeedForSamenessSubscore = parseFloat(asdq2ScoringArray[8]);
+  Asdq2Answer.SensorySenstivitySubscore = parseFloat(asdq2ScoringArray[9]);
+  Asdq2Answer.SensoryInterestsSubscore = parseFloat(asdq2ScoringArray[10]);
+  Asdq2Answer.RestrictedInterestsSubscore = parseFloat(asdq2ScoringArray[11]);
+  Asdq2Answer.CumulativeScore = parseFloat(asdq2ScoringArray[12]);
+
+  
+
+
+  asdqQueryString = "INSERT INTO [ASDQ2] (ParticipantName, ParticipantAge, DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21,Q22, Q23,Q24,Q25,Q26,Q27,Q28,Q29,Q30,Q31,Q32,Q33,Q34,Q35,Q36,Q37,Q38,Q39,SCISubscore, RRBSubscore, SocialMotivationSubscore, NonVervalCommunicationSubscore, ReciprocitySubscore, PerspectiveTakingSubscore, RelationshipsSubscore, RepetitiveBehaviorSubscore, NeedForSamenessSubscore, SensorySenstivitySubscore, SensoryInterestsSubscore, RestrictedInterestsSubscore, CumulativeScore) values ('"+
+  Asdq2Answer.participantName+
+  "', '"+Asdq2Answer.ParticipantAge+
+  "', '"+Asdq2Answer.DateOfBirth+
+  "', '"+Asdq2Answer.Sex+
+  "', '"+Asdq2Answer.InformantName+
+  "', '"+Asdq2Answer.InformantAge+
+  "', '"+Asdq2Answer.DateOfSurvey+
+  "', '"+Asdq2Answer.InformantRelationshipToPatient+
+  "', '"+Asdq2Answer.ParticipantDiagnosis+
+  "', '"+Asdq2Answer.ParticipantDiagosisSeverity+
+  "', '"+Asdq2Answer.ParticipantAgeDiagnosis+
+  "', '"+Asdq2Answer.Q1+
+  "', '"+Asdq2Answer.Q2+
+  "', '"+Asdq2Answer.Q3+
+  "', '"+Asdq2Answer.Q4+
+  "', '"+Asdq2Answer.Q5+
+  "', '"+Asdq2Answer.Q6+
+  "', '"+Asdq2Answer.Q7+
+  "', '"+Asdq2Answer.Q8+
+  "', '"+Asdq2Answer.Q9+
+  "', '"+Asdq2Answer.Q10+
+  "', '"+Asdq2Answer.Q11+
+  "', '"+Asdq2Answer.Q12+
+  "', '"+Asdq2Answer.Q13+
+  "', '"+Asdq2Answer.Q14+
+  "', '"+Asdq2Answer.Q15+
+  "', '"+Asdq2Answer.Q16+
+  "', '"+Asdq2Answer.Q17+
+  "', '"+Asdq2Answer.Q18+
+  "', '"+Asdq2Answer.Q19+
+  "', '"+Asdq2Answer.Q20+
+  "', '"+Asdq2Answer.Q21+
+  "', '"+Asdq2Answer.Q22+
+  "', '"+Asdq2Answer.Q23+
+  "', '"+Asdq2Answer.Q24+
+  "', '"+Asdq2Answer.Q25+
+  "', '"+Asdq2Answer.Q26+
+  "', '"+Asdq2Answer.Q27+
+  "', '"+Asdq2Answer.Q28+
+  "', '"+Asdq2Answer.Q29+
+  "', '"+Asdq2Answer.Q30+
+  "', '"+Asdq2Answer.Q31+
+  "', '"+Asdq2Answer.Q32+
+  "', '"+Asdq2Answer.Q33+
+  "', '"+Asdq2Answer.Q34+
+  "', '"+Asdq2Answer.Q35+
+  "', '"+Asdq2Answer.Q36+
+  "', '"+Asdq2Answer.Q37+
+  "', '"+Asdq2Answer.Q38+
+  "', '"+Asdq2Answer.Q39+
+  "', '"+Asdq2Answer.SCISubscore+
+  "', '"+Asdq2Answer.RRBSubscore+
+  "', '"+Asdq2Answer.SocialMotivationSubscore+
+  "', '"+Asdq2Answer.NonVervalCommunicationSubscore+
+  "', '"+Asdq2Answer.ReciprocitySubscore+
+  "', '"+Asdq2Answer.PerspectiveTakingSubscore+
+  "', '"+Asdq2Answer.RelationshipsSubscore+
+  "', '"+Asdq2Answer.RepetitiveBehaviorSubscore+
+  "', '"+Asdq2Answer.NeedForSamenessSubscore+
+  "', '"+Asdq2Answer.SensorySenstivitySubscore+
+  "', '"+Asdq2Answer.SensoryInterestsSubscore+
+  "', '"+Asdq2Answer.RestrictedInterestsSubscore+
+  "', '"+Asdq2Answer.CumulativeScore+
+  "')";
 
 
   executeQuery(res, asdqQueryString);
@@ -536,11 +695,12 @@ function cfql2(scores) {
   //Final computation. 
   var averageitemtotal = 5.0 * rawtotal / totalpossible; 
   //Yield. 
-  return averageitemtotal; //Could also append other measures here as a string. 
+  const finalScores = [childqol,familyqol,caregiverqol,financialqol,socialqol,relationshipqol,copingqol,parseFloat(averageitemtotal)]
+  return finalScores; //Could also append other measures here as a string. 
 }
 
 //Compute ASDQ scoring, translated from spreadsheet (23 Sept. '21). 
-function asdq(scores, print) {
+function asdq(scores) {
   //Ensure scores vector is conforming. 
   scores = validatescores(scores, 39, 1, 5); 
   //Transform scores (subtract some from 6). 
@@ -549,22 +709,36 @@ function asdq(scores, print) {
   var asdtotal = sumoverindices(scores, 0, 35) / 36.0; 
   //alert(scores + "  - " + asdtotal); 
   //"Domains". 
-  var sci = sumoverindices(0, 17) / 18.0; 
-  var rrb = sumoverindices(17, 35) / 19.0; 
+  var sci = sumoverindices(scores, 0, 17) / 18.0; 
+  var rrb = sumoverindices(scores, 17, 35) / 19.0; 
   //"Social sub-scales". 
-  var ssb_socialmotivation = sumoverindices(0, 2) / 3.0; 
-  var ssb_nonverbalcommunication = sumoverindices(3, 5) / 3.0; 
-  var ssb_reciprocity = sumoverindices(6, 10) / 5.0; 
-  var ssb_perspectivetaking = sumoverindices(11, 13) / 3.0; 
-  var ssb_relationships = sumoverindices(14, 16) / 3.0; 
+  var ssb_socialmotivation = sumoverindices(scores, 0, 2) / 3.0; 
+  var ssb_nonverbalcommunication = sumoverindices(scores, 3, 5) / 3.0; 
+  var ssb_reciprocity = sumoverindices(scores, 6, 10) / 5.0; 
+  var ssb_perspectivetaking = sumoverindices(scores, 11, 13) / 3.0; 
+  var ssb_relationships = sumoverindices(scores, 14, 16) / 3.0; 
   //"Repetitive sub-scales". 
-  var rsb_repetitivebehavior = sumoverindices(19, 21) / 3.0; 
-  var rsb_needforsamaeness = sumoverindices(21, 24) / 4.0; 
-  var rsb_sensorysensitivity = sumoverindices(25, 27) / 3.0; 
-  var rsb_sensoryinterests = sumoverindices(28, 30) / 3.0; 
-  var rsb_restrictedinterests = sumoverindices(30, 36) / 7.0; 
+  var rsb_repetitivebehavior = sumoverindices(scores, 19, 21) / 3.0; 
+  var rsb_needforsamaeness = sumoverindices(scores, 21, 24) / 4.0; 
+  var rsb_sensorysensitivity = sumoverindices(scores, 25, 27) / 3.0; 
+  var rsb_sensoryinterests = sumoverindices(scores, 28, 30) / 3.0; 
+  var rsb_restrictedinterests = sumoverindices(scores, 30, 36) / 7.0; 
   //Yield. 
-  return asdtotal; 
+  const asdq2ScoresArray=[
+    sci,
+    rrb,
+    ssb_socialmotivation,
+    ssb_nonverbalcommunication,
+    ssb_reciprocity,
+    ssb_perspectivetaking,
+    ssb_relationships,
+    rsb_repetitivebehavior,
+    rsb_needforsamaeness,
+    rsb_sensorysensitivity,
+    rsb_sensoryinterests,
+    rsb_restrictedinterests,
+    asdtotal];
+  return asdq2ScoresArray; 
 }
 
 
