@@ -709,20 +709,20 @@ function asdq(scores) {
   var asdtotal = sumoverindices(scores, 0, 35) / 36.0; 
   //alert(scores + "  - " + asdtotal); 
   //"Domains". 
-  var sci = sumoverindices(0, 17) / 18.0; 
-  var rrb = sumoverindices(17, 35) / 19.0; 
+  var sci = sumoverindices(scores, 0, 17) / 18.0; 
+  var rrb = sumoverindices(scores, 17, 35) / 19.0; 
   //"Social sub-scales". 
-  var ssb_socialmotivation = sumoverindices(0, 2) / 3.0; 
-  var ssb_nonverbalcommunication = sumoverindices(3, 5) / 3.0; 
-  var ssb_reciprocity = sumoverindices(6, 10) / 5.0; 
-  var ssb_perspectivetaking = sumoverindices(11, 13) / 3.0; 
-  var ssb_relationships = sumoverindices(14, 16) / 3.0; 
+  var ssb_socialmotivation = sumoverindices(scores, 0, 2) / 3.0; 
+  var ssb_nonverbalcommunication = sumoverindices(scores, 3, 5) / 3.0; 
+  var ssb_reciprocity = sumoverindices(scores, 6, 10) / 5.0; 
+  var ssb_perspectivetaking = sumoverindices(scores, 11, 13) / 3.0; 
+  var ssb_relationships = sumoverindices(scores, 14, 16) / 3.0; 
   //"Repetitive sub-scales". 
-  var rsb_repetitivebehavior = sumoverindices(19, 21) / 3.0; 
-  var rsb_needforsamaeness = sumoverindices(21, 24) / 4.0; 
-  var rsb_sensorysensitivity = sumoverindices(25, 27) / 3.0; 
-  var rsb_sensoryinterests = sumoverindices(28, 30) / 3.0; 
-  var rsb_restrictedinterests = sumoverindices(30, 36) / 7.0; 
+  var rsb_repetitivebehavior = sumoverindices(scores, 19, 21) / 3.0; 
+  var rsb_needforsamaeness = sumoverindices(scores, 21, 24) / 4.0; 
+  var rsb_sensorysensitivity = sumoverindices(scores, 25, 27) / 3.0; 
+  var rsb_sensoryinterests = sumoverindices(scores, 28, 30) / 3.0; 
+  var rsb_restrictedinterests = sumoverindices(scores, 30, 36) / 7.0; 
   //Yield. 
   const asdq2ScoresArray=[
     sci,
