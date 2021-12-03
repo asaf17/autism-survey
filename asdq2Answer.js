@@ -49,7 +49,20 @@ class Asdq2Answer {
     Q36,
     Q37,
     Q38,
-    Q39
+    Q39,
+    SCISubscore,
+    RRBSubscore,
+    SocialMotivationSubscore,
+    NonVervalCommunicationSubscore,
+    ReciprocitySubscore,
+    PerspectiveTakingSubscore,
+    RelationshipsSubscore,
+    RepetitiveBehaviorSubscore,
+    NeedForSamenessSubscore,
+    SensorySenstivitySubscore,
+    SensoryInterestsSubscore,
+    RestrictedInterestsSubscore,
+    CumulativeScore
   ) {
     this.ParticipantName = ParticipantName,
     this.ParticipantAge = ParticipantAge,
@@ -100,7 +113,20 @@ class Asdq2Answer {
       this.Q36 = Q36,
       this.Q37 = Q37,
       this.Q38 = Q38,
-      this.Q39 = Q39;
+      this.Q39 = Q39,
+      this.SCISubscore = SCISubscore,
+      this.RRBSubscore = RRBSubscore,
+      this.SocialMotivationSubscore = SocialMotivationSubscore,
+      this.NonVervalCommunicationSubscore = NonVervalCommunicationSubscore,
+      this.ReciprocitySubscore = ReciprocitySubscore,
+      this.PerspectiveTakingSubscore = PerspectiveTakingSubscore,
+      this.RelationshipsSubscore = RelationshipsSubscore,
+      this.RepetitiveBehaviorSubscore = RepetitiveBehaviorSubscore,
+      this.NeedForSamenessSubscore = NeedForSamenessSubscore,
+      this.SensorySenstivitySubscore = SensorySenstivitySubscore,
+      this.SensoryInterestsSubscore = SensoryInterestsSubscore,
+      this.RestrictedInterestsSubscore = RestrictedInterestsSubscore,
+      this.CumulativeScore = CumulativeScore;
   }
 }
 
