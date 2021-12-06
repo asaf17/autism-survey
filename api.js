@@ -26,7 +26,7 @@ const dbConfig = {
 }
 
 /**
- * 
+ * Inserts the results of the entered query string into the connected database
  * @param {*} res 
  * @param {*} query 
  */
@@ -54,9 +54,10 @@ const executeQuery = function (res, query) {
   });
 }
 
+/**
+ * Appends each results in the cfql survey to be executed in the SQL insert statement
+ */
 var cfqlQueryString="";
-
-
 
 //CFQL SURVEY POST METHODS
 
@@ -133,7 +134,9 @@ app.post('/CFQL2/4_cfql2_FinancialSurvey.html', function(req, res){
 
 });
 
-
+/**
+ * Stores the response from question "I have a significant other/spouse/partner:" as a binary value
+ */
 var marry="";
 
 app.post('/CFQL2/5_cfql2_SocialNetworkSurvey.html', function(req, res){
@@ -162,10 +165,10 @@ app.post('/CFQL2/5_cfql2_SocialNetworkSurvey.html', function(req, res){
 app.post('/CFQL2/7_cfql2_PartnerRelationshipSurvey.html', function(req, res){
   Cfql2Answer.PartnerRelationshipQolSpouseRelation = req.body.qRelate;
 
-   Cfql2Answer.PartnerRelationshipQol20 = parseInt(req.body.q20);
-   Cfql2Answer.PartnerRelationshipQol21 = parseInt(req.body.q21);
-   Cfql2Answer.PartnerRelationshipQol22 = parseInt(req.body.q22);
-   Cfql2Answer.PartnerRelationshipQol23 = parseInt(req.body.q23);
+  Cfql2Answer.PartnerRelationshipQol20 = parseInt(req.body.q20);
+  Cfql2Answer.PartnerRelationshipQol21 = parseInt(req.body.q21);
+  Cfql2Answer.PartnerRelationshipQol22 = parseInt(req.body.q22);
+  Cfql2Answer.PartnerRelationshipQol23 = parseInt(req.body.q23);
 
   res.redirect('/CFQL2/8_cfql2_CopingSurvey.html');
 
@@ -188,32 +191,32 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
   }
 
   var cfql2Responses = [
-    parseFloat(Cfql2Answer.ChildQol1),
-    parseFloat(Cfql2Answer.ChildQol2),
-    parseFloat(Cfql2Answer.ChildQol3),
-    parseFloat(Cfql2Answer.ChildQol4),
-    parseFloat(Cfql2Answer.FamilyQol5),
-    parseFloat(Cfql2Answer.FamilyQol6),
-    parseFloat(Cfql2Answer.FamilyQol7),
-    parseFloat(Cfql2Answer.FamilyQol8),
-    parseFloat(Cfql2Answer.CaregiverQol9),
-    parseFloat(Cfql2Answer.CaregiverQol10),
-    parseFloat(Cfql2Answer.CaregiverQol11),
-    parseFloat(Cfql2Answer.CaregiverQol12),
-    parseFloat(Cfql2Answer.FinancialQol13),
-    parseFloat(Cfql2Answer.FinancialQol14),
-    parseFloat(Cfql2Answer.FinancialQol15),
-    parseFloat(Cfql2Answer.SocialNetworkQol16),
-    parseFloat(Cfql2Answer.SocialNetworkQol17),
-    parseFloat(Cfql2Answer.SocialNetworkQol18),
-    parseFloat(Cfql2Answer.SocialNetworkQol19),
-    parseFloat(Cfql2Answer.PartnerRelationshipQol20),
-    parseFloat(Cfql2Answer.PartnerRelationshipQol21),
-    parseFloat(Cfql2Answer.PartnerRelationshipQol22),
-    parseFloat(Cfql2Answer.PartnerRelationshipQol23),
-    parseFloat(Cfql2Answer.CopingQol24),
-    parseFloat(Cfql2Answer.CopingQol25),
-    parseFloat(Cfql2Answer.CopingQol26)
+    Cfql2Answer.ChildQol1,
+    Cfql2Answer.ChildQol2,
+    Cfql2Answer.ChildQol3,
+    Cfql2Answer.ChildQol4,
+    Cfql2Answer.FamilyQol5,
+    Cfql2Answer.FamilyQol6,
+    Cfql2Answer.FamilyQol7,
+    Cfql2Answer.FamilyQol8,
+    Cfql2Answer.CaregiverQol9,
+    Cfql2Answer.CaregiverQol10,
+    Cfql2Answer.CaregiverQol11,
+    Cfql2Answer.CaregiverQol12,
+    Cfql2Answer.FinancialQol13,
+    Cfql2Answer.FinancialQol14,
+    Cfql2Answer.FinancialQol15,
+    Cfql2Answer.SocialNetworkQol16,
+    Cfql2Answer.SocialNetworkQol17,
+    Cfql2Answer.SocialNetworkQol18,
+    Cfql2Answer.SocialNetworkQol19,
+    Cfql2Answer.PartnerRelationshipQol20,
+    Cfql2Answer.PartnerRelationshipQol21,
+    Cfql2Answer.PartnerRelationshipQol22,
+    Cfql2Answer.PartnerRelationshipQol23,
+    Cfql2Answer.CopingQol24,
+    Cfql2Answer.CopingQol25,
+    Cfql2Answer.CopingQol26
   ];
   const cfql2ScoringArray = cfql2(cfql2Responses);
 
@@ -288,7 +291,9 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
 });
 
 
-
+/**
+ * Appends each results in the asdq survey to be executed in the SQL insert statement
+ */
 var asdqQueryString="";
 
 
@@ -559,7 +564,9 @@ app.post('/ASDQ2/7_asdq2.html', function(req, res){
 //SCORING ALGRORITHM FUNCTIONS
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 
-//Subtract a set of arbitrary score valules from 6. 
+/**
+ * Subtract a set of arbitrary score valules from 6.  
+ */
 function scorefrom6(scores, indices) {
   for(var i = 0; i < indices.length; i++) {
     if(indices[i] >= scores.length) continue; 
@@ -568,7 +575,9 @@ function scorefrom6(scores, indices) {
   return scores; 
 }
 
-//Take a sum over a contiguous range of indices of scores. 
+/**
+ * Take a sum over a contiguous range of indices of scores.  
+ */
 function sumoverindices(scores, a, b) {
   if(b < a) { //Ensure a < b. 
     var tmp = b; 
@@ -582,9 +591,16 @@ function sumoverindices(scores, a, b) {
   return s; 
 }
 
-//Ensure that the vector of scores is compliant with the needed formatting. 
-//AN: Ideally, this should not be the case. Opininos differ on this of course, 
-//... but really the function should just do nothing upon invalid input. 
+/**
+ * Ensure that the vector of scores is compliant with the needed formatting. 
+ * AND: Ideally, this should not be the case. Opininos differ on this of course, 
+ * ... but really the function should just do nothing upon invalid input. 
+ * @param {*} scores 
+ * @param {*} requiredlength 
+ * @param {*} minscore 
+ * @param {*} maxscore 
+ * @returns 
+ */
 function validatescores(scores, requiredlength, minscore, maxscore) {
   //Ensure correct length of score vector. 
   while(scores.length < requiredlength) scores.push(minscore); 
@@ -600,9 +616,13 @@ function validatescores(scores, requiredlength, minscore, maxscore) {
   return scores; 
 }
 
-//Compute the CFQL2 autism quality of life score. Translated from a spreadsheet (16 Sept. '21). 
-//All sub-scores are to be stored in the database. 
-//Basics of reports should look like the spreadsheets (spatially, in terms of layout and content), interpretation. 
+/**
+ * Compute the CFQL2 autism quality of life score. Translated from a spreadsheet (16 Sept. '21). 
+ * All sub-scores are to be stored in the database. 
+ * Basics of reports should look like the spreadsheets (spatially, in terms of layout and content), interpretation. 
+ * @param {*} scores 
+ * @returns 
+ */
 function cfql2(scores) {
   //Ensure scores vector is conforming. 
   scores = validatescores(scores, 26, 1, 5); 
@@ -640,7 +660,11 @@ function cfql2(scores) {
   return finalScores; //Could also append other measures here as a string. 
 }
 
-//Compute ASDQ scoring, translated from spreadsheet (23 Sept. '21). 
+/**
+ * Compute ASDQ scoring, translated from spreadsheet (23 Sept. '21). 
+ * @param {*} scores 
+ * @returns 
+ */
 function asdq(scores) {
   //Ensure scores vector is conforming. 
   scores = validatescores(scores, 39, 1, 5); 
