@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<title>Generate UUID link and parse UUID from url</title>
+	<!-- Kyle T. Wylie, 6 Dec. '21 -->
+
+	
+	
+	<script type="text/javascript">
+
+		//Generate a new UUID for use as a database ID. 
+		function new_uuid() {
+			//https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid
+			return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16) );
+		}
+
+		//Produce a URL which encodes the UUID such that it may be sent to a client. 
+		function generate_uuid_link(uuid) {
+			//AN: Ultimately this URL will need to be replaced with a registered domain name. 
+			let url = "http://127.0.0.1:8090/cfql2/cfql2_userInput.html?uuid="; 
+			return url + uuid; 
+		}
+
+		//Extract a UUID encoded in a URL to be used internally. 
+		function parse_url_uuid() {
+			let url = window.location.href; 
+			let uuid_indicator = "?uuid="; 
+			let uuid_index = url.indexOf(uuid_indicator); 
+			if(uuid_index > -1) {
+				let starti = uuid_index + uuid_indicator.length; 
+				return url.substring(starti, url.length); 
+			} else {
+				return ""; 
+			}
+		}
+
+		//Store the UUID found in the URL into sessionstorage. 
+		function store_uuid() {
+			sessionStorage.setItem("PATIENT_UUID", parse_url_uuid()); 
+		}
+
+		//Retrieve the UUID from the original URL from sessionstorage. 
+		function retrieve_uuid() {
+			return sessionStorage.getItem("PATIENT_UUID"); 
+		}
+
+		//Tester. 
+		function ol() {
+			alert(parse_url_uuid()); 
+
+			alert(generate_uuid_link(new_uuid())); 
+
+			store_uuid(); 
+			alert(retrieve_uuid()); 
+		}
+
+	</script>
+</head>
+	
+<body>
+	<form method="post">
+		<input type="text" value="" id="source">
+		<input type="button" value="Parse" onclick="ol()">
+	</form>
+</body>
+	
+</html>
