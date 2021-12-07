@@ -121,13 +121,15 @@
 
 <script type="text/javascript" > 
 
-    //variables assigned to the user upon
-    //signing up for surveys
-    let clinicianName = " ";
-    let clinicianEmail = " ";
-    let patientEmail = " ";
-    //selectedSurvs indicates what survey(s) were chosen
-    let selectedSurvs = " ";
+    //This object contains all of the info needed from the form
+    const newRequest = {
+    firstName: " ",
+    lastName: " ",
+    fullName: " ",
+    clinicianEmail: " ",
+    patientEmail: " ",
+    selectedSurvs: " "
+    };
 
     //When survey option checked, a small CFQL description should appear.
     function cfqlDesc(){
@@ -167,32 +169,32 @@
     // TO DO, improve these functions getEmail
     //Saves the requestor's email input
     function getReqEmail(){
-        clinicianEmail = document.querySelector('#emailRequestor').value;
-       // alert(clinicianEmail);
+        newRequest.clinicianEmail = document.querySelector('#emailRequestor').value;
+       alert("NEW Clinician Email! :  "+newRequest.clinicianEmail);
     }
 
     //Saves the recipient's email input
     function getReciEmail(){
-        patientEmail = document.querySelector('#emailRecipient').value;
-        // alert(recipientEmail);
+        newRequest.patientEmail = document.querySelector('#emailRecipient').value;
+         alert("NEW Patient Email! :  "+newRequest.patientEmail);
     }
 
     //Verifies name fields have entries, saves names entered
     function saveNames(){
-        var fName = document.querySelector('#fName').value.replace(/ /g, "");
-        var lName = document.querySelector('#lName').value.replace(/ /g, "");
-        var fullName = fName + " " + lName;
-        // alert(fullName);
+        newRequest.firstName = document.querySelector('#fName').value.replace(/ /g, "");
+        newRequest.lastName = document.querySelector('#lName').value.replace(/ /g, "");
+        newRequest.fullName = newRequest.firstName + " " + newRequest.lastName;
+         alert(newRequest.fullName);
 
         //Verifies name is only alphabetic characters Aa - Zz
         var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
-        if(!regName.test(fullName)){
+        if(!regName.test(newRequest.fullName)){
             alert('Please enter your full name (first & last name).');
            // document.getElementById('#fName').focus();
         return false;
         }else{
-            clinicianName = fullName;
-            //alert('Full Name Correct');
+           // newRequest.clinicianName = fullName;
+            alert('Full Name Correct');
          return true;
         }
 
@@ -224,14 +226,14 @@
     //assigns the survey(s) that were chosen and will be sent
     function surveyToSend(){
         if(cfqlDesc() && asdqDesc()){
-            selectedSurvs = 'both';
-          //  alert(selectedSurvs);
+            newRequest.selectedSurvs = 'both';
+            alert(newRequest.selectedSurvs);
         }else if(cfqlDesc() && asdqDesc() == false){
-            selectedSurvs = 'cfql';
-           // alert(selectedSurvs);
+            newRequest.selectedSurvs = 'cfql';
+            alert(newRequest.selectedSurvs);
         }else if(cfqlDesc() == false && asdqDesc()){
-            selectedSurvs = 'asdq';
-           // alert(selectedSurvs);
+            newRequest.selectedSurvs = 'asdq';
+            alert(newRequest.selectedSurvs);
         }else if(cfqlDesc() == false && asdqDesc() == false){
             alert("Please select a Survey");
         }
@@ -251,7 +253,7 @@
             surveyToSend();
         }
     }
-
+    
 </script>
 
 </html>
