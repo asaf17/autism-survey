@@ -1,5 +1,6 @@
 class Asdq2Answer {
   constructor(
+    RequesterEmail,
     ParticipantName,
     ParticipantAge,
     DateOfBirth,
@@ -64,6 +65,7 @@ class Asdq2Answer {
     RestrictedInterestsSubscore,
     CumulativeScore
   ) {
+    this.RequesterEmail = RequesterEmail,
     this.ParticipantName = ParticipantName,
     this.ParticipantAge = ParticipantAge,
     this.DateOfBirth = DateOfBirth,

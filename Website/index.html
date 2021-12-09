@@ -66,9 +66,13 @@
         function test() {           
             var pword = "donotreplyautismsurvey1101"; 
             var recip = document.getElementById("emailRecipient").value;
+            var requestor = document.getElementById("emailRequestor").value;
             var cfql_checkbox = document.getElementById("cfql");
             var asdq_checkbox = document.getElementById("asdq");
             var body;
+
+
+            sessionStorage.setItem("email_requestor",requestor);
 
             if(cfql_checkbox.checked == true && asdq_checkbox.checked == true){
                 body = "Child and Family Quality of Life Survey: http://127.0.0.1:8090/CFQL2/cfql2_instructions.html " +"<br>"+ "Autism Spectrum Disorder Questionnaire: http://127.0.0.1:8090/asdq2/asdq2_instructions.html";
@@ -155,8 +159,8 @@
                             <label for="lName">Clinician Last Name: </label><br>
                             <input type="text" id="lName" name="emailRequestor"><br>
 
-                            <label for="emailRequestor">Clinician Email:</label><br>
-                            <input type="email" id="emailRequestor" name="emailRequestor"><br>
+                            <!-- <label for="emailRequestor">Clinician Email:</label><br>
+                            <input type="email" id="emailRequestor" name="emailRequestor"><br> -->
                             
                             <label for="emailRecipient">Patient Email:</label><br>
                             <input type="email" id="emailRecipient" name="emailRecipient"><br>
@@ -328,7 +332,7 @@
         //Checks if all email inputs are valid
         function validateEntries(email_id1, email_id2){
             if(inputValid(email_id1)){
-                getReqEmail();
+                //getReqEmail();
             }
             if(inputValid(email_id2)){
                 getReciEmail();

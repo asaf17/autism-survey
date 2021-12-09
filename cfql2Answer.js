@@ -1,5 +1,6 @@
 class Cfql2Answer {
   constructor(
+    RequesterEmail,
     ParticipantName,
     ParticipantAge,
     DateOfBirth,
@@ -47,6 +48,7 @@ class Cfql2Answer {
     CopingQolAverage,
     CumulativeScore
     ){
+    this.RequesterEmail = RequesterEmail,
     this.ParticipantName = ParticipantName,
     this.ParticipantAge = ParticipantAge,
     this.DateOfBirth = DateOfBirth,

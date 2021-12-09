@@ -9,6 +9,7 @@ var bodyParser = require("body-parser");
 var cors = require("cors");
 var app = express();
 var router = express.Router();
+var nodemailer = require('nodemailer');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/api", router);
 
 app.use(express.static('./Website'));
+
 
 
 const dbConfig = {
@@ -58,6 +60,7 @@ const executeQuery = function (res, query) {
  * Appends each results in the cfql survey to be executed in the SQL insert statement
  */
 var cfqlQueryString="";
+var cfqlReport="";
 
 //CFQL SURVEY POST METHODS
 
@@ -69,10 +72,8 @@ app.post("/CFQL2/cfql2_instructions.html", function(req, res){
 
 
 app.post("/CFQL2/cfql2_userInput.html", function(req, res){
-  console.log('creating new user...');
-  console.log('childs name: ' +req.body.name_child);
-  console.log('childs age: ' + req.body.age_child)
 
+  Cfql2Answer.RequesterEmail = req.body.RequesterEmail;
   Cfql2Answer.ParticipantName = req.body.name_child;
   Cfql2Answer.ParticipantAge = parseInt(req.body.age_child);
   Cfql2Answer.DateOfBirth = req.body.dob;
@@ -149,12 +150,12 @@ app.post('/CFQL2/5_cfql2_SocialNetworkSurvey.html', function(req, res){
   
   //USER CLICKS YES ON "I have a significant other/spouse/partner:" radio button
   if(marry == 1){
-    console.log("Yes: "+parseInt(marry));
+    //console.log("Yes: "+parseInt(marry));
     res.redirect('/CFQL2/7_cfql2_PartnerRelationshipSurvey.html')
   }
   //USER CLICKS NO ON "I have a significant other/spouse/partner:" radio button
   if(marry == 2){
-    console.log("No: "+parseInt(marry));
+    //console.log("No: "+parseInt(marry));
     res.redirect('/CFQL2/8_cfql2_CopingSurvey.html')
   }
   
@@ -229,7 +230,7 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
   Cfql2Answer.CumulativeScore = parseFloat(cfql2ScoringArray[7]);
   
 
-  cfqlQueryString = "INSERT INTO [CFQL2] (ParticipantName, ParticipantAge,"+
+  cfqlQueryString = "INSERT INTO [CFQL2] (RequesterEmail, ParticipantName, ParticipantAge,"+
   "DateOfBirth, Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient,"+ 
   "ParticipantDiagnosis, ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, ChildQol1, ChildQol2, "+
   "ChildQol3, ChildQol4, ChildQolAverage, FamilyQol5, FamilyQol6, FamilyQol7, FamilyQol8, FamilyQolAverage, "+
@@ -238,7 +239,8 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
   "SocialNetworkQol18, SocialNetworkQol19, SocialQolAverage, PartnerRelationshipQolSpouseRelation, "+
   "PartnerRelationshipQol20, PartnerRelationshipQol21, PartnerRelationshipQol22, PartnerRelationshipQol23, "+
   "PartnerRelationshipQolAverage, CopingQol24, CopingQol25, CopingQol26, CopingQolAverage, CumulativeScore) values ('"+
-  Cfql2Answer.ParticipantName+
+  Cfql2Answer.RequesterEmail+
+  "', '"+Cfql2Answer.ParticipantName+
   "', '"+Cfql2Answer.ParticipantAge+
   "', '"+Cfql2Answer.DateOfBirth+
   "', '"+Cfql2Answer.Sex+
@@ -289,8 +291,7 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
   executeQuery(res, cfqlQueryString);
 
   //cfql2 scores in JSON format
-  console.log(
-    report_cfql2("[{"+JSON.stringify("ParticipantName")+":"+JSON.stringify(Cfql2Answer.ParticipantName)+","+ JSON.stringify("ParticipantAge")+":"+JSON.stringify(Cfql2Answer.ParticipantAge)+","+
+  cfqlReport = report_cfql2("[{"+JSON.stringify("RequesterEmail")+":"+JSON.stringify(Cfql2Answer.RequesterEmail)+","+JSON.stringify("ParticipantName")+":"+JSON.stringify(Cfql2Answer.ParticipantName)+","+ JSON.stringify("ParticipantAge")+":"+JSON.stringify(Cfql2Answer.ParticipantAge)+","+
     JSON.stringify("DateOfBirth")+":"+JSON.stringify(Cfql2Answer.DateOfBirth)+","+JSON.stringify("Sex")+":"+JSON.stringify(Cfql2Answer.Sex)+","+JSON.stringify("InformantName")+":"+JSON.stringify(Cfql2Answer.InformantName)+","+
     JSON.stringify("InformantAge")+":"+JSON.stringify(Cfql2Answer.InformantAge)+","+JSON.stringify("DateOfSurvey")+":"+JSON.stringify(Cfql2Answer.DateOfSurvey)+","+
     JSON.stringify("InformantRelationshipToPatient")+":"+JSON.stringify(Cfql2Answer.InformantRelationshipToPatient)+","+JSON.stringify("ParticipantDiagnosis")+":"+JSON.stringify(Cfql2Answer.ParticipantDiagnosis)+","+
@@ -311,16 +312,19 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
     JSON.stringify("PartnerRelationshipQolAverage")+":"+JSON.stringify(Cfql2Answer.PartnerRelationshipQolAverage)+","+JSON.stringify("CopingQol24")+":"+JSON.stringify(Cfql2Answer.CopingQol24)+","+
     JSON.stringify("CopingQol25")+":"+JSON.stringify(Cfql2Answer.CopingQol25)+","+JSON.stringify("CopingQol26")+":"+JSON.stringify(Cfql2Answer.CopingQol26)+","+JSON.stringify("CopingQolAverage")+":"+JSON.stringify(Cfql2Answer.CopingQolAverage)+","+
     JSON.stringify("CumulativeScore")+":"+JSON.stringify(Cfql2Answer.CumulativeScore)+"}]")
-   );
+
+    sendCfqlEmail();
+
 
 });
+
 
 
 /**
  * Appends each results in the asdq survey to be executed in the SQL insert statement
  */
 var asdqQueryString="";
-
+var asdqReport="";
 
 //ASDQ2 SURVEY POST METHODS
 
@@ -332,10 +336,7 @@ app.post("/ASDQ2/asdq2_instructions.html", function(req, res){
 
 
 app.post("/ASDQ2/asdq2_userinput.html", function(req, res){
-  console.log('creating new user...');
-  console.log('childs name: ' +req.body.name_child);
-  console.log('childs age: ' + req.body.age_child)
-
+  Asdq2Answer.RequesterEmail = req.body.RequesterEmail;
   Asdq2Answer.ParticipantName = req.body.name_child;
   Asdq2Answer.ParticipantAge = parseInt(req.body.age_child);
   Asdq2Answer.DateOfBirth = req.body.dob;
@@ -436,6 +437,8 @@ app.post('/ASDQ2/6_asdq2.html', function(req, res){
 
 });
 
+
+
 app.post('/ASDQ2/7_asdq2.html', function(req, res){
 
   Asdq2Answer.Q37 = parseInt(req.body.q37);
@@ -504,14 +507,15 @@ app.post('/ASDQ2/7_asdq2.html', function(req, res){
   
 
 
-  asdqQueryString = "INSERT INTO [ASDQ2] (ParticipantName, ParticipantAge, DateOfBirth, "+
+  asdqQueryString = "INSERT INTO [ASDQ2] (RequesterEmail, ParticipantName, ParticipantAge, DateOfBirth, "+
   "Sex, InformantName, InformantAge, DateOfSurvey, InformantRelationshipToPatient, ParticipantDiagnosis, "+
   "ParticipantDiagosisSeverity, ParticipantAgeDiagnosis, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, "+
   "Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21,Q22, Q23,Q24,Q25,Q26,Q27,Q28,Q29,Q30,Q31,Q32,Q33,Q34,"+
   "Q35,Q36,Q37,Q38,Q39,SCISubscore, RRBSubscore, SocialMotivationSubscore, NonVervalCommunicationSubscore, "+
   "ReciprocitySubscore, PerspectiveTakingSubscore, RelationshipsSubscore, RepetitiveBehaviorSubscore, "+
   "NeedForSamenessSubscore, SensorySenstivitySubscore, SensoryInterestsSubscore, RestrictedInterestsSubscore, CumulativeScore) values ('"+
-  Asdq2Answer.ParticipantName+
+  Asdq2Answer.RequesterEmail+
+  "', '"+Asdq2Answer.ParticipantName+
   "', '"+Asdq2Answer.ParticipantAge+
   "', '"+Asdq2Answer.DateOfBirth+
   "', '"+Asdq2Answer.Sex+
@@ -575,13 +579,12 @@ app.post('/ASDQ2/7_asdq2.html', function(req, res){
   "', '"+Asdq2Answer.RestrictedInterestsSubscore+
   "', '"+Asdq2Answer.CumulativeScore+
   "')";
-
+  
 
   executeQuery(res, asdqQueryString);
 
   //asdq2 scores in JSON format
-  console.log(
-    report_asdq("[{"+JSON.stringify("ParticipantName")+":"+JSON.stringify(Asdq2Answer.ParticipantName)+","+ JSON.stringify("ParticipantAge")+":"+JSON.stringify(Asdq2Answer.ParticipantAge)+","+
+  asdqReport = report_asdq("[{"+JSON.stringify("RequesterEmail")+":"+JSON.stringify(Asdq2Answer.RequesterEmail)+","+JSON.stringify("ParticipantName")+":"+JSON.stringify(Asdq2Answer.ParticipantName)+","+ JSON.stringify("ParticipantAge")+":"+JSON.stringify(Asdq2Answer.ParticipantAge)+","+
     JSON.stringify("DateOfBirth")+":"+JSON.stringify(Asdq2Answer.DateOfBirth)+","+JSON.stringify("Sex")+":"+JSON.stringify(Asdq2Answer.Sex)+","+JSON.stringify("InformantName")+":"+JSON.stringify(Asdq2Answer.InformantName)+","+
     JSON.stringify("InformantAge")+":"+JSON.stringify(Asdq2Answer.InformantAge)+","+JSON.stringify("DateOfSurvey")+":"+JSON.stringify(Asdq2Answer.DateOfSurvey)+","+
     JSON.stringify("InformantRelationshipToPatient")+":"+JSON.stringify(Asdq2Answer.InformantRelationshipToPatient)+","+JSON.stringify("ParticipantDiagnosis")+":"+JSON.stringify(Asdq2Answer.ParticipantDiagnosis)+","+
@@ -605,12 +608,62 @@ app.post('/ASDQ2/7_asdq2.html', function(req, res){
     JSON.stringify("NeedForSamenessSubscore")+":"+JSON.stringify(Asdq2Answer.NeedForSamenessSubscore)+","+JSON.stringify("SensorySenstivitySubscore")+":"+JSON.stringify(Asdq2Answer.SensorySenstivitySubscore)+","+
     JSON.stringify("SensoryInterestsSubscore")+":"+JSON.stringify(Asdq2Answer.SensoryInterestsSubscore)+","+JSON.stringify("RestrictedInterestsSubscore")+":"+JSON.stringify(Asdq2Answer.RestrictedInterestsSubscore)+","+
     JSON.stringify("CumulativeScore")+":"+JSON.stringify(Asdq2Answer.CumulativeScore)+"}]")
-   );
+
+  sendAsdqEmail();
 
 });
 
 
 
+
+//EMAILING FUNCTIONS
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+
+/**
+ * sets up the email template format and requiered fields in order to send an email
+ * @param {*} recipient 
+ * @param {*} body 
+ */
+ function getEmailComponents(recipient, body) {
+	var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'donotreplyautismsurvey@gmail.com',
+      pass: 'donotreplyautismsurvey1101'
+    }
+  });
+
+  var mailOptions = {
+    from: 'donotreplyautismsurvey@gmail.com',
+    to: recipient,
+    subject: 'Neuraldevelopment Evaluation Survey Results',
+    text: body
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+}
+
+/**
+ * gets the email recipient and cfql report to send from server
+ */
+function sendCfqlEmail(){
+  var recip = Cfql2Answer.RequesterEmail;
+  getEmailComponents(recip, cfqlReport);
+}
+
+/**
+ * gets the email recipient and asdq report to send from server
+ */
+function sendAsdqEmail(){
+  var recip = Asdq2Answer.RequesterEmail;
+  getEmailComponents(recip, asdqReport);
+}
 
 
 //SCORING ALGRORITHM FUNCTIONS
@@ -792,7 +845,8 @@ function asdq(scores) {
 			var cumulative = row.CumulativeScore; 
 			var average = 5.0 * (cumulative) / 130.0; 
 			//Format those values into the desired formatting. 
-			var outline1 = "Scores - " + participantname + ", age: " + participantage + "\n" + 
+			var outline1 = "CFQL2 SURVEY RESULTS"+"\n"+ 
+              "Scores for - " + participantname + ", age: " + participantage + "\n" + 
 							"Child QoL: " + child + "/20, " + score_description(child, 8, 15) + "\n" + 
 							"Familiy QoL: " + family + "/20, " + score_description(family, 8, 15) + "\n" + 
 							"Caregiber QoL: " + caregiver + "/20, " + score_description(caregiver, 8, 15) + "\n" + 
@@ -828,7 +882,8 @@ function asdq(scores) {
 			var interests = row.SensoryInterestsSubscore; 
 			var restrictedinterests = row.RestrictedInterestsSubscore; 
 			//Format those values into the desired formatting. 
-			var outline1 = "Scores - " + participantname + ", age: " + participantage + "\n" +
+			var outline1 = "ASDQ2 SURVEY RESULTS"+"\n"+
+              "Scores for - " + participantname + ", age: " + participantage + "\n" +
               "ASD Total: " + asdtotal + "\n" + 
 						   "Domains\n" + 
 						   "SCI: " + sci + "\n" + 

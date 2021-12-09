@@ -1,4 +1,5 @@
 CREATE TABLE autismsurvey.dbo.CFQL2 (
+RequesterEmail varchar(64),
 ParticipantName varchar(64),
 ParticipantAge int,
 DateOfBirth varchar(64),
@@ -48,6 +49,7 @@ CumulativeScore decimal(5,2)
 );
 
 CREATE TABLE autismsurvey.dbo.ASDQ2 (
+RequesterEmail varchar(64),
 ParticipantName varchar(64),
 ParticipantAge int,
 DateOfBirth varchar(64),
