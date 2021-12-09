@@ -61,6 +61,21 @@ const executeQuery = function (res, query) {
  */
 var cfqlQueryString="";
 var cfqlReport="";
+var cfqlRequester="";
+var asdqRequester="";
+
+app.post("/index.html", function(req, res){
+  SurveyInformation.RequesterEmail = req.body.emailRequestor;
+  
+  cfqlRequester = SurveyInformation.RequesterEmail;
+  asdqRequester = SurveyInformation.RequesterEmail;
+
+  // console.log("hi there cfql: "+cfqlRequester);
+  // console.log("hi there asdq: "+asdqRequester);
+
+  //res.redirect("/index.html");
+});
+
 
 //CFQL SURVEY POST METHODS
 
@@ -73,7 +88,7 @@ app.post("/CFQL2/cfql2_instructions.html", function(req, res){
 
 app.post("/CFQL2/cfql2_userInput.html", function(req, res){
 
-  Cfql2Answer.RequesterEmail = req.body.RequesterEmail;
+  Cfql2Answer.RequesterEmail = cfqlRequester;
   Cfql2Answer.ParticipantName = req.body.name_child;
   Cfql2Answer.ParticipantAge = parseInt(req.body.age_child);
   Cfql2Answer.DateOfBirth = req.body.dob;
@@ -86,6 +101,7 @@ app.post("/CFQL2/cfql2_userInput.html", function(req, res){
   Cfql2Answer.ParticipantDiagosisSeverity = req.body.severity;
   Cfql2Answer.ParticipantAgeDiagnosis = parseInt(req.body.age_diag);
 
+  console.log("hi there: "+Cfql2Answer.RequesterEmail);
 
   res.redirect("/CFQL2/1_cfql2_ChildSurvey.html");
 });
@@ -336,7 +352,7 @@ app.post("/ASDQ2/asdq2_instructions.html", function(req, res){
 
 
 app.post("/ASDQ2/asdq2_userinput.html", function(req, res){
-  Asdq2Answer.RequesterEmail = req.body.RequesterEmail;
+  Asdq2Answer.RequesterEmail = asdqRequester;
   Asdq2Answer.ParticipantName = req.body.name_child;
   Asdq2Answer.ParticipantAge = parseInt(req.body.age_child);
   Asdq2Answer.DateOfBirth = req.body.dob;
@@ -636,7 +652,7 @@ app.post('/ASDQ2/7_asdq2.html', function(req, res){
   var mailOptions = {
     from: 'donotreplyautismsurvey@gmail.com',
     to: recipient,
-    subject: 'Neuraldevelopment Evaluation Survey Results',
+    subject: 'Neurodevelopment Evaluation Survey Results',
     text: body
   };
 

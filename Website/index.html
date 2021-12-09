@@ -54,7 +54,7 @@
             //Send the email. 
             Email.send(emailjsonraw)
                 .then(function (message) {
-                    alert("mail sent successfully");
+                    alert("mail sent successfully to: "+recipient);
                     return; 
                 });
             
@@ -85,7 +85,7 @@
             }
             
 
-            sendemail(recip, "Neuraldevelopment Evaluation", body, pword); 
+            sendemail(recip, "Neurodevelopment Evaluation", body, pword); 
 
 
 
@@ -94,12 +94,6 @@
     </script>
 
 </head>
-
-
-
-
-
-
 
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -140,7 +134,7 @@
                     <div class="emailSurv">
                         <label>Survey of Choice: </label>
                         <!---------------------PUSH TO DB FROM HERE-------------------------------------------------------------------------------------------------------->
-                        <form action="index.html" method="post">
+                        <form action="./index.html" method="post">
                             <input type="checkbox" id="cfql" name="surv_check" value="cfql" onclick="cfqlDesc();">
                             <label for="cfql">CFQL-2</label><br>
 
@@ -154,10 +148,10 @@
                             <p id="asdq_Description"></p>
 
                             <label for="fName">Clinician First Name: </label><br>
-                            <input type="text" id="fName" name="emailRequestor"><br>
+                            <input type="text" id="fName"><br>
 
                             <label for="lName">Clinician Last Name: </label><br>
-                            <input type="text" id="lName" name="emailRequestor"><br>
+                            <input type="text" id="lName"><br>
 
                             <label for="emailRequestor">Clinician Email:</label><br>
                             <input type="email" id="emailRequestor" name="emailRequestor"><br>
@@ -167,7 +161,7 @@
 
                             <p>&nbsp;</p>
                             <!-- <button type="button" onclick="validateEntries('#emailRequestor', '#emailRecipient');alert('email sent');">Submit</button> -->
-                            <button type="button" onclick="test();">Submit</button>
+                            <button type="submit" onclick="validateEntries('#emailRequestor', '#emailRecipient');test();alert('DO NOT CLOSE OR REFRESH THE PAGE UNTIL THE COMPLETION OF THE SURVEY(S)!');">Submit</button>
                         </form>
                     </div>
                     <p>&nbsp;</p>
@@ -259,7 +253,7 @@
         // TO DO, improve these functions getEmail
         //Saves the requestor's email input
         function getReqEmail(){
-            //clinicianEmail = document.querySelector('#emailRequestor').value;
+            clinicianEmail = document.querySelector('#emailRequestor').value;
         // alert(clinicianEmail);
         }
 
