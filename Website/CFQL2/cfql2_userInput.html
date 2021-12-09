@@ -22,13 +22,17 @@
                     <th></th>
                     <th></th>
                 </tr>
+                <!-- <tr>
+                    <td>Clinician Email:</td>
+                    <td><input type="email" id="RequesterEmail" name="RequesterEmail" required></td>
+                </tr> -->
                 <tr>
                     <td>Child Name:</td>
                     <td><input type="text" id='name_child' name="name_child" required></td>
                 </tr>
                 <tr>
                     <td>Child Age:</td>
-                    <td><input type="number" id='age_child' name="age_child" min="1" max="30"></td>
+                    <td><input type="number" id='age_child' name="age_child" min="1" max="30" required></td>
                 </tr>
                 <tr>
                     <td>Child Date of Birth:</td>
@@ -37,11 +41,11 @@
                 </tr>
                 <tr>
                     <td>Informant Name:</td>
-                    <td><input type="text" id='name_inform' name="name_inform"></td>
+                    <td><input type="text" id='name_inform' name="name_inform" required></td>
                 </tr>
                 <tr>
                     <td>Informant Age:</td>
-                    <td><input type="number" id='age_inform' name="age_inform" min="1" ></td>
+                    <td><input type="number" id='age_inform' name="age_inform" min="1" required></td>
                 </tr>
                 <tr>
                     <td>Date:</td>
@@ -78,12 +82,12 @@
                     <td>Patient diagnosis:</td>
                     <td>
                         <select name="diagnostic" id="diagnosis">
-                            <option value="na">No Diagnosis</option>
-                            <option value="asd">Austism Spectrum Disorder</option>
+                            <option value="No_Diagnosis">No Diagnosis</option>
+                            <option value="Austism_Spectrum_Disorder">Austism Spectrum Disorder</option>
                             <option value="adhd">ADHD</option>
-                            <option value="ad">Anxiety Disorder</option>
-                            <option value="md">Mood Disorder</option>
-                            <option value="cogdis">Cognitive or intellectual impairment</option>
+                            <option value="Anxiety_Disorder">Anxiety Disorder</option>
+                            <option value="Mood_Disorder">Mood Disorder</option>
+                            <option value="Cognitive_or_intellectual_impairment">Cognitive or intellectual impairment</option>
                             <option value="other">other</option>
                         </select>
                     </td>
@@ -103,7 +107,7 @@
                 </tr>
                 <tr>
                     <td>Age of child at Diagnosis:</td>
-                    <td><input type="number" id='age_diag' name="age_diag" min="1" ></td>
+                    <td><input type="number" id='age_diag' name="age_diag" min="1" required></td>
                 </tr>
                 <!--button type="submit">SUBMIT</button-->
             
@@ -121,8 +125,9 @@
     </div>
     </form> 
 </div>
-<script>
 
+<script>
+    //sessionStorage.setItem("RequesterEmail", document.getElementById('RequesterEmail').value);
 </script>
 
 </body>

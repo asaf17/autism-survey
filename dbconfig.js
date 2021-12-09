@@ -7,9 +7,9 @@ const config = {
     trustedconnection: true,
     enableArithAbort: true,
     trustServerCertificate: true,
-    instancename: "DESKTOP-H6SN653/SQLEXPRESS", // SQL Server instance name
+    instancename: "DESKTOP-E9GP8UU\SQLEXPRESS", // SQL Server instance name
   },
-  port: 54895,
+  port: 51383,
 };
 
 module.exports = config;

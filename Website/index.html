@@ -10,7 +10,91 @@
     <meta name="description" content="Simplified Bootstrap template with sticky menu">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-menu.css" rel="stylesheet">
+
+
+    <script src=
+        "https://smtpjs.com/v3/smtp.js">
+    </script>
+
+    <script type="text/javascript"> 
+
+        // import { v4 as uuidv4 } from 'uuid';
+        
+        
+        // import { ms } from "./ms.js";
+        // import Symbol from "./ms/symbol.js";
+        // ms.Symbol = Symbol;
+        // export { ms };
+
+
+
+        //Send an email from our "donotreply" email to a desired recipient (4 Nov. '21). 
+        //AN1: See "https://www.geeksforgeeks.org/how-to-send-an-email-from-javascript/". 
+        //AN2: This approach is really quite bad. Whoever the next person to look at this
+        //...  happens to be, you need to change this to be something better. Please. 
+        //...  The right way to do this is to have it run on the backend, with the code there
+        //...  logged in serverside to a proper mail server, this here is because of beta code. 
+        function sendemail(recipient, subject, body, pword) {
+            //AN: There should really be at least regex validation on all the above fields here. 
+            //JSON object representing the email form, including our sending email. 
+            let emailjsonraw = {
+                Host: "smtp.gmail.com",
+                Username: "donotreplyautismsurvey@gmail.com",
+                Password: "donotreplyautismsurvey1101",
+                From: "donotreplyautismsurvey@gmail.com",
+                To: "asdf",           
+                Subject: "adsf",
+                Body: "asdf"
+            }; 
+            //Populate relevant fields. 
+            emailjsonraw.Password = pword; 
+            emailjsonraw.To = recipient; 
+            emailjsonraw.Subject = subject; 
+            emailjsonraw.Body = body; 
+            //Send the email. 
+            Email.send(emailjsonraw)
+                .then(function (message) {
+                    alert("mail sent successfully to: "+recipient);
+                    return; 
+                });
+            
+                
+
+        }
+
+        //Example showing how the function call works. 
+        function test() {           
+            var pword = "donotreplyautismsurvey1101"; 
+            var recip = document.getElementById("emailRecipient").value;
+            //var requestor = document.getElementById("emailRequestor").value;
+            var cfql_checkbox = document.getElementById("cfql");
+            var asdq_checkbox = document.getElementById("asdq");
+            var body;
+
+
+            //sessionStorage.setItem("email_requestor",requestor);
+
+            if(cfql_checkbox.checked == true && asdq_checkbox.checked == true){
+                body = "Child and Family Quality of Life Survey: http://127.0.0.1:8090/CFQL2/cfql2_instructions.html " +"<br>"+ "Autism Spectrum Disorder Questionnaire: http://127.0.0.1:8090/asdq2/asdq2_instructions.html";
+            }
+            else if(cfql_checkbox.checked == true){
+                body = "Child and Family Quality of Life Survey: http://127.0.0.1:8090/CFQL2/cfql2_instructions.html";
+            }
+            else if(asdq_checkbox.checked == true){
+                body = "Autism Spectrum Disorder Questionnaire: http://127.0.0.1:8090/asdq2/asdq2_instructions.html";
+            }
+            
+
+            sendemail(recip, "Neurodevelopment Evaluation", body, pword); 
+
+
+
+        }
+
+    </script>
+
 </head>
+
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -49,32 +133,35 @@
                     <h1>Survey Selection</h1>
                     <div class="emailSurv">
                         <label>Survey of Choice: </label>
-                        <form>
-                            <input type="checkbox" id="cfql" name="cfql" value="cfql" onclick="cfqlDesc();">
+                        <!---------------------PUSH TO DB FROM HERE-------------------------------------------------------------------------------------------------------->
+                        <form action="./index.html" method="post">
+                            <input type="checkbox" id="cfql" name="surv_check" value="cfql" onclick="cfqlDesc();">
                             <label for="cfql">CFQL-2</label><br>
 
                             <!--paragraph will display if CFQL survey checkbox is checked-->
                             <p id="cfql_Description"></p>
 
-                            <input type="checkbox" id="asdq" name="asdq" value="asdq" onclick="asdqDesc();">
+                            <input type="checkbox" id="asdq" name="surv_check" value="asdq" onclick="asdqDesc();">
                             <label for="cfql">ASDQ-2</label><br>
 
                             <!--paragraph will display if ASDQ survey checkbox is checked-->
                             <p id="asdq_Description"></p>
 
                             <label for="fName">Clinician First Name: </label><br>
-                            <input type="text" id="fName" name="emailRequestor"><br>
+                            <input type="text" id="fName"><br>
 
                             <label for="lName">Clinician Last Name: </label><br>
-                            <input type="text" id="lName" name="emailRequestor"><br>
+                            <input type="text" id="lName"><br>
 
                             <label for="emailRequestor">Clinician Email:</label><br>
                             <input type="email" id="emailRequestor" name="emailRequestor"><br>
                             
                             <label for="emailRecipient">Patient Email:</label><br>
                             <input type="email" id="emailRecipient" name="emailRecipient"><br>
+
                             <p>&nbsp;</p>
-                            <button type="button" onclick="validateEntries('#emailRequestor', '#emailRecipient');">Submit</button>
+                            <!-- <button type="button" onclick="validateEntries('#emailRequestor', '#emailRecipient');alert('email sent');">Submit</button> -->
+                            <button type="submit" onclick="validateEntries('#emailRequestor', '#emailRecipient');test();alert('DO NOT CLOSE OR REFRESH THE PAGE UNTIL THE COMPLETION OF THE SURVEY(S)!');">Submit</button>
                         </form>
                     </div>
                     <p>&nbsp;</p>
@@ -117,141 +204,143 @@
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/sticky-menu.js"></script>
 
+    <script>
+
+        
+        //variables assigned to the user upon
+        //signing up for surveys
+        let clinicianName = " ";
+        let clinicianEmail = " ";
+        let patientEmail = " ";
+        //selectedSurvs indicates what survey(s) were chosen
+        let selectedSurvs = " ";
+
+        //When survey option checked, a small CFQL description should appear.
+        function cfqlDesc(){
+
+            // Grabbing CFQL elements and assigning them to variables
+            var cfql_checkbox = document.getElementById("cfql");
+            var cfql_description_paragraph = document.getElementById("cfql_Description");
+
+            // If the checkbox is checked, display the survey description
+            if (cfql_checkbox.checked == true){
+                cfql_description_paragraph.innerHTML = 'CFQL Quick Description';
+                return true;
+            }
+            if (cfql_checkbox.checked == false){
+                cfql_description_paragraph.innerHTML = '';
+                return false;
+            }
+        }
+
+        //When survey option checked, a small ASDQ description should appear.
+        function asdqDesc(){
+            //Grabbing ASDQ checkbox + paragraph elements, assigning them to variables
+            var asdq_checkbox = document.getElementById("asdq");
+            var asdq_description_paragraph = document.getElementById("asdq_Description");
+
+            // If the checkbox is checked, display the survey description
+            if (asdq_checkbox.checked == true){
+                document.getElementById("asdq_Description").innerHTML = 'ASDQ Quick Description';
+                return true;
+            }
+            if (asdq_checkbox.checked == false){
+                document.getElementById("asdq_Description").innerHTML = '';
+                return false;
+            }
+        }
+
+        // TO DO, improve these functions getEmail
+        //Saves the requestor's email input
+        function getReqEmail(){
+            clinicianEmail = document.querySelector('#emailRequestor').value;
+        // alert(clinicianEmail);
+        }
+
+        //Saves the recipient's email input
+        function getReciEmail(){
+            patientEmail = document.querySelector('#emailRecipient').value;
+            // alert(recipientEmail);
+        }
+
+        //Verifies name fields have entries, saves names entered
+        function saveNames(){
+            var fName = document.querySelector('#fName').value.replace(/ /g, "");
+            var lName = document.querySelector('#lName').value.replace(/ /g, "");
+            var fullName = fName + " " + lName;
+            // alert(fullName);
+
+            //Verifies name is only alphabetic characters Aa - Zz
+            var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+            if(!regName.test(fullName)){
+                alert('Please enter your full name (first & last name).');
+            // document.getElementById('#fName').focus();
+            return false;
+            }else{
+                clinicianName = fullName;
+                //alert('Full Name Correct');
+            return true;
+            }
+
+        }
+
+        //checks if the provided email inputs are
+        //formatted correctly, if not, they must try again
+        function inputValid(email_id){
+
+            //document.getElementById(email_id).maxValue = 320;
+            var email = document.querySelector(email_id).value;
+
+            //correct email format
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                
+                //compares user email input with correct format
+                if(email.match(mailformat))
+                {  
+                return true;
+                }
+                else
+                {
+                alert("One or more email fields have an invalid entry!");
+                document.querySelector(email_id).focus();
+                return false;
+                }
+        }
+
+        //assigns the survey(s) that were chosen and will be sent
+        function surveyToSend(){
+            if(cfqlDesc() && asdqDesc()){
+                selectedSurvs = 'both';
+            //  alert(selectedSurvs);
+            }else if(cfqlDesc() && asdqDesc() == false){
+                selectedSurvs = 'cfql';
+            // alert(selectedSurvs);
+            }else if(cfqlDesc() == false && asdqDesc()){
+                selectedSurvs = 'asdq';
+            // alert(selectedSurvs);
+            }else if(cfqlDesc() == false && asdqDesc() == false){
+                alert("Please select a Survey");
+            }
+        }
+
+        //Checks if all email inputs are valid
+        function validateEntries(email_id1, email_id2){
+            if(inputValid(email_id1)){
+                getReqEmail();
+            }
+            if(inputValid(email_id2)){
+                getReciEmail();
+            }
+            
+            if(inputValid(email_id1) && inputValid(email_id2) ){
+                saveNames();
+                surveyToSend();
+            }
+        }
+    </script>
+
 </body>
 
-<script type="text/javascript" > 
 
-    //variables assigned to the user upon
-    //signing up for surveys
-    let clinicianName = " ";
-    let clinicianEmail = " ";
-    let patientEmail = " ";
-    //selectedSurvs indicates what survey(s) were chosen
-    let selectedSurvs = " ";
-
-    //When survey option checked, a small CFQL description should appear.
-    function cfqlDesc(){
-
-        // Grabbing CFQL elements and assigning them to variables
-        var cfql_checkbox = document.getElementById("cfql");
-        var cfql_description_paragraph = document.getElementById("cfql_Description");
-
-        // If the checkbox is checked, display the survey description
-        if (cfql_checkbox.checked == true){
-            cfql_description_paragraph.innerHTML = 'CFQL Quick Description';
-            return true;
-        }
-        if (cfql_checkbox.checked == false){
-            cfql_description_paragraph.innerHTML = '';
-            return false;
-        }
-    }
-
-    //When survey option checked, a small ASDQ description should appear.
-    function asdqDesc(){
-        //Grabbing ASDQ checkbox + paragraph elements, assigning them to variables
-        var asdq_checkbox = document.getElementById("asdq");
-        var asdq_description_paragraph = document.getElementById("asdq_Description");
-
-        // If the checkbox is checked, display the survey description
-        if (asdq_checkbox.checked == true){
-            document.getElementById("asdq_Description").innerHTML = 'ASDQ Quick Description';
-            return true;
-        }
-        if (asdq_checkbox.checked == false){
-            document.getElementById("asdq_Description").innerHTML = '';
-            return false;
-        }
-    }
-
-    // TO DO, improve these functions getEmail
-    //Saves the requestor's email input
-    function getReqEmail(){
-        clinicianEmail = document.querySelector('#emailRequestor').value;
-       // alert(clinicianEmail);
-    }
-
-    //Saves the recipient's email input
-    function getReciEmail(){
-        patientEmail = document.querySelector('#emailRecipient').value;
-        // alert(recipientEmail);
-    }
-
-    //Verifies name fields have entries, saves names entered
-    function saveNames(){
-        var fName = document.querySelector('#fName').value.replace(/ /g, "");
-        var lName = document.querySelector('#lName').value.replace(/ /g, "");
-        var fullName = fName + " " + lName;
-        // alert(fullName);
-
-        //Verifies name is only alphabetic characters Aa - Zz
-        var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
-        if(!regName.test(fullName)){
-            alert('Please enter your full name (first & last name).');
-           // document.getElementById('#fName').focus();
-        return false;
-        }else{
-            clinicianName = fullName;
-            //alert('Full Name Correct');
-         return true;
-        }
-
-    }
-
-    //checks if the provided email inputs are
-    //formatted correctly, if not, they must try again
-    function inputValid(email_id){
-
-        //document.getElementById(email_id).maxValue = 320;
-        var email = document.querySelector(email_id).value;
-
-        //correct email format
-        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            
-            //compares user email input with correct format
-            if(email.match(mailformat))
-            {  
-            return true;
-            }
-            else
-            {
-            alert("One or more email fields have an invalid entry!");
-            document.querySelector(email_id).focus();
-            return false;
-            }
-    }
-
-    //assigns the survey(s) that were chosen and will be sent
-    function surveyToSend(){
-        if(cfqlDesc() && asdqDesc()){
-            selectedSurvs = 'both';
-          //  alert(selectedSurvs);
-        }else if(cfqlDesc() && asdqDesc() == false){
-            selectedSurvs = 'cfql';
-           // alert(selectedSurvs);
-        }else if(cfqlDesc() == false && asdqDesc()){
-            selectedSurvs = 'asdq';
-           // alert(selectedSurvs);
-        }else if(cfqlDesc() == false && asdqDesc() == false){
-            alert("Please select a Survey");
-        }
-    }
-
-    //Checks if all email inputs are valid
-    function validateEntries(email_id1, email_id2){
-        if(inputValid(email_id1)){
-            getReqEmail();
-        }
-        if(inputValid(email_id2)){
-            getReciEmail();
-        }
-        
-        if(inputValid(email_id1) && inputValid(email_id2) ){
-            saveNames();
-            surveyToSend();
-        }
-    }
-
-</script>
 
 </html>

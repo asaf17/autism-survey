@@ -1,4 +1,5 @@
 CREATE TABLE autismsurvey.dbo.CFQL2 (
+RequesterEmail varchar(64),
 ParticipantName varchar(64),
 ParticipantAge int,
 DateOfBirth varchar(64),
@@ -34,7 +35,6 @@ SocialNetworkQol17 int,
 SocialNetworkQol18 int,
 SocialNetworkQol19 int,
 SocialQolAverage decimal(5,2), 
-PartnerRelationshipQolSpouse varchar(3),
 PartnerRelationshipQolSpouseRelation varchar(64),
 PartnerRelationshipQol20 int,
 PartnerRelationshipQol21 int,
@@ -49,6 +49,7 @@ CumulativeScore decimal(5,2)
 );
 
 CREATE TABLE autismsurvey.dbo.ASDQ2 (
+RequesterEmail varchar(64),
 ParticipantName varchar(64),
 ParticipantAge int,
 DateOfBirth varchar(64),

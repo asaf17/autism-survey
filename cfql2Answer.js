@@ -1,5 +1,6 @@
 class Cfql2Answer {
   constructor(
+    RequesterEmail,
     ParticipantName,
     ParticipantAge,
     DateOfBirth,
@@ -25,7 +26,7 @@ class Cfql2Answer {
     CaregiverQol10,
     CaregiverQol11,
     CaregiverQol12,
-    CargegiverQolAverage,
+    CaregiverQolAverage,
     FinancialQol13,
     FinancialQol14,
     FinancialQol15,
@@ -35,7 +36,6 @@ class Cfql2Answer {
     SocialNetworkQol18,
     SocialNetworkQol19,
     SocialQolAverage,
-    PartnerRelationshipQolSpouse,
     PartnerRelationshipQolSpouseRelation,
     PartnerRelationshipQol20,
     PartnerRelationshipQol21,
@@ -48,6 +48,7 @@ class Cfql2Answer {
     CopingQolAverage,
     CumulativeScore
     ){
+    this.RequesterEmail = RequesterEmail,
     this.ParticipantName = ParticipantName,
     this.ParticipantAge = ParticipantAge,
     this.DateOfBirth = DateOfBirth,
