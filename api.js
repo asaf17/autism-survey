@@ -60,8 +60,17 @@ const executeQuery = function (res, query) {
  * Appends each results in the cfql survey to be executed in the SQL insert statement
  */
 var cfqlQueryString="";
+/**
+ * appends the json file format of the cfql responses to be sent to the clinician
+ */
 var cfqlReport="";
+/**
+ * stores the cfql email requestor from the home page in the var
+ */
 var cfqlRequester="";
+/**
+ * stores the asdq email requestor from the home page in the var
+ */
 var asdqRequester="";
 
 app.post("/index.html", function(req, res){
@@ -340,6 +349,9 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
  * Appends each results in the asdq survey to be executed in the SQL insert statement
  */
 var asdqQueryString="";
+/**
+ * appends the json file format of the cfql responses to be sent to the clinician
+ */
 var asdqReport="";
 
 //ASDQ2 SURVEY POST METHODS
