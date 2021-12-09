@@ -73,7 +73,7 @@ app.post("/CFQL2/cfql2_userInput.html", function(req, res){
   console.log('childs name: ' +req.body.name_child);
   console.log('childs age: ' + req.body.age_child)
 
-  Cfql2Answer.participantName = req.body.name_child;
+  Cfql2Answer.ParticipantName = req.body.name_child;
   Cfql2Answer.ParticipantAge = parseInt(req.body.age_child);
   Cfql2Answer.DateOfBirth = req.body.dob;
   Cfql2Answer.InformantName = req.body.name_inform;
@@ -88,7 +88,6 @@ app.post("/CFQL2/cfql2_userInput.html", function(req, res){
 
   res.redirect("/CFQL2/1_cfql2_ChildSurvey.html");
 });
-
 
 
 app.post('/CFQL2/1_cfql2_ChildSurvey.html', function(req, res){
@@ -239,7 +238,7 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
   "SocialNetworkQol18, SocialNetworkQol19, SocialQolAverage, PartnerRelationshipQolSpouseRelation, "+
   "PartnerRelationshipQol20, PartnerRelationshipQol21, PartnerRelationshipQol22, PartnerRelationshipQol23, "+
   "PartnerRelationshipQolAverage, CopingQol24, CopingQol25, CopingQol26, CopingQolAverage, CumulativeScore) values ('"+
-  Cfql2Answer.participantName+
+  Cfql2Answer.ParticipantName+
   "', '"+Cfql2Answer.ParticipantAge+
   "', '"+Cfql2Answer.DateOfBirth+
   "', '"+Cfql2Answer.Sex+
@@ -288,6 +287,32 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
 
 
   executeQuery(res, cfqlQueryString);
+
+  //cfql2 scores in JSON format
+  console.log(
+    report_cfql2("[{"+JSON.stringify("ParticipantName")+":"+JSON.stringify(Cfql2Answer.ParticipantName)+","+ JSON.stringify("ParticipantAge")+":"+JSON.stringify(Cfql2Answer.ParticipantAge)+","+
+    JSON.stringify("DateOfBirth")+":"+JSON.stringify(Cfql2Answer.DateOfBirth)+","+JSON.stringify("Sex")+":"+JSON.stringify(Cfql2Answer.Sex)+","+JSON.stringify("InformantName")+":"+JSON.stringify(Cfql2Answer.InformantName)+","+
+    JSON.stringify("InformantAge")+":"+JSON.stringify(Cfql2Answer.InformantAge)+","+JSON.stringify("DateOfSurvey")+":"+JSON.stringify(Cfql2Answer.DateOfSurvey)+","+
+    JSON.stringify("InformantRelationshipToPatient")+":"+JSON.stringify(Cfql2Answer.InformantRelationshipToPatient)+","+JSON.stringify("ParticipantDiagnosis")+":"+JSON.stringify(Cfql2Answer.ParticipantDiagnosis)+","+
+    JSON.stringify("ParticipantAgeDiagnosis")+":"+JSON.stringify(Cfql2Answer.ParticipantAgeDiagnosis)+","+JSON.stringify("ParticipantDiagosisSeverity")+":"+JSON.stringify(Cfql2Answer.ParticipantDiagosisSeverity)+","+
+    JSON.stringify("ChildQol1")+":"+JSON.stringify(Cfql2Answer.ChildQol1)+","+JSON.stringify("ChildQol2")+":"+JSON.stringify(Cfql2Answer.ChildQol2)+","+JSON.stringify("ChildQol3")+":"+JSON.stringify(Cfql2Answer.ChildQol3)+","+
+    JSON.stringify("ChildQol4")+":"+JSON.stringify(Cfql2Answer.ChildQol4)+","+JSON.stringify("ChildQolAverage")+":"+JSON.stringify(Cfql2Answer.ChildQolAverage)+","+JSON.stringify("FamilyQol5")+":"+JSON.stringify(Cfql2Answer.FamilyQol5)+","+
+    JSON.stringify("FamilyQol6")+":"+JSON.stringify(Cfql2Answer.FamilyQol6)+","+JSON.stringify("FamilyQol7")+":"+JSON.stringify(Cfql2Answer.FamilyQol7)+","+JSON.stringify("FamilyQol8")+":"+JSON.stringify(Cfql2Answer.FamilyQol8)+","+
+    JSON.stringify("FamilyQolAverage")+":"+JSON.stringify(Cfql2Answer.FamilyQolAverage)+","+JSON.stringify("CaregiverQol9")+":"+JSON.stringify(Cfql2Answer.CaregiverQol9)+","+
+    JSON.stringify("CaregiverQol10")+":"+JSON.stringify(Cfql2Answer.CaregiverQol10)+","+JSON.stringify("CaregiverQol11")+":"+JSON.stringify(Cfql2Answer.CaregiverQol11)+","+
+    JSON.stringify("CaregiverQol12")+":"+JSON.stringify(Cfql2Answer.CaregiverQol12)+","+JSON.stringify("CaregiverQolAverage")+":"+JSON.stringify(Cfql2Answer.CaregiverQolAverage)+","+
+    JSON.stringify("FinancialQol13")+":"+JSON.stringify(Cfql2Answer.FinancialQol13)+","+JSON.stringify("FinancialQol14")+":"+JSON.stringify(Cfql2Answer.FinancialQol14)+","+
+    JSON.stringify("FinancialQol15")+":"+JSON.stringify(Cfql2Answer.FinancialQol15)+","+JSON.stringify("FinancialQolAverage")+":"+JSON.stringify(Cfql2Answer.FinancialQolAverage)+","+
+    JSON.stringify("SocialNetworkQol16")+":"+JSON.stringify(Cfql2Answer.SocialNetworkQol16)+","+JSON.stringify("SocialNetworkQol17")+":"+JSON.stringify(Cfql2Answer.SocialNetworkQol17)+","+
+    JSON.stringify("SocialNetworkQol18")+":"+JSON.stringify(Cfql2Answer.SocialNetworkQol18)+","+JSON.stringify("SocialNetworkQol19")+":"+JSON.stringify(Cfql2Answer.SocialNetworkQol19)+","+
+    JSON.stringify("SocialQolAverage")+":"+JSON.stringify(Cfql2Answer.SocialQolAverage)+","+JSON.stringify("PartnerRelationshipQolSpouseRelation")+":"+JSON.stringify(Cfql2Answer.PartnerRelationshipQolSpouseRelation)+","+
+    JSON.stringify("PartnerRelationshipQol20")+":"+JSON.stringify(Cfql2Answer.PartnerRelationshipQol20)+","+JSON.stringify("PartnerRelationshipQol21")+":"+JSON.stringify(Cfql2Answer.PartnerRelationshipQol21)+","+
+    JSON.stringify("PartnerRelationshipQol22")+":"+JSON.stringify(Cfql2Answer.PartnerRelationshipQol22)+","+JSON.stringify("PartnerRelationshipQol23")+":"+JSON.stringify(Cfql2Answer.PartnerRelationshipQol23)+","+
+    JSON.stringify("PartnerRelationshipQolAverage")+":"+JSON.stringify(Cfql2Answer.PartnerRelationshipQolAverage)+","+JSON.stringify("CopingQol24")+":"+JSON.stringify(Cfql2Answer.CopingQol24)+","+
+    JSON.stringify("CopingQol25")+":"+JSON.stringify(Cfql2Answer.CopingQol25)+","+JSON.stringify("CopingQol26")+":"+JSON.stringify(Cfql2Answer.CopingQol26)+","+JSON.stringify("CopingQolAverage")+":"+JSON.stringify(Cfql2Answer.CopingQolAverage)+","+
+    JSON.stringify("CumulativeScore")+":"+JSON.stringify(Cfql2Answer.CumulativeScore)+"}]")
+   );
+
 });
 
 
@@ -311,7 +336,7 @@ app.post("/ASDQ2/asdq2_userinput.html", function(req, res){
   console.log('childs name: ' +req.body.name_child);
   console.log('childs age: ' + req.body.age_child)
 
-  Asdq2Answer.participantName = req.body.name_child;
+  Asdq2Answer.ParticipantName = req.body.name_child;
   Asdq2Answer.ParticipantAge = parseInt(req.body.age_child);
   Asdq2Answer.DateOfBirth = req.body.dob;
   Asdq2Answer.InformantName = req.body.name_inform;
@@ -327,7 +352,6 @@ app.post("/ASDQ2/asdq2_userinput.html", function(req, res){
 
   res.redirect("/ASDQ2/1_asdq2.html");
 });
-
 
 
 app.post('/ASDQ2/1_asdq2.html', function(req, res){
@@ -487,7 +511,7 @@ app.post('/ASDQ2/7_asdq2.html', function(req, res){
   "Q35,Q36,Q37,Q38,Q39,SCISubscore, RRBSubscore, SocialMotivationSubscore, NonVervalCommunicationSubscore, "+
   "ReciprocitySubscore, PerspectiveTakingSubscore, RelationshipsSubscore, RepetitiveBehaviorSubscore, "+
   "NeedForSamenessSubscore, SensorySenstivitySubscore, SensoryInterestsSubscore, RestrictedInterestsSubscore, CumulativeScore) values ('"+
-  Asdq2Answer.participantName+
+  Asdq2Answer.ParticipantName+
   "', '"+Asdq2Answer.ParticipantAge+
   "', '"+Asdq2Answer.DateOfBirth+
   "', '"+Asdq2Answer.Sex+
@@ -554,6 +578,34 @@ app.post('/ASDQ2/7_asdq2.html', function(req, res){
 
 
   executeQuery(res, asdqQueryString);
+
+  //asdq2 scores in JSON format
+  console.log(
+    report_asdq("[{"+JSON.stringify("ParticipantName")+":"+JSON.stringify(Asdq2Answer.ParticipantName)+","+ JSON.stringify("ParticipantAge")+":"+JSON.stringify(Asdq2Answer.ParticipantAge)+","+
+    JSON.stringify("DateOfBirth")+":"+JSON.stringify(Asdq2Answer.DateOfBirth)+","+JSON.stringify("Sex")+":"+JSON.stringify(Asdq2Answer.Sex)+","+JSON.stringify("InformantName")+":"+JSON.stringify(Asdq2Answer.InformantName)+","+
+    JSON.stringify("InformantAge")+":"+JSON.stringify(Asdq2Answer.InformantAge)+","+JSON.stringify("DateOfSurvey")+":"+JSON.stringify(Asdq2Answer.DateOfSurvey)+","+
+    JSON.stringify("InformantRelationshipToPatient")+":"+JSON.stringify(Asdq2Answer.InformantRelationshipToPatient)+","+JSON.stringify("ParticipantDiagnosis")+":"+JSON.stringify(Asdq2Answer.ParticipantDiagnosis)+","+
+    JSON.stringify("ParticipantAgeDiagnosis")+":"+JSON.stringify(Asdq2Answer.ParticipantAgeDiagnosis)+","+JSON.stringify("ParticipantDiagosisSeverity")+":"+JSON.stringify(Asdq2Answer.ParticipantDiagosisSeverity)+","+
+    JSON.stringify("Q1")+":"+JSON.stringify(Asdq2Answer.Q1)+","+JSON.stringify("Q2")+":"+JSON.stringify(Asdq2Answer.Q2)+","+
+    JSON.stringify("Q3")+":"+JSON.stringify(Asdq2Answer.Q3)+","+JSON.stringify("Q4")+":"+JSON.stringify(Asdq2Answer.Q4)+","+JSON.stringify("Q5")+":"+JSON.stringify(Asdq2Answer.Q5)+","+
+    JSON.stringify("Q6")+":"+JSON.stringify(Asdq2Answer.Q6)+","+JSON.stringify("Q7")+":"+JSON.stringify(Asdq2Answer.Q7)+","+JSON.stringify("Q8")+":"+JSON.stringify(Asdq2Answer.Q8)+","+
+    JSON.stringify("Q9")+":"+JSON.stringify(Asdq2Answer.Q9)+","+JSON.stringify("Q10")+":"+JSON.stringify(Asdq2Answer.Q10)+","+JSON.stringify("Q11")+":"+JSON.stringify(Asdq2Answer.Q11)+","+
+    JSON.stringify("Q12")+":"+JSON.stringify(Asdq2Answer.Q12)+","+JSON.stringify("Q13")+":"+JSON.stringify(Asdq2Answer.Q13)+","+JSON.stringify("Q14")+":"+JSON.stringify(Asdq2Answer.Q14)+","+
+    JSON.stringify("Q15")+":"+JSON.stringify(Asdq2Answer.Q15)+","+JSON.stringify("Q16")+":"+JSON.stringify(Asdq2Answer.Q16)+","+JSON.stringify("Q17")+":"+JSON.stringify(Asdq2Answer.Q17)+","+
+    JSON.stringify("Q18")+":"+JSON.stringify(Asdq2Answer.Q18)+","+JSON.stringify("Q19")+":"+JSON.stringify(Asdq2Answer.Q19)+","+JSON.stringify("Q20")+":"+JSON.stringify(Asdq2Answer.Q20)+","+
+    JSON.stringify("Q21")+":"+JSON.stringify(Asdq2Answer.Q21)+","+JSON.stringify("Q22")+":"+JSON.stringify(Asdq2Answer.Q22)+","+JSON.stringify("Q23")+":"+JSON.stringify(Asdq2Answer.Q23)+","+
+    JSON.stringify("Q24")+":"+JSON.stringify(Asdq2Answer.Q24)+","+JSON.stringify("Q25")+":"+JSON.stringify(Asdq2Answer.Q25)+","+JSON.stringify("Q26")+":"+JSON.stringify(Asdq2Answer.Q26)+","+
+    JSON.stringify("Q27")+":"+JSON.stringify(Asdq2Answer.Q27)+","+JSON.stringify("Q28")+":"+JSON.stringify(Asdq2Answer.Q28)+","+JSON.stringify("Q29")+":"+JSON.stringify(Asdq2Answer.Q29)+","+
+    JSON.stringify("Q30")+":"+JSON.stringify(Asdq2Answer.Q30)+","+JSON.stringify("Q31")+":"+JSON.stringify(Asdq2Answer.Q31)+","+JSON.stringify("Q32")+":"+JSON.stringify(Asdq2Answer.Q32)+","+
+    JSON.stringify("Q33")+":"+JSON.stringify(Asdq2Answer.Q33)+","+JSON.stringify("Q34")+":"+JSON.stringify(Asdq2Answer.Q34)+","+JSON.stringify("Q35")+":"+JSON.stringify(Asdq2Answer.Q35)+","+
+    JSON.stringify("Q36")+":"+JSON.stringify(Asdq2Answer.Q36)+","+JSON.stringify("SCISubscore")+":"+JSON.stringify(Asdq2Answer.SCISubscore)+","+JSON.stringify("RRBSubscore")+":"+JSON.stringify(Asdq2Answer.RRBSubscore)+","+
+    JSON.stringify("SocialMotivationSubscore")+":"+JSON.stringify(Asdq2Answer.SocialMotivationSubscore)+","+JSON.stringify("NonVervalCommunicationSubscore")+":"+JSON.stringify(Asdq2Answer.NonVervalCommunicationSubscore)+","+
+    JSON.stringify("ReciprocitySubscore")+":"+JSON.stringify(Asdq2Answer.ReciprocitySubscore)+","+JSON.stringify("PerspectiveTakingSubscore")+":"+JSON.stringify(Asdq2Answer.PerspectiveTakingSubscore)+","+
+    JSON.stringify("RelationshipsSubscore")+":"+JSON.stringify(Asdq2Answer.RelationshipsSubscore)+","+JSON.stringify("RepetitiveBehaviorSubscore")+":"+JSON.stringify(Asdq2Answer.RepetitiveBehaviorSubscore)+","+
+    JSON.stringify("NeedForSamenessSubscore")+":"+JSON.stringify(Asdq2Answer.NeedForSamenessSubscore)+","+JSON.stringify("SensorySenstivitySubscore")+":"+JSON.stringify(Asdq2Answer.SensorySenstivitySubscore)+","+
+    JSON.stringify("SensoryInterestsSubscore")+":"+JSON.stringify(Asdq2Answer.SensoryInterestsSubscore)+","+JSON.stringify("RestrictedInterestsSubscore")+":"+JSON.stringify(Asdq2Answer.RestrictedInterestsSubscore)+","+
+    JSON.stringify("CumulativeScore")+":"+JSON.stringify(Asdq2Answer.CumulativeScore)+"}]")
+   );
 
 });
 
@@ -706,7 +758,108 @@ function asdq(scores) {
   return asdq2ScoresArray; 
 }
 
+//REPORTING FUNCTIONS
 //----------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Request a pristine data set and hand-computed correct output from the client at next meeting, to help verify these. 
+
+		//Produce an english language description of a given quality of life score (21 Oct '21'). 
+		function score_description(score, lowmax, ademax) {
+			if(score <= lowmax) {
+				return "low"; 
+			} else if(score <= ademax) {
+				return "adequate"; 
+			} else {
+				return "high"; 
+			}
+		}
+
+		//Produce a properly formatted text report for some row of the CFQL2 data (21 Oct. '21). 
+		function report_cfql2(str) {
+			//Extract parsed JSON object from reply. 
+			var row = JSON.parse(str); 
+			row = row[0]; //Access the inner data. 
+			//Accumulate the relevant entries of 'row'. 
+			var participantname = row.ParticipantName;//row.ParticipantName; 
+			var participantage = row.ParticipantAge;//row.participantage; 
+			var child = row.ChildQolAverage; 
+			var family = row.FamilyQolAverage; 
+			var caregiver = row.CaregiverQolAverage; 
+			var financial = row.FinancialQolAverage; 
+			var social = row.SocialQolAverage; 
+			var relationship = row.PartnerRelationshipQolAverage; 
+			var coping = row.CopingQolAverage; 
+			var cumulative = row.CumulativeScore; 
+			var average = 5.0 * (cumulative) / 130.0; 
+			//Format those values into the desired formatting. 
+			var outline1 = "Scores - " + participantname + ", age: " + participantage + "\n" + 
+							"Child QoL: " + child + "/20, " + score_description(child, 8, 15) + "\n" + 
+							"Familiy QoL: " + family + "/20, " + score_description(family, 8, 15) + "\n" + 
+							"Caregiber QoL: " + caregiver + "/20, " + score_description(caregiver, 8, 15) + "\n" + 
+							"Financial QoL: " + financial + "/15, " + score_description(financial, 6, 11) + "\n" + 
+							"Social Network QoL: " + social + "/20, " + score_description(social, 8, 15) + "\n" + 
+							"Relationship QoL: " + relationship +"/20, " + score_description(relationship, 8, 15) + "\n" + 
+							"Coping QoL: " + coping + "/15, " + score_description(coping, 6, 11) + "\n" + 
+							"Total QoL: " + cumulative + "/130, QoL Average: " + average + ", " + score_description(average, 2, 3) + "\n"; 
+			//alert(outline1); //JUST FOR TESTING. 
+			return outline1; 
+		}
+
+		//Produce a properly formatted text report for some row of the ASDQ data (28 Oct. '21). 
+		function report_asdq(str) {
+			//Extract parsed JSON object from reply. 
+			var row = JSON.parse(str); 
+			row = row[0]; //Access the inner data. 
+			//Accumulate the relevant entries of 'row'. 
+			//As far as I can tell, the database does not actually store these scores, so that needs to be corrected. 
+      var participantname = row.ParticipantName;//row.ParticipantName; 
+			var participantage = row.ParticipantAge;//row.participantage; 
+			var asdtotal = row.CumulativeScore; 
+			var sci = row.SCISubscore; 
+			var rrb = row.RRBSubscore; 
+			var socialmotivation = row.SocialMotivationSubscore; 
+			var nonverbalcommunication = row.NonVervalCommunicationSubscore; 
+			var reciprocity = row.ReciprocitySubscore; 
+			var perspectivetaking = row.PerspectiveTakingSubscore; 
+			var relationships = row.RelationshipsSubscore; 
+			var repetitive = row.RepetitiveBehaviorSubscore; 
+			var sameness = row.NeedForSamenessSubscore; 
+			var sensitiviy = row.SensorySenstivitySubscore; 
+			var interests = row.SensoryInterestsSubscore; 
+			var restrictedinterests = row.RestrictedInterestsSubscore; 
+			//Format those values into the desired formatting. 
+			var outline1 = "Scores - " + participantname + ", age: " + participantage + "\n" +
+              "ASD Total: " + asdtotal + "\n" + 
+						   "Domains\n" + 
+						   "SCI: " + sci + "\n" + 
+						   "RRB: " + rrb + "\n" + 
+						   "\nSocial Sub-scales\n" + 
+						   "Social Motivation: " + socialmotivation + "\n" + 
+						   "Non-Verbal Communication: "  + nonverbalcommunication + "\n"+ 
+						   "Reciprocity: " + reciprocity + "\n" + 
+						   "Perspective Taking: " + perspectivetaking + "\n" + 
+						   "Relationships: " + relationships + "\n" + 
+						   "\nRepetitive Sub-scales\n" + 
+						   "Repetitive Behavior: " + repetitive + "\n" + 
+						   "Need for sameness: " + sameness + "\n" + 
+						   "Sensory sensitivity: " + sensitiviy + "\n" + 
+						   "Sensory interests: " + interests + "\n" + 
+						   "Restricted interests: " + restrictedinterests + "\n"; 
+			//alert(outline1); //JUST FOR TESTING. 
+			return outline1; 
+		}
+
+		function run_report() {
+			/*
+				7 Oct.'21
+				I am assuming that the structure of "data" is a string structured as a CSV following the schema specified by Austin in the "information" section of the Discord. 
+				The basic plan here will be to produce an output string which can be sent as a component of an email report to the "informant" who administers the test to the patient. 
+				Actually getting the data in this format is of uncertain difficulty, but Austin tells me that he is working on an HTTP-GET API that will make that process extremely simple. 
+
+				Without knowing for sure what Dr. Frazier wants the report to look like, it's tough for me to do anything final here; nonetheless I will put together a preliminary structure
+			*/
+			report_cfql2("[{\"ParticipantName\":\"Hello There\",\"ParticipantAge\":99,\"DateOfBirth\":\"1999-01-01T00:00:00.000Z\",\"Sex\":\"Male\",\"InformantName\":\"Daddy Squiggles\",\"InformantAge\":99,\"DateOfSurvey\":\"1999-01-01T00:00:00.000Z\",\"InformantRelationshipToPatient\":\"Father\",\"ParticipantDiagnosis\":\"Autism\",\"ParticipantAgeDiagnosis\":10,\"ParticipantDiagosisSeverity\":\"Severe\",\"ChildQol1\":99,\"ChildQol2\":99,\"ChildQol3\":99,\"ChildQol4\":99,\"ChildQolAverage\":99.99,\"FamilyQol5\":99,\"FamilyQol6\":99,\"FamilyQol7\":99,\"FamilyQol8\":99,\"FamilyQolAverage\":99.99,\"CaregiverQol9\":99,\"CaregiverQol10\":99,\"CaregiverQol11\":99,\"CaregiverQol12\":99,\"CargegiverQolAverage\":99.99,\"FinancialQol13\":99,\"FinancialQol14\":99,\"FinancialQol15\":99,\"FinancialQolAverage\":99.99,\"SocialNetworkQol16\":99,\"SocialNetworkQol17\":99,\"SocialNetworkQol18\":99,\"SocialNetworkQol19\":99,\"SocialQolAverage\":99.99,\"PartnerRelationshipQolSpouse\":\"Yes\",\"PartnerRelationshipQolSpouseRelation\":\"Father\",\"PartnerRelationshipQol20\":99,\"PartnerRelationshipQol21\":99,\"PartnerRelationshipQol22\":99,\"PartnerRelationshipQol23\":99,\"PartnerRelationshipQolAverage\":99.99,\"CopingQol24\":99,\"CopingQol25\":99,\"CopingQol26\":99,\"CopingQolAverage\":99.99,\"CumulativeScore\":99.99}]"); 
+		}
 
 
 var port = process.env.PORT || 8090;
