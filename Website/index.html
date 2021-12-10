@@ -54,6 +54,7 @@
             //Send the email. 
             Email.send(emailjsonraw)
                 .then(function (message) {
+                    alert('DO NOT CLOSE OR REFRESH THE PAGE UNTIL THE COMPLETION OF THE SURVEY(s)');
                     alert("mail sent successfully to: "+recipient);
                     return; 
                 });
@@ -161,7 +162,7 @@
 
                             <p>&nbsp;</p>
                             <!-- <button type="button" onclick="validateEntries('#emailRequestor', '#emailRecipient');alert('email sent');">Submit</button> -->
-                            <button type="submit" onclick="validateEntries('#emailRequestor', '#emailRecipient');test();alert('DO NOT CLOSE OR REFRESH THE PAGE UNTIL THE COMPLETION OF THE SURVEY(S)!');">Submit</button>
+                            <button type="submit" onclick="validateEntries('#emailRequestor', '#emailRecipient');">Submit</button>
                         </form>
                     </div>
                     <p>&nbsp;</p>
@@ -331,10 +332,11 @@
             if(inputValid(email_id2)){
                 getReciEmail();
             }
-            
+            //if both email entries are valid, send the email to patient and store requestor to send after completion
             if(inputValid(email_id1) && inputValid(email_id2) ){
                 saveNames();
                 surveyToSend();
+                test();
             }
         }
     </script>
