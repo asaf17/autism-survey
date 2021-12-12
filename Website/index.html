@@ -54,7 +54,6 @@
             //Send the email. 
             Email.send(emailjsonraw)
                 .then(function (message) {
-                    alert('DO NOT CLOSE OR REFRESH THE PAGE UNTIL THE COMPLETION OF THE SURVEY(s)');
                     alert("mail sent successfully to: "+recipient);
                     return; 
                 });
