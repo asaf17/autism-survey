@@ -60,20 +60,36 @@ const executeQuery = function (res, query) {
  * Appends each results in the cfql survey to be executed in the SQL insert statement
  */
 var cfqlQueryString="";
+/**
+ * appends the json file format of the cfql responses to be sent to the clinician
+ */
 var cfqlReport="";
+/**
+ * stores the cfql email requestor from the home page in the var
+ */
 var cfqlRequester="";
+/**
+ * stores the asdq email requestor from the home page in the var
+ */
 var asdqRequester="";
 
 app.post("/index.html", function(req, res){
+  var alert = require('alert');
   SurveyInformation.RequesterEmail = req.body.emailRequestor;
   
   cfqlRequester = SurveyInformation.RequesterEmail;
   asdqRequester = SurveyInformation.RequesterEmail;
 
-  // console.log("hi there cfql: "+cfqlRequester);
-  // console.log("hi there asdq: "+asdqRequester);
 
-  //res.redirect("/index.html");
+  if(cfqlRequester == '' || asdqRequester=='' || req.body.emailRecipient ==''){
+    alert("Re-enter the URL and valid email addresses to send to");
+    res.end();
+  }
+  else {
+    alert("Email succussfully sent to: "+req.body.emailRecipient)
+    res.redirect("/index.html");
+  }
+
 });
 
 
@@ -101,7 +117,7 @@ app.post("/CFQL2/cfql2_userInput.html", function(req, res){
   Cfql2Answer.ParticipantDiagosisSeverity = req.body.severity;
   Cfql2Answer.ParticipantAgeDiagnosis = parseInt(req.body.age_diag);
 
-  console.log("hi there: "+Cfql2Answer.RequesterEmail);
+  //console.log("hi there: "+Cfql2Answer.RequesterEmail);
 
   res.redirect("/CFQL2/1_cfql2_ChildSurvey.html");
 });
@@ -340,6 +356,9 @@ app.post('/CFQL2/8_cfql2_CopingSurvey.html', function(req, res){
  * Appends each results in the asdq survey to be executed in the SQL insert statement
  */
 var asdqQueryString="";
+/**
+ * appends the json file format of the cfql responses to be sent to the clinician
+ */
 var asdqReport="";
 
 //ASDQ2 SURVEY POST METHODS
