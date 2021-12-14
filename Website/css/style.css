@@ -1,8 +1,10 @@
 body {
     display: flex;
     justify-content: center;
+    margin:0px;
 
 }
+
 #main_div{
     display: flex;
     flex-direction: column;
@@ -10,8 +12,11 @@ body {
     padding: 50px;
 }
 .form_options{
-    /*padding-right: 50px;*/
+    padding-right: 50px;
     font-size: 50px;
+}
+.test_main{
+    width: 100%;
 }
 
 #cfql_check{
@@ -60,11 +65,12 @@ body {
 
 .Quiz_table tr:hover {background-color: #ddd;}
 
+
 .Quiz_table th {
     border: 1px solid #ddd;
     padding:15px;
-    /*padding-top: 12px;*/
-    /*padding-bottom: 12px;*/
+    padding-top: 12px;
+    padding-bottom: 12px;
     text-align: center;
     /*background-color: #04AA6D;*/
     background-color: #568259;
@@ -98,4 +104,91 @@ body {
     padding-right: 25px;
     display: flex;
     justify-content: flex-end;
+}
+.invis{
+    display: none;
+}
+@media
+only screen and (max-width: 1000px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+    body{
+        width: 100%;
+    }
+    .quiz_div{
+        width: 100%;
+        padding: 0px;
+        margin: 2px;
+    }
+    .quiz_div th, .quiz_div td{
+        padding: 0px;
+        margin: 2px;
+    }
+
+    form{
+        width: 100%;
+        padding: 0px;
+
+    }
+    th{
+        display: none;
+    }
+    .invis{
+        display: block;
+
+    }
+    tr{
+        background-color: #f2f2f2
+    }
+    /*td:nth-of-type(1):before { content: "First Name"; }*/
+    td{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    td:nth-child(1){
+        background-color: #4CAF50;
+        font-weight: bold;
+        border: 1px solid #ddd;
+        padding:15px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        color: white;
+
+    }
+    tr:hover {all: unset;}
+    /*disagree responses*/
+    .agree td:nth-of-type(2):before { content: "Strongly Disagree"; }
+    .agree td:nth-of-type(3):before { content: "Disagree"; }
+    .agree td:nth-of-type(4):before { content: "Neutral"; }
+    .agree td:nth-of-type(5):before { content: "Agree"; }
+    .agree td:nth-of-type(6):before { content: "Strongly Agree"; }
+    /*improved responses*/
+    .improved td:nth-of-type(2):before { content: "Improved Substantially"; }
+    .improved td:nth-of-type(3):before { content: "Improved Slightly"; }
+    .improved td:nth-of-type(4):before { content: "Same"; }
+    .improved td:nth-of-type(5):before { content: "Decreased Slightly"; }
+    .improved td:nth-of-type(6):before { content: "Devreased Substantially"; }
+    /*not at all..*/
+    .somewhat td:nth-of-type(2):before { content: "Not At All"; }
+    .somewhat td:nth-of-type(3):before { content: "A Little"; }
+    .somewhat td:nth-of-type(4):before { content: "Somewhat"; }
+    .somewhat td:nth-of-type(5):before { content: "Quite a Bit"; }
+    .somewhat td:nth-of-type(6):before { content: "Very Much"; }
+    /*partner QoL      */
+    .partner td:nth-of-type(2):before { content: "Biological Parent"; }
+    .partner td:nth-of-type(3):before { content: "Non-Biological Parent"; }
+    .partner td:nth-of-type(4):before { content: "Other"; }
+    /*sometimes responses*/
+    .never td:nth-of-type(2):before { content: "Never"; }
+    .never td:nth-of-type(3):before { content: "Rarely"; }
+    .never td:nth-of-type(4):before { content: "Sometimes"; }
+    .never td:nth-of-type(5):before { content: "Often"; }
+    .never td:nth-of-type(6):before { content: "Always"; }
+    /*yes/no responses*/
+    .affirmative td:nth-of-type(2):before { content: "Yes"; }
+    .affirmative td:nth-of-type(3):before { content: "No"; }
 }
