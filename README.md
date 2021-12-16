@@ -110,7 +110,12 @@
     - Navigate to Website -> index.html -> "Run Without Debugging" -> "Chrome"
       - You have successfully ran the front end of our website, if you would like to run other pages do the same procedure above while on those pages in VSCode
 
-## Running/Testing APIs
+## Running APIs
+- Open a new git terminal -> Run the command “nodemon api.js”
+  - This allows the api to be incorporated into the website for data collection purposes
+- Open a browser window and type “localhost:8090/index.html” to navigate to the home page
+
+## Testing APIs
 1. If you have not done so already, download and install Postman [Postman](https://www.postman.com/downloads/) 
 2. Go to the dbconfig.js file and update the instance name and port to what your current SQL Server is on
   - To get the port the SQL server is running on:
@@ -123,12 +128,14 @@
 5. Run ```npm install```
 6. Run ```npm audit fix```
 7. Run ```npm install -g nodemon```
-8. Run ```Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass```
-9. Run ```nodemon api.js```
+- Run npm install mssql
+- Run npm install nodemailer
+9. Run ```Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass```
+10. Run ```nodemon api.js```
   - If successful, you should see "API is running at 8090" in the console.
-10. Open Postman
-11. Click the "+" button to run a new API request
-12. Run/test the following API calls:
+11. Open Postman
+12. Click the "+" button to run a new API request
+13. Run/test the following API calls:
   - GET: http://localhost:8090/api/cfql2/
   - GET {Name}: http://localhost:8090/api/cfql2/{name}
   - POST: http://localhost:8090/api/cfql2
@@ -137,5 +144,5 @@
   - POST: http://localhost:8090/api/asdq2
   - GET: http://localhost:8090/api/surveyInformation
   - POST: http://localhost:8090/api/surveyInformation
-13. Check the database to ensure data is properly pushed when POSTING
-14. Check to ensure when GETTING that data matches data in database
+14. Check the database to ensure data is properly pushed when POSTING
+15. Check to ensure when GETTING that data matches data in database
